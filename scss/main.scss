@@ -1,3 +1,11 @@
+$badass: #ffffff;
+
+body {
+  margin: 0;
+  background-color: $badass;
+  overflow: hidden;
+}
+
 #header .link {
   padding: 0.9rem 1rem;
   font-size: 0.75rem;
