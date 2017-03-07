@@ -1,0 +1,4 @@
+testing {
+  title 'Testing'
+  #resource '[[=testing.xhtml]]'
+}
