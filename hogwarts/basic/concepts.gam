@@ -1,19 +1,23 @@
 schools {->(extends)../basic
-    title 'Houses of Hogwarts School'
+    ->(parent)../basic
+    title 'The schools around the world'
     #hogwarts-resource '[[=schools.xhtml]]'
 }
 
 hogwarts {->(extends)../basic
-    title 'Houses of Hogwarts School'
-    #hogwarts-resource '[[=schools.xhtml]]'
+    ->(parent)../basic
+    title 'A tour around Hogwarts School'
+    #hogwarts-resource '[[=hogwarts.xhtml]]'
 }
 
 provisions {->(extends)../basic
+    ->(parent)../basic
     title 'Provisions at Hogwarts School'
     #hogwarts-resource '[[=provisions.xhtml]]'
 }
 
 headmasters {->(extends)../basic
+    ->(parent)../basic
     title 'Headmasters'
     #hogwarts-resource '[[=headmasters.xhtml]]'
 }

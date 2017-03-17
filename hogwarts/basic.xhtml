@@ -1,6 +1,24 @@
 <div xmlns="http://www.w3.org/TR/xhtml1/strict" xmlns:gale="http://gale.tue.nl/adaptation">
 
-    <p>This is a short explanation of the basic concepts of hogwarts</p>
+    <p>
+        So, it looks like you have received an invitation letter and are now going to
+        Hogwarts School of Witchcraft and Wizardry. <strong>Congratulations!</strong>
+        Take a look at some of the following sections in order to guide you in your journey.
+    </p>
+
+    <div class="row">
+
+        <gale:for var="concept" expr="${&lt;-(parent)}">
+            <div class="small-3 columns">
+
+                <gale:a adapt="false">
+                    <gale:attr-variable name="href" expr="${%concept}.getUriString()" />
+                    <gale:variable expr="${%concept?title}"/>
+                </gale:a>
+            </div>
+        </gale:for>
+
+    </div>
 
     <gale:object>
         <gale:attr-variable name="data" expr="${#hogwarts-resource}" />

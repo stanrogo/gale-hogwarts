@@ -10,6 +10,11 @@ letter {->(extends)_concept
 basic {->(extends)_concept
     title 'Welcome To Hogwarts School'
     #concept-resource '[[=basic.xhtml]]'
+
+    <-(parent)basic/hogwarts {}
+    <-(parent)basic/headmasters {}
+    <-(parent)basic/provisions {}
+    <-(parent)basic/schools {}
 }
 
 diagon-alley {->(extends)_concept
