@@ -22,3 +22,7 @@ hogwarts {->(extends)_concept
 headmasters {->(extends)_concept
     title 'Headmasters of Hogwarts'
 }
+
+schools {->(extends)_concept
+    title 'Schools for Wizards and Witches'
+}
