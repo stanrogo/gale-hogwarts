@@ -1,0 +1,5 @@
+// This is the root concept of the entire application
+_concept {
+    #resource '[[=layout.xhtml]]'
+    #root:Boolean 'true'
+}

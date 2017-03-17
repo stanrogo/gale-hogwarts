@@ -2,11 +2,7 @@
 
     <p>This is a short explanation of diagon alley</p>
 
-    <gale:if expr="${#root} == false">
-        <gale:then>
-            <gale:object>
-                <gale:attr-variable name="data" expr="${#concept-resource}" />
-            </gale:object>
-        </gale:then>
-    </gale:if>
+    <gale:object>
+        <gale:attr-variable name="data" expr="${#alley-resource}" />
+    </gale:object>
 </div>

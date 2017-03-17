@@ -1,0 +1,19 @@
+dumbledore {->(extends)../headmasters
+    title 'Albus Dumbledore'
+    #headmaster-resource '[[=dumbledore.xhtml]]'
+}
+
+minerva {->(extends)../headmasters
+    title 'Minerva McGonagall'
+    #headmaster-resource '[[=minerva.xhtml]]'
+}
+
+severus {->(extends)../headmasters
+    title 'Severus Snape'
+    #headmaster-resource '[[=severus.xhtml]]'
+}
+
+umbridge {->(extends)../headmasters
+    title 'Dolores Umbridge'
+    #headmaster-resource '[[=umbridge.xhtml]]'
+}

@@ -3,8 +3,8 @@
       xmlns:gale="http://gale.tue.nl/adaptation">
 
 <head>
-    <link rel="stylesheet" href="../vendor/foundation.min.css" />
-    <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="vendor/foundation.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
 </head>
 
 <body>
@@ -30,19 +30,16 @@
     </div>
 </header>
 
-<!-- Provide the ability for multiple levels of nesting -->
-<gale:if expr="${#root} == true">
-    <gale:then>
-        <gale:object>
-            <gale:attr-variable name="data" expr="${#concept-resource}" />
-        </gale:object>
-    </gale:then>
-    <gale:else>
-        <gale:object>
-            <gale:attr-variable name="data" expr="${#parent-resource}"/>
-        </gale:object>
-    </gale:else>
-</gale:if>
+<main>
+    <div class="row">
+        <div class="small-12 columns">
+            <!-- Provide the ability for multiple levels of nesting -->
+            <gale:object>
+                <gale:attr-variable name="data" expr="${#concept-resource}" />
+            </gale:object>
+        </div>
+    </div>
+</main>
 
 </body>
 
