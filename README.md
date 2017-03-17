@@ -15,7 +15,9 @@ Now that you (hopefully) have all the prerequisites in place we can begin to dep
 
 Next, navigate to the directory you just cloned using terminal/powershell. Now run: ```npm install```. If you're using a mac, you will have to execute this command as ```sudo npm install```. This will install all the necessary files that we will use. After this run the command ```npm start``` which will start a server running on port 8000, serving out the files in this directory.
 
-You can now launch the gale application! Navigate to the URL that should look as follows: ```http://localhost:8080/gale/concept/http://localhost:8000/testing```.
+Now launch the GALE server which should open on port 8080 by default. Use the methods discussed in the lecture slides.
+
+You can now launch the gale application! Navigate to the URL that should look as follows: ```http://localhost:8080/gale/concept/http://localhost:8000/hogwarts/hogwarts```.
 
 This should present you with the intro page which currently has no adaptation at all.
 
