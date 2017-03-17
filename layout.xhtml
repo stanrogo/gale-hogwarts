@@ -30,9 +30,16 @@
     </div>
 </header>
 
-<gale:object>
-    <gale:attr-variable name="data" expr="${.}.getUriString()+&quot;.xhtml&quot;" />
-</gale:object>
+<!-- Provide the ability for multiple levels of nesting -->
+<gale:if expr="${#root} == true"><gale:then>
+    <gale:object>
+        <gale:attr-variable name="data" expr="${.}.getUriString()+&quot;.xhtml&quot;" />
+    </gale:object>
+</gale:then><gale:else>
+    <gale:object>
+        <gale:attr-variable name="data" expr="${.}.getUriString().substring(0, ${.}.getUriString().lastIndexOf(&quot;/&quot;))+&quot;.xhtml&quot;"/>
+    </gale:object>
+</gale:else></gale:if>
 
 </body>
 
