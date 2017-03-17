@@ -1,0 +1,13 @@
+// @file concepts.gam
+// @description This file contains the child concepts for diagon alley
+// @authors Stanley Clark <me@stanrogo.com>
+// @version 0.0.1
+
+_concept {->(extends)../_concept
+    #root:Boolean 'false'
+}
+
+olivanders {->(extends)_concept
+
+    title 'Olivanders Wands'
+}

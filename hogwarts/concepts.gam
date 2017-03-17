@@ -9,6 +9,12 @@ _concept {
     // Resources are .xhtml files with the same name as the concept, just to make our lives easier
     #resource '[[=layout.xhtml]]'
     #root:Boolean 'true'
+    #concept-resource ='${.}.getUriString() + ".xhtml"'
+    #parent-resource ='~
+        Integer slashIndex = ${#concept-resource}.lastIndexOf("/");
+        String parentUri = ${#concept-resource}.substring(0, slashIndex) + ".xhtml";
+        return parentUri;
+    '
 }
 
 letter {->(extends)_concept
@@ -25,4 +31,8 @@ headmasters {->(extends)_concept
 
 schools {->(extends)_concept
     title 'Schools for Wizards and Witches'
+}
+
+diagon-alley {->(extends)_concept
+    title 'Diagon Alley'
 }
