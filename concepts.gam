@@ -1,4 +1,23 @@
-testing {
-  title 'Testing'
-  #resource '[[=testing.xhtml]]'
+// @file concepts.gam
+// @description This is the concepts file of the adaptive gale hogwarts application
+// @authors Stanley Clark <me@stanrogo.com>
+// @version 0.0.1
+
+
+// This is the root concept of the entire application
+_concept {
+    // Resources are .xhtml files with the same name as the concept, just to make our lives easier
+    #resource '[[=layout.xhtml]]'
+}
+
+letter {->(extends)_concept
+    title 'Letter From Hogwarts'
+}
+
+hogwarts {->(extends)_concept
+    title 'Welcome To Hogwarts School'
+}
+
+school {->(extends)_concept
+    title 'A random school'
 }
