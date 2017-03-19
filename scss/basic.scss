@@ -1,0 +1,46 @@
+@import "_general.scss";
+
+#basic{
+  .nav-row{
+    margin-bottom: 1rem;
+
+    .link{
+      display: block;
+      position: relative;
+      height: 9rem;
+      overflow: hidden;
+      color: $white;
+
+      &:hover{
+        .link-image{
+          transform: scale(1.1);
+        }
+        .overlay{
+          background: rgba(0,0,0,0.8)
+        }
+      }
+    }
+
+    .link-text{
+      position:absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: $first-floor;
+    }
+
+    .link-image{
+      transition: transform 0.35s ease-in-out;
+    }
+
+    .overlay{
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      transition: background 0.35s ease-in-out;
+    }
+  }
+}

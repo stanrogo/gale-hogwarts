@@ -1,0 +1,29 @@
+@import "_general.scss";
+
+#header {
+  margin-bottom: 1rem;
+  background: $black;
+
+  .columns{
+    display: flex;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin: 0 auto;
+    align-items: center;
+  }
+
+  .headline{
+    color: $white;
+  }
+
+  .logo{
+    flex: 0 0 100px;
+    width: 100px;
+    height: auto;
+    margin-right: 1rem;
+  }
+
+  .header-text{
+    flex: 1;
+  }
+}

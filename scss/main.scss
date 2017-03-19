@@ -1,34 +1,20 @@
-$badass: #ffffff;
+// This file contains the general page styling as well as imports for all other pages
+
+@import "_general.scss";
+
+@import "layout.scss";
+@import "basic.scss";
 
 body {
   margin: 0;
-  background-color: $badass;
+  background-color: $white;
 }
 
-#header {
-  margin: 1rem auto;
-
-  .menu{
-    padding: 2rem 0;
-  }
-
-  .link {
-    padding: 0.9rem 1rem;
-    font-size: 0.75rem;
-    color: #ffe;
-    text-transform: uppercase;
-    display: block;
-    font-weight: bold;
-    letter-spacing: 1px;
-    transition: all 0.35s ease-in-out;
-
-    &:hover{
-      background: rgba(250, 250, 250, 0.15);
-      transition: all 0.35s ease-in-out;
-    }
-
-    &.active .link-anchor{
-      color: $badass;
-    }
-  }
+h1{
+  font-size: 2rem;
 }
+
+h2{
+  font-size: 1.6rem;
+}
+
