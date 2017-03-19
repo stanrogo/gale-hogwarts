@@ -1,4 +1,4 @@
-<div xmlns="http://www.w3.org/TR/xhtml1/strict" xmlns:gale="http://gale.tue.nl/adaptation">
+<div id="basic" xmlns="http://www.w3.org/TR/xhtml1/strict" xmlns:gale="http://gale.tue.nl/adaptation">
 
     <p>
         So, it looks like you have received an invitation letter and are now going to
@@ -6,14 +6,20 @@
         Take a look at some of the following sections in order to guide you in your journey.
     </p>
 
-    <div class="row">
+    <div class="row nav-row">
 
-        <gale:for var="concept" expr="${&lt;-(parent)}">
-            <div class="small-3 columns">
+        <gale:for var="concept" expr="${&lt;-(parent)}.length == 0 ? ${->(parent)&lt;-(parent)} : ${&lt;-(parent)} ">
+            <div class="small-4 columns text-center">
 
-                <gale:a adapt="false">
+                <gale:a adapt="false" class="link">
                     <gale:attr-variable name="href" expr="${%concept}.getUriString()" />
-                    <gale:variable expr="${%concept?title}"/>
+                    <span class="link-text">
+                        <gale:variable expr="${%concept?title}"/>
+                    </span>
+                    <img class="link-image">
+                        <gale:attr-variable name="src" expr="${%concept#image-url}"/>
+                    </img>
+                    <div class="overlay"></div>
                 </gale:a>
             </div>
         </gale:for>
@@ -23,4 +29,9 @@
     <gale:object>
         <gale:attr-variable name="data" expr="${#hogwarts-resource}" />
     </gale:object>
+
+    <p class="if-ready-text">
+        When you have all the information needed about the school and you think that you are ready to move on,
+        you can click here to go to diagon alley
+    </p>
 </div>
