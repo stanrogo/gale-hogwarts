@@ -7,18 +7,21 @@ letter {->(extends)_concept
     #resource '[[=letter.xhtml]]'
 }
 
+diagon-alley {->(extends)_concept
+    ->(parent)../hogwarts
+    <-(parent)diagon-alley/broomstix {}
+    <-(parent)diagon-alley/flourish-and-blotts {}
+    <-(parent)diagon-alley/olivanders {}
+    title 'Diagon Alley'
+    #concept-resource '[[=diagon-alley.xhtml]]'
+}
+
 basic {->(extends)_concept
-    title 'About Hogwarts School'
-    #concept-resource '[[=basic.xhtml]]'
-
-
+    ->(parent)../hogwarts
     <-(parent)basic/headmasters {}
     <-(parent)basic/provisions {}
     <-(parent)basic/schools {}
-    <-(parent)basic/about {}
-}
-
-diagon-alley {->(extends)_concept
-    title 'Diagon Alley'
-    #concept-resource '[[=diagon-alley.xhtml]]'
+    title 'Hogwarts Information'
+    #concept-resource '[[=basic.xhtml]]'
+    #base-resource '[[=basic/about.xhtml]]'
 }

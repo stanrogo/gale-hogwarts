@@ -1,34 +1,33 @@
 <div id="basic" xmlns="http://www.w3.org/TR/xhtml1/strict" xmlns:gale="http://gale.tue.nl/adaptation">
 
-    <nav class="nav">
-        <!-- Loop over the child pages -->
-
-        <gale:for var="concept" expr="${&lt;-(parent)}.length == 0 ? ${->(parent)&lt;-(parent)} : ${&lt;-(parent)}">
-            <gale:a adapt="false" class="link">
-                <gale:attr-variable name="class" expr="${?title} == ${%concept?title} ? &quot;link is-active&quot; : &quot;link&quot;"/>
-                <gale:attr-variable name="href" expr="${%concept}.getUriString()" />
-                <span class="link-text">
-                    <gale:variable expr="${%concept?title}"/>
-                </span>
-            </gale:a>
-        </gale:for>
-
-    </nav>
-
     <section class="row">
         <div class="small-12 columns material-card hogwarts-section">
-            <gale:object>
-                <gale:attr-variable name="data" expr="${#hogwarts-resource}" />
-            </gale:object>
+            <gale:if expr="${?title}.equals(&quot;Hogwarts Information&quot;)">
+                <gale:then>
+                    <gale:object>
+                        <gale:attr-variable name="data" expr="${#base-resource}" />
+                    </gale:object>
+                </gale:then>
+                <gale:else>
+                    <gale:object>
+                        <gale:attr-variable name="data" expr="${#hogwarts-resource}" />
+                    </gale:object>
+                </gale:else>
+            </gale:if>
         </div>
     </section>
 
     <section class="row">
-        <div class="small-12 columns material-card">
+        <div class="small-12 columns material-card ready-card">
             <p class="if-ready-text">
                 When you have all the information needed about the school and you think that you are ready to move on,
                 you can click here to go to diagon alley
             </p>
+
+            <a class="button button-diagon-alley">
+                <gale:attr-variable name="href" expr="GaleUtil.getContextURL(gale.req())+&quot;/concept/&quot;+gale.url().toURI().resolve(&quot;hogwarts/diagon-alley&quot;)" />
+                To Diagon Alley
+            </a>
         </div>
     </section>
 </div>

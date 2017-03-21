@@ -6,24 +6,104 @@
   padding: 1rem;
   align-items: center;
 
-  .logo{
+  .logo {
     flex: 0 0 100px;
     width: 100px;
     height: auto;
     margin-right: 1rem;
   }
 
-  .header-text{
+  .header-text {
     flex: 1;
 
-    .headline{
+    .headline {
       color: $white;
     }
   }
 }
 
-#main{
-  .next-button{
+#nav {
+  display: flex;
+  flex-direction: column;
+  background: $primary-dark;
+
+  // We hook into the fact that the padding-left of the tree view increases by 15px
+  // in order to make our rows
+
+  .nav-tree{
+    table{
+      margin-bottom: 0;
+      border-collapse: collapse;
+    }
+
+    tbody{
+      border: 0;
+    }
+
+    tr{
+      display: block;
+      float: left;
+      background-color: inherit;
+
+      &:first-of-type{
+        display: none;
+      }
+    }
+
+    b{
+      position: relative;
+      font-weight: 300;
+
+      &:after{
+        content: '';
+        position: absolute;
+        left: 20%;
+        right: 20%;
+        bottom: -0.7rem;
+        background-color: $accent;
+        height: 4px;
+      }
+    }
+
+    &.top-level{
+      table{
+        margin-left: 15px;
+        width: calc(100% - 15px);
+      }
+
+      tbody{
+        background: $primary-dark;
+      }
+
+      td[style="padding-left: 30px;"]{
+        display: none;
+      }
+
+      a{
+        color: $white;
+      }
+    }
+
+    &.sub-level{
+      border-bottom: 4px solid $primary-dark;
+
+      td[style="padding-left: 15px;"]{
+        display: none;
+      }
+
+      td{
+        padding-bottom: calc(0.625rem - 4px);
+      }
+
+      a{
+        color: $text-primary;
+      }
+    }
+  }
+}
+
+#main {
+  .next-button {
     position: fixed;
     width: 10rem;
     right: 2rem;
@@ -31,7 +111,7 @@
   }
 }
 
-#footer{
+#footer {
   position: absolute;
   bottom: 0;
   left: 0;

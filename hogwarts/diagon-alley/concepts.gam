@@ -1,18 +1,17 @@
-_concept {->(extends)../_concept
-    #root:Boolean 'false'
-}
-
 olivanders {->(extends)../diagon-alley
+    ->(parent)../diagon-alley
     title 'Olivanders Wands'
     #alley-resource '[[=olivanders.xhtml]]'
 }
 
 broomstix {->(extends)../diagon-alley
+    ->(parent)../diagon-alley
     title 'Broomstix'
     #alley-resource '[[=broomstix.xhtml]]'
 }
 
 flourish-and-blotts {->(extends)../diagon-alley
+    ->(parent)../diagon-alley
     title 'Flourish and Blotts'
     #alley-resource '[[=flourish-and-blotts.xhtml]]'
 }

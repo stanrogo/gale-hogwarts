@@ -18,11 +18,3 @@ headmasters {->(extends)../basic
     #hogwarts-resource '[[=headmasters.xhtml]]'
     #image-url:String './images/albus.jpg'
 }
-
-about {->(extends)../basic
-    ->(parent)../basic
-    title 'About Hogwarts School'
-    #hogwarts-resource '[[=about.xhtml]]'
-    #image-url:String './images/albus.jpg'
-}
-
