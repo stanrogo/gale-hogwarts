@@ -1,5 +1,13 @@
 @import "_general.scss";
 
+$footer-height: 50px;
+
+#main-wrapper{
+  position: relative;
+  min-height: 100%;
+  padding: 0 0 $footer-height * 2;
+}
+
 #header {
   background: $primary;
   display: flex;
@@ -116,6 +124,7 @@
   bottom: 0;
   left: 0;
   right: 0;
+  height: $footer-height;
   padding: 1rem;
   background: $text-secondary;
   color: $white;

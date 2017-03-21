@@ -8,5 +8,4 @@ hogwarts {->(extends)_concept
     <-(parent)hogwarts/diagon-alley {}
     title 'Hogwarts'
     no-title 'true'
-    #hierarchy:Boolean 'true'
 }

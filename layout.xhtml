@@ -1,47 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<html xmlns="http://www.w3.org/TR/xhtml1/strict"
-      xmlns:gale="http://gale.tue.nl/adaptation">
+<html xmlns="http://www.w3.org/TR/xhtml1/strict" xmlns:gale="http://gale.tue.nl/adaptation">
 
-<head>
-    <link rel="stylesheet" href="vendor/foundation.min.css" />
-    <link rel="stylesheet" href="css/main.css" />
-</head>
+    <head>
+        <link rel="stylesheet" href="vendor/foundation.min.css" />
+        <link rel="stylesheet" href="css/main.css" />
+    </head>
 
-<body>
+    <body>
 
-<header id="header">
-    <img class="logo" src="http://vignette4.wikia.nocookie.net/harrypotter/images/a/ae/Hogwartscrest.png/revision/latest/scale-to-width-down/350?cb=20110806202805"/>
-    <div class="header-text">
-        <h1 class="headline">Hogwarts School Of Witchcraft &amp; Wizardry</h1>
-        <h2><small>Draco Dormiens Nunquam Titillandus</small></h2>
-    </div>
-</header>
+        <div id="main-wrapper">
 
-<nav id="nav">
+            <header id="header">
+                <img class="logo" src="http://vignette4.wikia.nocookie.net/harrypotter/images/a/ae/Hogwartscrest.png/revision/latest/scale-to-width-down/350?cb=20110806202805"/>
+                <div class="header-text">
+                    <h1 class="headline">Hogwarts School Of Witchcraft &amp; Wizardry</h1>
+                    <h2><small>Draco Dormiens Nunquam Titillandus</small></h2>
+                </div>
+            </header>
 
-    <div class="nav-tree top-level">
-        <gale:view name="static-tree-view" maxdepth="3"/>
-    </div>
+            <nav id="nav">
 
-    <div class="nav-tree sub-level">
-        <gale:view name="static-tree-view" maxdepth="3"/>
-    </div>
+                <div class="nav-tree top-level">
+                    <gale:view name="static-tree-view" maxdepth="3"/>
+                </div>
 
-</nav>
+                <div class="nav-tree sub-level">
+                    <gale:view name="static-tree-view" maxdepth="3"/>
+                </div>
 
-<main id="main">
-    <gale:object>
-        <gale:attr-variable name="data" expr="${#concept-resource}" />
-    </gale:object>
+            </nav>
 
-    <!-- This button should be perhaps gale enabled to take you to the next recommended topic -->
-    <button class="button next-button">Next</button>
-</main>
+            <main id="main">
+                <gale:object>
+                    <gale:attr-variable name="data" expr="${#concept-resource}" />
+                </gale:object>
 
-<footer id="footer">
-    Made with love and care by Stanley, Wesley and Lisette.
-</footer>
+                <!-- This button should be perhaps gale enabled to take you to the next recommended topic -->
+                <button class="button next-button">Next</button>
+            </main>
 
-</body>
+            <footer id="footer">
+                Made with love and care by Stanley, Wesley and Lisette.
+            </footer>
 
+        </div>
+
+    </body>
 </html>

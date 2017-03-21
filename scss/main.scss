@@ -5,9 +5,11 @@
 @import "layout.scss";
 @import "basic.scss";
 
+html,
 body {
+  height: 100%;
   margin: 0;
-  background-color: $white;
+  padding: 0;
 }
 
 h1{
