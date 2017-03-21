@@ -2,6 +2,11 @@
 
     <section class="row">
         <div class="small-12 columns material-card hogwarts-section">
+
+            <h1>
+                <gale:variable expr="${?title}"/>
+            </h1>
+
             <gale:if expr="${?title}.equals(&quot;Hogwarts Information&quot;)">
                 <gale:then>
                     <gale:object>

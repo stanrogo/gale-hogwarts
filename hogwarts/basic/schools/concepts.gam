@@ -1,9 +1,0 @@
-durmstrang {->(extends)../schools
-    title 'Durmstrang'
-    #schools-resource '[[=durmstrang.xhtml]]'
-}
-
-beaubaton {->(extends)../schools
-    title 'Beaubaton'
-    #schools-resource '[[=beaubaton.xhtml]]'
-}

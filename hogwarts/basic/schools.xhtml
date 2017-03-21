@@ -1,7 +1,10 @@
 <div xmlns="http://www.w3.org/TR/xhtml1/strict" xmlns:gale="http://gale.tue.nl/adaptation">
     <p>This is a short explanation of the schools around the world</p>
 
-    <gale:object>
-        <gale:attr-variable name="data" expr="${#schools-resource}" />
-    </gale:object>
+    <gale:for var="concept" expr="${#fragments}">
+        <h2>
+            <gale:variable expr="${%concept?title}"/>
+        </h2>
+        <gale:object name="%concept" />
+    </gale:for>
 </div>

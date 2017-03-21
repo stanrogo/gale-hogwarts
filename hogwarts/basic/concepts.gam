@@ -3,6 +3,9 @@ schools {->(extends)../basic
     title 'Other Schools of Wizardry'
     #hogwarts-resource '[[=schools.xhtml]]'
     #image-url:String './images/beauxbatons.png'
+    #fragments ='~
+        return new String[] {"schools/beaubaton","schools/durmstrang"};
+    '
 }
 
 provisions {->(extends)../basic
@@ -17,4 +20,41 @@ headmasters {->(extends)../basic
     title 'Headmasters'
     #hogwarts-resource '[[=headmasters.xhtml]]'
     #image-url:String './images/albus.jpg'
+    #fragments ='~
+        return new String[] {"headmasters/dumbledore","headmasters/minerva","headmasters/severus","headmasters/umbridge"};
+    '
+}
+
+headmasters/fragments {}
+
+headmasters/dumbledore {->(extends)fragments
+    title 'Albus Dumbledore'
+    #resource '[[=headmasters/dumbledore.xhtml]]'
+}
+
+headmasters/minerva {->(extends)fragments
+    title 'Minerva McGonagall'
+    #resource '[[=headmasters/minerva.xhtml]]'
+}
+
+headmasters/severus {->(extends)fragments
+    title 'Severus Snape'
+    #resource '[[=headmasters/severus.xhtml]]'
+}
+
+headmasters/umbridge {->(extends)fragments
+    title 'Dolores Umbridge'
+    #resource '[[=headmasters/umbridge.xhtml]]'
+}
+
+schools/school-fragments {}
+
+schools/beaubaton {->(extends)school-fragments
+    title 'Beauxbaton Academy For Girls (France)'
+    #resource '[[=schools/beaubaton.xhtml]]'
+}
+
+schools/durmstrang {->(extends)school-fragments
+    title 'Durmstrang (Bulgaria)'
+    #resource '[[=schools/durmstrang.xhtml]]'
 }

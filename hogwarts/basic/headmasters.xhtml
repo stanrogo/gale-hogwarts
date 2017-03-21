@@ -1,8 +1,17 @@
 <div xmlns="http://www.w3.org/TR/xhtml1/strict" xmlns:gale="http://gale.tue.nl/adaptation">
 
-    <p>This is a short explanation of headmasters of Hogwarts School</p>
+    <p>
+        There have been many headmasters during the course of history of hogwarts school.
+        In this hall of fame, we feature those that you are likely to hear other students talk about during
+        your studies at our prestigious school. We admire our history of providing students with
+        a solid backing in the form of highly knowledgeable and powerful individuals whom we are
+        proud to have amongst us.
+    </p>
 
-    <gale:object>
-        <gale:attr-variable name="data" expr="${#headmaster-resource}" />
-    </gale:object>
+    <gale:for var="concept" expr="${#fragments}">
+            <h2>
+                <gale:variable expr="${%concept?title}"/>
+            </h2>
+            <gale:object name="%concept" />
+    </gale:for>
 </div>
