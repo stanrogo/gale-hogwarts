@@ -6,9 +6,9 @@
     "scss": "node-sass --output-style compressed -o css scss/main.scss",
     "autoprefixer": "postcss -u autoprefixer -r css/*",
     "build:css": "npm run scss && npm run autoprefixer",
-    "watch:css": "onchange 'scss/*.scss' -- npm run build:css",
+    "watch:css": "onchange \"scss/*.scss\" -- npm run build:css",
     "serve": "http-server -p 8000",
-    "start": "parallelshell \"npm run serve\" \"npm run watch:css\" \"npm run build:css\""
+    "start": "npm run build:css && parallelshell \"npm run serve\" \"npm run watch:css\""
   },
   "repository": {
     "type": "git",
