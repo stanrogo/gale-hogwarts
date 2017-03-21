@@ -1,46 +1,29 @@
 @import "_general.scss";
 
 #basic{
-  .nav-row{
-    margin-bottom: 1rem;
+  .nav{
+    display: flex;
+    background: $primary-dark;
 
     .link{
       display: block;
       position: relative;
-      height: 9rem;
-      overflow: hidden;
+      padding: 1rem 1.5rem;
       color: $white;
 
-      &:hover{
-        .link-image{
-          transform: scale(1.1);
-        }
-        .overlay{
-          background: rgba(0,0,0,0.8)
-        }
+      &.is-active::after{
+        content: '';
+        position: absolute;
+        left: 1rem;
+        right: 1rem;
+        bottom: 0;
+        background-color: $white;
+        height: 4px;
       }
     }
+  }
 
-    .link-text{
-      position:absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: $first-floor;
-    }
-
-    .link-image{
-      transition: transform 0.35s ease-in-out;
-    }
-
-    .overlay{
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.6);
-      transition: background 0.35s ease-in-out;
-    }
+  .hogwarts-section{
+    position: relative;
   }
 }

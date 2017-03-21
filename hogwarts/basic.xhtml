@@ -1,37 +1,34 @@
 <div id="basic" xmlns="http://www.w3.org/TR/xhtml1/strict" xmlns:gale="http://gale.tue.nl/adaptation">
 
-    <p>
-        So, it looks like you have received an invitation letter and are now going to
-        Hogwarts School of Witchcraft and Wizardry. <strong>Congratulations!</strong>
-        Take a look at some of the following sections in order to guide you in your journey.
-    </p>
+    <nav class="nav">
+        <!-- Loop over the child pages -->
 
-    <div class="row nav-row">
-
-        <gale:for var="concept" expr="${&lt;-(parent)}.length == 0 ? ${->(parent)&lt;-(parent)} : ${&lt;-(parent)} ">
-            <div class="small-4 columns text-center">
-
-                <gale:a adapt="false" class="link">
-                    <gale:attr-variable name="href" expr="${%concept}.getUriString()" />
-                    <span class="link-text">
-                        <gale:variable expr="${%concept?title}"/>
-                    </span>
-                    <img class="link-image">
-                        <gale:attr-variable name="src" expr="${%concept#image-url}"/>
-                    </img>
-                    <div class="overlay"></div>
-                </gale:a>
-            </div>
+        <gale:for var="concept" expr="${&lt;-(parent)}.length == 0 ? ${->(parent)&lt;-(parent)} : ${&lt;-(parent)}">
+            <gale:a adapt="false" class="link">
+                <gale:attr-variable name="class" expr="${?title} == ${%concept?title} ? &quot;link is-active&quot; : &quot;link&quot;"/>
+                <gale:attr-variable name="href" expr="${%concept}.getUriString()" />
+                <span class="link-text">
+                    <gale:variable expr="${%concept?title}"/>
+                </span>
+            </gale:a>
         </gale:for>
 
-    </div>
+    </nav>
 
-    <gale:object>
-        <gale:attr-variable name="data" expr="${#hogwarts-resource}" />
-    </gale:object>
+    <section class="row">
+        <div class="small-12 columns material-card hogwarts-section">
+            <gale:object>
+                <gale:attr-variable name="data" expr="${#hogwarts-resource}" />
+            </gale:object>
+        </div>
+    </section>
 
-    <p class="if-ready-text">
-        When you have all the information needed about the school and you think that you are ready to move on,
-        you can click here to go to diagon alley
-    </p>
+    <section class="row">
+        <div class="small-12 columns material-card">
+            <p class="if-ready-text">
+                When you have all the information needed about the school and you think that you are ready to move on,
+                you can click here to go to diagon alley
+            </p>
+        </div>
+    </section>
 </div>

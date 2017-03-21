@@ -8,12 +8,14 @@ letter {->(extends)_concept
 }
 
 basic {->(extends)_concept
-    title 'Welcome To Hogwarts School'
+    title 'About Hogwarts School'
     #concept-resource '[[=basic.xhtml]]'
+
 
     <-(parent)basic/headmasters {}
     <-(parent)basic/provisions {}
     <-(parent)basic/schools {}
+    <-(parent)basic/about {}
 }
 
 diagon-alley {->(extends)_concept

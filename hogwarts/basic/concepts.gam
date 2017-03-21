@@ -1,6 +1,6 @@
 schools {->(extends)../basic
     ->(parent)../basic
-    title 'The schools around the world'
+    title 'Other Schools of Wizardry'
     #hogwarts-resource '[[=schools.xhtml]]'
     #image-url:String './images/beauxbatons.png'
 }
@@ -16,6 +16,13 @@ headmasters {->(extends)../basic
     ->(parent)../basic
     title 'Headmasters'
     #hogwarts-resource '[[=headmasters.xhtml]]'
+    #image-url:String './images/albus.jpg'
+}
+
+about {->(extends)../basic
+    ->(parent)../basic
+    title 'About Hogwarts School'
+    #hogwarts-resource '[[=about.xhtml]]'
     #image-url:String './images/albus.jpg'
 }
 

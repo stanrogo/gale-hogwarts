@@ -10,27 +10,25 @@
 <body>
 
 <header id="header">
-    <div class="row">
-        <div class="small-12 columns">
-            <img class="logo" src="http://vignette4.wikia.nocookie.net/harrypotter/images/a/ae/Hogwartscrest.png/revision/latest/scale-to-width-down/350?cb=20110806202805"></img>
-            <div class="header-text">
-                <h1 class="headline">Hogwarts School Of Witchcraft &amp; Wizardry</h1>
-                <h2><small>Draco Dormiens Nunquam Titillandus</small></h2>
-            </div>
-        </div>
+    <img class="logo" src="http://vignette4.wikia.nocookie.net/harrypotter/images/a/ae/Hogwartscrest.png/revision/latest/scale-to-width-down/350?cb=20110806202805"></img>
+    <div class="header-text">
+        <h1 class="headline">Hogwarts School Of Witchcraft &amp; Wizardry</h1>
+        <h2><small>Draco Dormiens Nunquam Titillandus</small></h2>
     </div>
 </header>
 
-<main>
-    <div class="row">
-        <div class="small-12 columns">
-            <!-- Provide the ability for multiple levels of nesting -->
-            <gale:object>
-                <gale:attr-variable name="data" expr="${#concept-resource}" />
-            </gale:object>
-        </div>
-    </div>
+<main id="main">
+    <gale:object>
+        <gale:attr-variable name="data" expr="${#concept-resource}" />
+    </gale:object>
+
+    <!-- This button should be perhaps gale enabled to take you to the next recommended topic -->
+    <button class="button next-button">Next</button>
 </main>
+
+<footer id="footer">
+    Made with love and care by Stanley, Wesley and Lisette.
+</footer>
 
 </body>
 
