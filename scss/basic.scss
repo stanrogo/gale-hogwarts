@@ -22,8 +22,20 @@
       }
     }
   }
-
   .hogwarts-section{
     position: relative;
+  }
+
+  .image-wrapper {
+    position: relative;
+    margin: 0 -.9375rem 1rem;
+    max-width: calc(100% + 2 * .9375rem);
+    height: 13rem;
+    overflow: hidden;
+
+    .image{
+      @include position-center();
+      top: 75%;
+    }
   }
 }
