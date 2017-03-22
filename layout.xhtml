@@ -20,6 +20,30 @@
 
             <nav id="nav">
 
+                <!-- The hack to give top level concepts a class starts -->
+
+                <gale:if expr="${-&gt;(parent)?title}.equals(&quot;Hogwarts School&quot;)"><gale:then>
+                    <div class="is-hidden hogwarts-active"></div>
+                </gale:then></gale:if>
+
+                <gale:if expr="${-&gt;(parent)?title}.equals(&quot;The Great Hall&quot;)"><gale:then>
+                    <div class="is-hidden hall-active"></div>
+                </gale:then></gale:if>
+
+                <gale:if expr="${-&gt;(parent)?title}.equals(&quot;Hall of Fame&quot;)"><gale:then>
+                    <div class="is-hidden fame-active"></div>
+                </gale:then></gale:if>
+
+                <gale:if expr="${-&gt;(parent)?title}.equals(&quot;Hogwarts Information&quot;)"><gale:then>
+                    <div class="is-hidden information-active"></div>
+                </gale:then></gale:if>
+
+                <gale:if expr="${-&gt;(parent)?title}.equals(&quot;Diagon Alley&quot;)"><gale:then>
+                    <div class="is-hidden diagon-active"></div>
+                </gale:then></gale:if>
+
+                <!-- top level concept hack ends. We can now use the class to target the tree view -->
+
                 <div class="nav-tree top-level">
                     <gale:view name="static-tree-view" maxdepth="3"/>
                 </div>

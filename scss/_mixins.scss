@@ -1,6 +1,34 @@
+// @file _mixins.scss
+//
+// This file contains commonly used mixins in our css.
+// Mixins allow us to reuse code by replacing occurrences of these mixins in our code by the actual content.
+
+@import 'variables.scss';
+
 @mixin position-center() {
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
 }
+
+@mixin nav-highlight($bottom){
+    &:after{
+        content: '';
+        position: absolute;
+        left: 20%;
+        right: 20%;
+        bottom: $bottom;
+        background-color: $accent;
+        height: 4px;
+    }
+}
+
+@mixin stretch-absolute(){
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+

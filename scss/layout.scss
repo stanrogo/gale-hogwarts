@@ -1,6 +1,15 @@
+// @file layout.scss
+//
+// This file is responsible for the layout of our page.
+// It includes some top level id selectors which have contents on the layout.xhtml page.
+
 @import "_general.scss";
 
 $footer-height: 50px;
+
+// The main wrapper is used to be able to have a footer that either sticks to the bottom
+// or scrolls down with the content based on if the content is longer than the page.
+// For this purpose we need a fixed footer height.
 
 #main-wrapper{
   position: relative;
@@ -8,25 +17,43 @@ $footer-height: 50px;
   padding: 0 0 $footer-height * 2;
 }
 
+#footer {
+  @include stretch-absolute();
+  top: auto;
+  padding: 1rem;
+  height: $footer-height;
+  background: $text-secondary;
+  color: $white;
+}
+
 #header {
-  background: $primary;
   display: flex;
   padding: 1rem;
   align-items: center;
+  background: $primary;
 
   .logo {
-    flex: 0 0 100px;
     width: 100px;
-    height: auto;
     margin-right: 1rem;
   }
 
   .header-text {
     flex: 1;
+  }
 
-    .headline {
-      color: $white;
-    }
+  .headline{
+    color: $white;
+  }
+}
+
+// The next button is at a fixed point on our page for easy accessibility
+
+#main {
+  .next-button {
+    position: fixed;
+    width: 10rem;
+    right: 2rem;
+    bottom: 4rem;
   }
 }
 
@@ -34,6 +61,30 @@ $footer-height: 50px;
   display: flex;
   flex-direction: column;
   background: $primary-dark;
+
+  // We start the hack to display a highlight on parent concepts.
+  // We do not know the order in which the concepts will appear.
+  // TODO: figure out if this is safe and change if needed.
+
+  .hogwarts-active + .top-level tr:nth-of-type(4) td{
+    @include nav-highlight(0);
+  }
+
+  .hall-active + .top-level tr:nth-of-type(5) td{
+    @include nav-highlight(0);
+  }
+
+  .fame-active + .top-level tr:nth-of-type(3) td{
+    @include nav-highlight(0);
+  }
+
+  .diagon-active + .top-level tr:nth-of-type(2) td{
+    @include nav-highlight(0);
+  }
+
+  .information-active + .top-level tr:nth-of-type(6) td{
+    @include nav-highlight(0);
+  }
 
   // We hook into the fact that the padding-left of the tree view increases by 15px
   // in order to make our rows
@@ -51,26 +102,19 @@ $footer-height: 50px;
     tr{
       display: block;
       float: left;
-      background-color: inherit;
+      background: inherit;
 
       &:first-of-type{
         display: none;
       }
     }
 
-    b{
+    td{
       position: relative;
-      font-weight: 300;
+    }
 
-      &:after{
-        content: '';
-        position: absolute;
-        left: 20%;
-        right: 20%;
-        bottom: -0.7rem;
-        background-color: $accent;
-        height: 4px;
-      }
+    b{
+      font-weight: 400;
     }
 
     &.top-level{
@@ -90,6 +134,10 @@ $footer-height: 50px;
       a{
         color: $white;
       }
+
+      b{
+        @include nav-highlight(0);
+      }
     }
 
     &.sub-level{
@@ -106,26 +154,11 @@ $footer-height: 50px;
       a{
         color: $text-primary;
       }
+
+      b{
+        @include nav-highlight(-0.3rem);
+      }
     }
   }
 }
 
-#main {
-  .next-button {
-    position: fixed;
-    width: 10rem;
-    right: 2rem;
-    bottom: 4rem;
-  }
-}
-
-#footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: $footer-height;
-  padding: 1rem;
-  background: $text-secondary;
-  color: $white;
-}
