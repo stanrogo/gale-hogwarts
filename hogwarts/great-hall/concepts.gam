@@ -1,0 +1,5 @@
+houses {->(extends)../great-hall
+    ->(parent)../great-hall
+    title 'The houses of hogwarts'
+    #hall-resource '[[=houses.xhtml]]'
+}

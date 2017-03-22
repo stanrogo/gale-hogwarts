@@ -14,6 +14,7 @@ diagon-alley {->(extends)_concept
     <-(parent)diagon-alley/olivanders {}
     title 'Diagon Alley'
     #concept-resource '[[=diagon-alley.xhtml]]'
+    #base-resource '[[=diagon-alley/diagon-alley.xhtml]]'
 }
 
 basic {->(extends)_concept
@@ -24,4 +25,13 @@ basic {->(extends)_concept
     title 'Hogwarts Information'
     #concept-resource '[[=basic.xhtml]]'
     #base-resource '[[=basic/about.xhtml]]'
+}
+
+
+great-hall {->(extends)_concept
+    ->(parent)../hogwarts
+    <-(parent)great-hall/houses {}
+    title 'The Great Hall'
+    #concept-resource '[[=great-hall.xhtml]]'
+    #base-resource '[[=great-hall/great-hall.xhtml]]'
 }

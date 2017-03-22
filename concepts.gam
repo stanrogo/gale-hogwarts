@@ -6,6 +6,7 @@ _concept {
 hogwarts {->(extends)_concept
     <-(parent)hogwarts/basic {}
     <-(parent)hogwarts/diagon-alley {}
+    <-(parent)hogwarts/great-hall {}
     title 'Hogwarts'
     no-title 'true'
 }
