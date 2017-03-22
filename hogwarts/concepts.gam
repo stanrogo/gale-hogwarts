@@ -27,11 +27,18 @@ basic {->(extends)_concept
     #base-resource '[[=basic/about.xhtml]]'
 }
 
-
 great-hall {->(extends)_concept
     ->(parent)../hogwarts
     <-(parent)great-hall/houses {}
     title 'The Great Hall'
     #concept-resource '[[=great-hall.xhtml]]'
     #base-resource '[[=great-hall/great-hall.xhtml]]'
+}
+
+school {->(extends)_concept
+    ->(parent)../hogwarts
+    <-(parent)school/potions {}
+    title 'Hogwarts School'
+    #concept-resource '[[=school.xhtml]]'
+    #base-resource '[[=school/school.xhtml]]'
 }

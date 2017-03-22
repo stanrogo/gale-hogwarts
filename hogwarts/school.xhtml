@@ -1,0 +1,24 @@
+<div id="basic" xmlns="http://www.w3.org/1999/xhtml" xmlns:gale="http://gale.tue.nl/adaptation">
+
+    <section class="row">
+        <div class="small-12 columns material-card hogwarts-section">
+
+            <h1>
+                <gale:variable expr="${?title}"/>
+            </h1>
+
+            <gale:if expr="${?title}.equals(&quot;Hogwarts Information&quot;)">
+                <gale:then>
+                    <gale:object>
+                        <gale:attr-variable name="data" expr="${#base-resource}" />
+                    </gale:object>
+                </gale:then>
+                <gale:else>
+                    <gale:object>
+                        <gale:attr-variable name="data" expr="${#school-resource}" />
+                    </gale:object>
+                </gale:else>
+            </gale:if>
+        </div>
+    </section>
+</div>

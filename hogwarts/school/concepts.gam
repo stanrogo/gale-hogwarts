@@ -1,0 +1,5 @@
+potions {->(extends)../school
+    ->(parent)../school
+    title 'Course: Potions'
+    #school-resource '[[=potions.xhtml]]'
+}
