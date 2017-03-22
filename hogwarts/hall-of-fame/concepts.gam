@@ -1,0 +1,5 @@
+harry-potter {->(extends)../hall-of-fame
+    ->(parent)../hall-of-fame
+    title 'Alumni: Harry Potter'
+    #fame-resource '[[=harry-potter.xhtml]]'
+}

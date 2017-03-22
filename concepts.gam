@@ -8,6 +8,7 @@ hogwarts {->(extends)_concept
     <-(parent)hogwarts/diagon-alley {}
     <-(parent)hogwarts/great-hall {}
     <-(parent)hogwarts/school {}
+    <-(parent)hogwarts/hall-of-fame {}
     title 'Hogwarts'
     no-title 'true'
 }

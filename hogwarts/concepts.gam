@@ -42,3 +42,11 @@ school {->(extends)_concept
     #concept-resource '[[=school.xhtml]]'
     #base-resource '[[=school/school.xhtml]]'
 }
+
+hall-of-fame {->(extends)_concept
+    ->(parent)../hogwarts
+    <-(parent)hall-of-fame/harry-potter {}
+    title 'Hall of Fame'
+    #concept-resource '[[=hall-of-fame.xhtml]]'
+    #base-resource '[[=hall-of-fame/hall-of-fame.xhtml]]'
+}
