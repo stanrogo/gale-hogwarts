@@ -1,6 +1,7 @@
 // This is the root concept of the entire application
 _concept {
     #resource '[[=layout.xhtml]]'
+    #[knowledge]:Integer
 }
 
 hogwarts {->(extends)_concept

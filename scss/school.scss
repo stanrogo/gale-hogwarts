@@ -1,0 +1,47 @@
+@import "_general.scss";
+
+#school{
+  .level-container{
+    .course-level-toggle{
+      display: none;
+      visibility: hidden;
+    }
+
+    .course-level-heading, .toggle-label{
+      display: inline-block;
+      font-size: 1.6rem;
+    }
+
+    &:not(:last-of-type){
+      .course-level-toggle:checked{
+        ~ .course-level-heading .toggle-label::before{
+          content: '-';
+        }
+
+        ~ .expand{
+          display: block;
+        }
+      }
+
+      .expand {
+        display: none;
+        overflow: hidden;
+      }
+
+      .toggle-label::before{
+        font-family: Consolas, monaco, monospace;
+        font-weight: bold;
+        font-size: 15px;
+        content: "+";
+        vertical-align: middle;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin-right: 3px;
+        padding-left: 6px;
+        line-height: 18px;
+        background: radial-gradient(ellipse at center, #CCC 50%, transparent 50%);
+      }
+    }
+  }
+}

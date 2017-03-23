@@ -1,5 +1,31 @@
-potions {->(extends)../school
+_course {->(extends) ../school
+
+    #[available-levels]:ArrayList ='new ArrayList(0)'
+
+    // Level is a wrapper around knowledge to be able to retrieve it as a number
+    #level ='~
+        return (int) Math.floor(0.05 * ${#knowledge} + 1);
+    '
+
+    // At the time of parsing #level, it will still be at the old value. Thus the + 1
+    event +'
+        ArrayList levelRefs = new ArrayList(0);
+
+        for(int i = 1; i <= Math.min(${#level}, 5); i++){
+
+            levelRefs.add("level" + i + ".xhtml");
+        }
+
+        ${#available-levels} = levelRefs;
+    '
+    event +"${#knowledge} = ${#knowledge} < 120 ? ${#knowledge} + 20 : 120;"
+}
+
+// Each child concept needs a blank event otherwise changes won't be propagated
+
+potions {->(extends)_course
     ->(parent)../school
     title 'Course: Potions'
-    #school-resource '[[=potions.xhtml]]'
+    #level-locator "school/potions/"
+    event +
 }
