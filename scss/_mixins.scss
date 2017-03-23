@@ -12,15 +12,15 @@
     transform: translate(-50%, -50%);
 }
 
-@mixin nav-highlight($bottom){
+@mixin nav-highlight(){
     &:after{
         content: '';
         position: absolute;
-        left: 20%;
-        right: 20%;
-        bottom: $bottom;
+        left: 0;
+        right: 0;
+        bottom: 0;
         background-color: $accent;
-        height: 4px;
+        height: 2px;
     }
 }
 

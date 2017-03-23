@@ -5,91 +5,73 @@
 
 @import "_general.scss";
 
-$footer-height: 50px;
-
-// The main wrapper is used to be able to have a footer that either sticks to the bottom
-// or scrolls down with the content based on if the content is longer than the page.
-// For this purpose we need a fixed footer height.
+// Set up a flex box display wrapper
 
 #main-wrapper{
-  position: relative;
-  min-height: 100%;
-  padding: 0 0 $footer-height * 2;
-}
-
-#footer {
-  @include stretch-absolute();
-  top: auto;
-  padding: 1rem;
-  height: $footer-height;
-  background: $text-secondary;
-  color: $white;
+  display: flex;
+  flex-flow: column;
+  height: 100%;
 }
 
 #header {
-  display: flex;
-  padding: 1rem;
-  align-items: center;
-  background: $primary;
+  flex: 0 1 auto;
+  background: url('../images/header-bg.jpg');
+  background-size: contain;
 
-  .logo {
+  .flex-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+  }
+
+  .logo{
+    flex: 1;
     width: 100px;
-    margin-right: 1rem;
   }
 
   .header-text {
     flex: 1;
+    padding: 2rem 0 0;
+    text-align: center;
+
+    .headline{
+      color: $text-primary;
+    }
   }
 
-  .headline{
-    color: $white;
-  }
-}
+  #nav {
+    display: flex;
+    flex-direction: column;
+    background: rgba($primary-dark, 0.3);
 
-// The next button is at a fixed point on our page for easy accessibility
+    // We start the hack to display a highlight on parent concepts.
+    // We do not know the order in which the concepts will appear.
+    // TODO: figure out if this is safe and change if needed.
 
-#main {
-  .next-button {
-    position: fixed;
-    width: 10rem;
-    right: 2rem;
-    bottom: 4rem;
-  }
-}
+    .hogwarts-active + table tr:nth-of-type(4) td{
+      @include nav-highlight();
+    }
 
-#nav {
-  display: flex;
-  flex-direction: column;
-  background: $primary-dark;
+    .hall-active + table tr:nth-of-type(5) td{
+      @include nav-highlight();
+    }
 
-  // We start the hack to display a highlight on parent concepts.
-  // We do not know the order in which the concepts will appear.
-  // TODO: figure out if this is safe and change if needed.
+    .fame-active + table tr:nth-of-type(3) td{
+      @include nav-highlight();
+    }
 
-  .hogwarts-active + .top-level tr:nth-of-type(4) td{
-    @include nav-highlight(0);
-  }
+    .diagon-active + table tr:nth-of-type(2) td{
+      @include nav-highlight();
+    }
 
-  .hall-active + .top-level tr:nth-of-type(5) td{
-    @include nav-highlight(0);
-  }
+    .information-active + table tr:nth-of-type(6) td{
+      @include nav-highlight();
+    }
 
-  .fame-active + .top-level tr:nth-of-type(3) td{
-    @include nav-highlight(0);
-  }
+    // We hook into the fact that the padding-left of the tree view increases by 15px
+    // in order to make our rows
 
-  .diagon-active + .top-level tr:nth-of-type(2) td{
-    @include nav-highlight(0);
-  }
-
-  .information-active + .top-level tr:nth-of-type(6) td{
-    @include nav-highlight(0);
-  }
-
-  // We hook into the fact that the padding-left of the tree view increases by 15px
-  // in order to make our rows
-
-  .nav-tree{
     table{
       margin-bottom: 0;
       border-collapse: collapse;
@@ -111,54 +93,60 @@ $footer-height: 50px;
 
     td{
       position: relative;
+      padding: 0.5rem 15px;
+    }
+
+    table{
+      margin-left: 15px;
+      width: calc(100% - 15px);
+    }
+
+    tbody{
+      background: transparent;
+    }
+
+    td[style="padding-left: 30px;"]{
+      display: none;
+    }
+
+    a{
+      padding: 0 1rem;
+      color: $white;
     }
 
     b{
       font-weight: 400;
-    }
-
-    &.top-level{
-      table{
-        margin-left: 15px;
-        width: calc(100% - 15px);
-      }
-
-      tbody{
-        background: $primary-dark;
-      }
-
-      td[style="padding-left: 30px;"]{
-        display: none;
-      }
-
-      a{
-        color: $white;
-      }
-
-      b{
-        @include nav-highlight(0);
-      }
-    }
-
-    &.sub-level{
-      border-bottom: 4px solid $primary-dark;
-
-      td[style="padding-left: 15px;"]{
-        display: none;
-      }
-
-      td{
-        padding-bottom: calc(0.625rem - 4px);
-      }
-
-      a{
-        color: $text-primary;
-      }
-
-      b{
-        @include nav-highlight(-0.3rem);
-      }
+      @include nav-highlight();
     }
   }
 }
 
+#main {
+  flex: 1 1 auto;
+  display: flex;
+
+  .sub-level-tree{
+    width: 200px;
+    background: $primary;
+
+    tr, tbody{
+        background: transparent;
+    }
+
+    tr:first-child, td[style="padding-left: 15px;"]{
+      display: none;
+    }
+  }
+
+  .content-wrapper{
+    flex: 1;
+    margin-right: 200px;
+  }
+
+  .next-button {
+    position: fixed;
+    width: 10rem;
+    right: 2rem;
+    bottom: 4rem;
+  }
+}
