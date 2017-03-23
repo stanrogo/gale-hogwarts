@@ -19,7 +19,7 @@
                     </div>
                 </div>
 
-                <nav id="nav">
+                <nav class="nav">
                     <!-- The hack to give top level concepts a class starts -->
 
                     <gale:if expr="${-&gt;(parent)?title}.equals(&quot;Hogwarts School&quot;)"><gale:then>
@@ -63,7 +63,15 @@
                 <!-- This button should be perhaps gale enabled to take you to the next recommended topic -->
                 <button class="button next-button">Next</button>
             </main>
-        </div>
 
+            <footer id="footer">
+                <div class="to-top">
+                    <gale:a adapt="false">
+                        <gale:attr-variable name="href" expr="${.}.getUriString()"/>
+                        To Top
+                    </gale:a>
+                </div>
+            </footer>
+        </div>
     </body>
 </html>
