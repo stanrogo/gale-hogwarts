@@ -14,6 +14,15 @@ body {
   font-family: 'Cormorant SC', serif;
 }
 
+button{
+  font-family: 'Cormorant SC', serif;
+  cursor: pointer;
+}
+
+input[type=checkbox]+label{
+  margin: 0;
+}
+
 h1, h2, h3, h4, h5, h6{
   font-family: 'Calligraffitti', cursive;
 }
@@ -27,10 +36,14 @@ h2{
 }
 
 .material-card{
-  margin: 2rem 0 1rem;
+  margin: 0 0 1rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
   box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.2);
+
+  @include breakpoint("md"){
+    margin: 1rem 0 0;
+  }
 }
 
 .button{

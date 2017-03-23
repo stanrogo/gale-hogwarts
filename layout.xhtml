@@ -2,20 +2,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:gale="http://gale.tue.nl/adaptation">
 
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <link rel="stylesheet" href="vendor/foundation.min.css" />
         <link rel="stylesheet" href="css/main.css" />
-        <link href="https://fonts.googleapis.com/css?family=Calligraffitti|Cormorant+SC" rel="stylesheet" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Calligraffitti|Cormorant+SC" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
     </head>
 
     <body>
 
         <div id="main-wrapper">
+
+            <input id="toggle-mobile-menu" class="is-hidden" type="checkbox"/>
+            <label for="toggle-mobile-menu" class="toggle-mobile-menu-label">
+                <i class="material-icons icon-menu">menu</i>
+                <i class="material-icons icon-close">close</i>
+            </label>
+
             <header id="header">
                 <div class="flex-wrapper">
                     <img class="logo" src="http://vignette4.wikia.nocookie.net/harrypotter/images/a/ae/Hogwartscrest.png/revision/latest/scale-to-width-down/350?cb=20110806202805"/>
                     <div class="header-text">
                         <h1 class="headline">Hogwarts School Of Witchcraft &amp; Wizardry</h1>
-                        <h2><small>Draco Dormiens Nunquam Titillandus</small></h2>
+                        <h2 class="motto">Draco Dormiens Nunquam Titillandus</h2>
                     </div>
                 </div>
 
@@ -49,7 +58,6 @@
             </header>
 
             <main id="main">
-
                 <nav class="sub-level-tree">
                     <gale:view name="static-tree-view" maxdepth="3"/>
                 </nav>
@@ -65,12 +73,7 @@
             </main>
 
             <footer id="footer">
-                <div class="to-top">
-                    <gale:a adapt="false">
-                        <gale:attr-variable name="href" expr="${.}.getUriString()"/>
-                        To Top
-                    </gale:a>
-                </div>
+                <button class="to-top" onclick="window.scrollTo(0, 0)">To Top</button>
             </footer>
         </div>
     </body>

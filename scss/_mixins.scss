@@ -2,33 +2,53 @@
 //
 // This file contains commonly used mixins in our css.
 // Mixins allow us to reuse code by replacing occurrences of these mixins in our code by the actual content.
-
 @import 'variables.scss';
 
 @mixin position-center() {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
-@mixin nav-highlight(){
-    &:after{
-        content: '';
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: $accent;
-        height: 2px;
-    }
-}
-
-@mixin stretch-absolute(){
+@mixin nav-highlight() {
+  &:after {
+    content: '';
     position: absolute;
-    bottom: 0;
     left: 0;
     right: 0;
-    top: 0;
+    bottom: 0;
+    background-color: $accent;
+    height: 2px;
+  }
 }
 
+@mixin stretch-absolute() {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+
+@mixin breakpoint($class) {
+  @if $class == xs {
+    @media (max-width: 767px) {
+      @content;
+    }
+  } @else if $class == sm {
+    @media (min-width: 768px) {
+      @content;
+    }
+  } @else if $class == md {
+    @media (min-width: 992px) {
+      @content;
+    }
+  } @else if $class == lg {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint mixin supports: xs, sm, md, lg";
+  }
+}

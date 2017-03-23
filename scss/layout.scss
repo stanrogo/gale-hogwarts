@@ -15,8 +15,11 @@
 
 #header {
   flex: 0 1 auto;
-  background: url('../images/header-bg.jpg');
-  background-size: contain;
+  background: url(../images/header-bg.jpg) top center / cover no-repeat fixed;
+
+  @include breakpoint("md"){
+    background-size: contain;
+  }
 
   .flex-wrapper{
     display: flex;
@@ -38,12 +41,21 @@
     .headline{
       color: $text-primary;
     }
+
+    .motto{
+      font-size: 1rem;
+      color: $text-secondary;
+    }
   }
 
   .nav {
-    display: flex;
+    display: none;
     flex-direction: column;
     background: rgba($primary-dark, 0.3);
+
+    @include breakpoint("md"){
+      display: flex;
+    }
 
     // We start the hack to display a highlight on parent concepts.
     // We do not know the order in which the concepts will appear.
@@ -121,34 +133,81 @@
   }
 }
 
+#toggle-mobile-menu:checked ~ .toggle-mobile-menu-label {
+  .icon-close{display:block;}
+  .icon-menu{display:none;}
+}
+
+#toggle-mobile-menu:checked ~ #main .sub-level-tree {
+  left: 0;
+}
+
+.toggle-mobile-menu-label{
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+
+  .icon-close{display:none;}
+  .icon-menu{display:block;}
+
+  @include breakpoint("md"){
+    .icon-close{display:none;}
+    .icon-menu{display:none;}
+  }
+}
+
 #main {
   flex: 1 1 auto;
   display: flex;
 
   .sub-level-tree{
+    position: fixed;
+    top: 0;
+    left: -200px;
+    bottom: 0;
     width: 200px;
     background: $primary;
+    z-index: $second-floor;
+    transition: left 0.3s;
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.2);
+
+    @include breakpoint("md"){
+      position: relative;
+      left: auto;
+      box-shadow: none;
+    }
 
     tr, tbody{
         background: transparent;
     }
 
-    tr:first-child, td[style="padding-left: 15px;"]{
+    tr:first-child{
       display: none;
+    }
+
+    td[style="padding-left: 15px;"]{
+      @include breakpoint("md"){
+        display: none;
+      }
     }
   }
 
   .content-wrapper{
     flex: 1;
-    margin-right: 200px;
-    padding-bottom: 3rem;
+    padding-bottom: 4rem;
+
+    @include breakpoint("md"){
+      margin-right: 200px;
+      margin-left: 1rem;
+    }
   }
 
   .next-button {
     position: fixed;
     width: 10rem;
-    right: 2rem;
-    bottom: 4rem;
+    right: 1rem;
+    bottom: 0;
+    z-index: $first-floor;
   }
 }
 
