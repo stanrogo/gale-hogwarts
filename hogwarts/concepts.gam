@@ -8,7 +8,7 @@ basic {->(extends)_concept
     <-(parent)basic/provisions {}
     <-(parent)basic/schools {}
 
-    title 'Hogwarts Information'
+    title `Hogwarts Information`
 }
 
 diagon-alley {->(extends)_concept
@@ -17,14 +17,14 @@ diagon-alley {->(extends)_concept
     <-(parent)diagon-alley/flourish-and-blotts {}
     <-(parent)diagon-alley/olivanders {}
 
-    title 'Diagon Alley'
+    title `Diagon Alley`
 }
 
 great-hall {->(extends)_concept
     ->(parent)../hogwarts
     <-(parent)great-hall/houses {}
 
-    title 'The Great Hall'
+    title `The Great Hall`
 }
 
 school {->(extends)_concept
@@ -32,12 +32,12 @@ school {->(extends)_concept
     <-(parent)school/potions {}
     <-(parent)school/divination {}
 
-    title 'Hogwarts School'
+    title `Hogwarts School`
 }
 
 hall-of-fame {->(extends)_concept
     ->(parent)../hogwarts
     <-(parent)hall-of-fame/harry-potter {}
 
-    title 'Hall of Fame'
+    title `Hall of Fame`
 }

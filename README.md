@@ -34,3 +34,71 @@ While developing there are some things to watch out for:
 - If you CRUD a concept, then the changes might not be reflected until you restart the GALE server. Do this step before wondering why it isn't working.
 - A badly created concept will give a very not useful error message. This proves Paul De Bra's point that every new feature should be implemented slowly and not in one fowl swoop.
 - When the files on the server are changed and you attempt to reload the page, this may take a while. I do not know why yet but will attempt to see if there is anything that can be done to speed this up. Right now it is very annoying!
+
+# GAM Files
+
+After struggling a lot to figure out the exact reason why things are, I have compiled a list of when to do what
+which I hope will help to serve as a reference guide when using the GAM syntax.
+
+-  <-(parent)hogwarts/basic {} means that the basic page of hogwarts is a child of the current concept
+-  ->(parent)../school means that the current concept has a parent called school
+( The ../ is a reference to where the parent is located in the *hierarchy* based on the child)
+
+Now let's look at the code below:
+
+```
+    #[visited]:Integer `0`
+    #layout.title `The title`
+
+    #resource `[[=layout.xhtml]]`
+    #resource =`~
+        return "[[=layout.xhtml]]";
+    `
+
+    event +`
+        ${#course-knowledge} = 2;
+    `
+    event +`${#course-knowledge} = 2;`
+```
+
+Note that we use **back ticks** when writing. This makes sure that we don't need to escape characters and keeps all the
+code consistent with each other. So please, use back ticks everywhere.
+
+The meaning of this is something along the following lines:
+
+- Persistent attributes are denoted by #[attribute]:type `value` - this will initialise this attribute once and store
+it on the server.
+- Properties of attributes do not need to be assigned and are instead directly set without the need for an = sign.
+- Attribute expressions can either be evaluated and assigned by use of #attribute =`code`, or for multiline, the ~ symbol
+denotes that this attributes code will be evaluated over multiple lines.
+- Events are denoted by event +`event code` - the event code is concatenated into a single string and then evaluated at
+run time. This is why the presence of the + is needed here. As you can see, event code can be multi line or single line.
+
+```
+    <gale:for var="concept" expr="${#fragments}">
+        <h2>
+            <gale:variable expr="${%concept?title}"/>
+        </h2>
+        <gale:object name="%concept" />
+    </gale:for>
+```
+
+In the code above, we see how we retrieve attributes of the current concept via ${#attribute}. We also see how the
+variable name is accessed using ${%variable-name} and %variable-name. The latter evaluates it directly as a string or
+whatever type it is. The former evaluates it in a gale expression, which if it is a concept identifier, will allow access
+to its properties.
+
+Other things:
+
+- You are not allowed to declare local variables in gale expression code. Therefore the code
+```String[] list = {"string1", "string2"}``` will not work and no error message will be given.
+- You are allowed to declare local variables in event code.
+
+## Global Variables:
+
+By using a construct like: ```${_concept->(personal)``` to access the personal concept, this can be a store of
+all persistent values that follow the user around. If you need something to be available for all concepts, declare it
+in here, since this way the value will be global and not for each individual concept.
+
+Always reference the personal concept like so (depending on the hierarchy): ```->(personal)../../_personal```.
+This will allow you to use it in that particular scope.

@@ -5,5 +5,5 @@ _concept {->(extends)../_concept
 houses {->(extends)_concept
     ->(parent)../great-hall
 
-    title 'The houses of hogwarts'
+    title `The houses of hogwarts`
 }

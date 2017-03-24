@@ -9,9 +9,9 @@
     </p>
 
     <gale:for var="concept" expr="${#fragments}">
-            <h2>
-                <gale:variable expr="${%concept?title}"/>
-            </h2>
-            <gale:object name="%concept" />
+        <h2>
+            <gale:variable expr="${%concept?title}"/>
+        </h2>
+        <gale:object name="%concept" />
     </gale:for>
 </div>

@@ -5,57 +5,57 @@ _concept {->(extends)../_concept
 schools {->(extends)_concept
     ->(parent)../basic
 
-    title 'Other Schools of Wizardry'
-    #fragments ='~
+    title `Other Schools of Wizardry`
+    #fragments =`~
         return new String[] {"schools/beaubaton","schools/durmstrang"};
-    '
+    `
 }
 
 provisions {->(extends)_concept
     ->(parent)../basic
 
-    title 'Provisions at Hogwarts School'
+    title `Provisions at Hogwarts School`
 }
 
 headmasters {->(extends)_concept
     ->(parent)../basic
 
-    title 'Headmasters'
-    #fragments ='~
+    title `Headmasters`
+    #fragments =`~
         return new String[] {"headmasters/dumbledore","headmasters/minerva","headmasters/severus","headmasters/umbridge"};
-    '
+    `
 }
 
 headmasters/fragments {}
 
 headmasters/dumbledore {->(extends)fragments
-    title 'Albus Dumbledore'
-    #resource '[[=headmasters/dumbledore.xhtml]]'
+    title `Albus Dumbledore`
+    #resource `[[=headmasters/dumbledore.xhtml]]`
 }
 
 headmasters/minerva {->(extends)fragments
-    title 'Minerva McGonagall'
-    #resource '[[=headmasters/minerva.xhtml]]'
+    title `Minerva McGonagall`
+    #resource `[[=headmasters/minerva.xhtml]]`
 }
 
 headmasters/severus {->(extends)fragments
-    title 'Severus Snape'
-    #resource '[[=headmasters/severus.xhtml]]'
+    title `Severus Snape`
+    #resource `[[=headmasters/severus.xhtml]]`
 }
 
 headmasters/umbridge {->(extends)fragments
-    title 'Dolores Umbridge'
-    #resource '[[=headmasters/umbridge.xhtml]]'
+    title `Dolores Umbridge`
+    #resource `[[=headmasters/umbridge.xhtml]]`
 }
 
 schools/school-fragments {}
 
 schools/beaubaton {->(extends)school-fragments
-    title 'Beauxbaton Academy For Girls (France)'
-    #resource '[[=schools/beaubaton.xhtml]]'
+    title `Beauxbaton Academy For Girls (France)`
+    #resource `[[=schools/beaubaton.xhtml]]`
 }
 
 schools/durmstrang {->(extends)school-fragments
-    title 'Durmstrang (Bulgaria)'
-    #resource '[[=schools/durmstrang.xhtml]]'
+    title `Durmstrang (Bulgaria)`
+    #resource `[[=schools/durmstrang.xhtml]]`
 }

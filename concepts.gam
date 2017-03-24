@@ -4,63 +4,49 @@ _concept {
 
     ->(personal)_personal
 
-    strict 'true'
+    #[visited]:Integer `0`           // Integer determining how many times a concept has been visited
+    #[own-knowledge]:Double `1.0`   // Own knowledge by default will get set to 1 since you have now viewed the page
 
-    #[visited]:Integer
-
-    event +'
-        ${#visited}++;
-    '
+    event +`${#visited}++;`
 
     // If a role has not been determined yet, retrieve the letter screen.
     // Otherwise return the normal layout
 
-    #resource ='~
-        if ("".equals(${_concept->(personal)#role}))
-            return "[[=letter.xhtml]]";
-        return "[[=layout.xhtml]]";
-    '
-
-    // Own knowledge by default will get set to 1 since you have now viewed the page
-
-    #[own-knowledge]:Double '1.0'
+    #resource =`"".equals(${_concept->(personal)#role}) ? "[[=letter.xhtml]]" : "[[=layout.xhtml]]"`
 
     // The knowledge value is the average of the parent knowledge and itself
 
-    #knowledge:Double ='avg(new Object[] {${<=(parent)#knowledge}, ${#own-knowledge}})'
-    #known-all:Boolean ='${#knowledge} > 0.8'
-    #known:Boolean ='${#own-knowledge} > 0.8'
-    #unknown:Boolean ="false"
-    #suitability:Boolean ='and(new Object[] {${=>(prereq-all)#known-all}}))'
+    #knowledge:Double =`avg(new Object[] {${<=(parent)#knowledge}, ${#own-knowledge}})`
+    #known-all:Boolean =`${#knowledge} > 0.8`
+    #known:Boolean =`${#own-knowledge} > 0.8`
+    #unknown:Boolean =`false`
+    #suitability:Boolean =`and(new Object[] {${=>(prereq-all)#known-all}}))`
 
-    // Store this concept in memory as the last accessed concept
+    // Always start the title of the web page with "Hogwarts -"
 
-    event +'
-        ${_concept->(personal)#last-concept} = ${_concept->(personal)#current-concept};
-        ${_concept->(personal)#current-concept} = ${.}.getUriString();
-    '
+    #layout.title `"Hogwarts - "+${.}.getTitle()`
 
-    // Layout specific things:
+    // Classes to use when displaying adaptive links
+    // TODO: check if this actually works
 
-    #layout.title '"Hogwarts - "+${.}.getTitle()'
-
-    #link.classexpr '~
+    #link.classexpr `~
         if (${#unknown}) return "unknown";
         if (!${#suitability}) return "bad";
         if (${#visited}==0) return "good";
         return "neutral";
-    '
-    #link.iconlist 'null'
+    `
+    #link.iconlist `null`
 }
 
 // User stored settings for the entire application
 
 _personal {
-    #[first-time]:Boolean 'true' // First time to visit the application
-    #[last-concept] // The last concept that was accessed by the user (especially useful for course learning)
-    #[current-concept] // The concept that is currently accessed
+    #[first-time]:Boolean `true`    // First time to visit the application
+    #[last-concept]:String ``       // The last concept that was accessed by the user (especially useful for course learning)
+    #[current-concept]:String ``    // The concept that is currently accessed
+
     //TODO: set this via a form - see intro.xhtml of the thesis
-    #[role]:String 'beginner'  // One of: beginner, intermediate or expert (default blank until choice is made)
+    #[role]:String `beginner`       // One of: beginner, intermediate or expert (default blank until choice is made)
 }
 
 hogwarts {->(extends)_concept
@@ -69,6 +55,6 @@ hogwarts {->(extends)_concept
     <-(parent)hogwarts/great-hall {}
     <-(parent)hogwarts/school {}
     <-(parent)hogwarts/hall-of-fame {}
-    title 'Hogwarts'
-    no-title 'true'
+    title `Hogwarts`
+    no-title `true`
 }

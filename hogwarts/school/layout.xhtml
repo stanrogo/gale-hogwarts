@@ -4,26 +4,22 @@
 
         <gale:if expr="!&quot;&quot;.equals(${%concept?title}) &amp;&amp;
             java.util.Arrays.asList(${#fragment-names}).indexOf(&quot;%concept&quot;) &lt; (${#course-knowledge} / 20)">
-            <gale:then>
-                <div class="level-container clearfix">
-                    <input class="course-level-toggle" type="checkbox"/>
-                    <h1 class="course-level-heading">
-                        <gale:variable expr="${%concept?title}" />
-                    </h1>
-                    <div class="expand">
-                        <gale:object>
-                            <gale:attr-variable name="data" expr="${%concept#resource}"/>
-                        </gale:object>
-                    </div>
+            <div class="level-container clearfix">
+                <input class="course-level-toggle" type="checkbox"/>
+                <h1 class="course-level-heading">
+                    <gale:variable expr="${%concept?title}" />
+                </h1>
+                <div class="expand">
+                    <gale:object>
+                        <gale:attr-variable name="data" expr="${%concept#resource}"/>
+                    </gale:object>
                 </div>
-            </gale:then>
+            </div>
         </gale:if>
 
     </gale:for>
 
     <gale:if expr="${#course-knowledge} > 100">
-        <gale:then>
-            <div class="level-container clearfix"><gale:object name="completed"/></div>
-        </gale:then>
+        <div class="level-container clearfix"><gale:object name="completed"/></div>
     </gale:if>
 </div>
