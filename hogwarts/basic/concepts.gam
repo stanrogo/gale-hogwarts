@@ -1,25 +1,26 @@
-schools {->(extends)../basic
+_concept {->(extends)../_concept
+
+}
+
+schools {->(extends)_concept
     ->(parent)../basic
+
     title 'Other Schools of Wizardry'
-    #hogwarts-resource '[[=schools.xhtml]]'
-    #image-url:String './images/beauxbatons.png'
     #fragments ='~
         return new String[] {"schools/beaubaton","schools/durmstrang"};
     '
 }
 
-provisions {->(extends)../basic
+provisions {->(extends)_concept
     ->(parent)../basic
+
     title 'Provisions at Hogwarts School'
-    #hogwarts-resource '[[=provisions.xhtml]]'
-    #image-url:String './images/provisions.jpg'
 }
 
-headmasters {->(extends)../basic
+headmasters {->(extends)_concept
     ->(parent)../basic
+
     title 'Headmasters'
-    #hogwarts-resource '[[=headmasters.xhtml]]'
-    #image-url:String './images/albus.jpg'
     #fragments ='~
         return new String[] {"headmasters/dumbledore","headmasters/minerva","headmasters/severus","headmasters/umbridge"};
     '

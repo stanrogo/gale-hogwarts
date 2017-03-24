@@ -1,0 +1,27 @@
+<div id="school" xmlns="http://www.w3.org/1999/xhtml" xmlns:gale="http://gale.tue.nl/adaptation">
+
+    <gale:for var="concept" expr="${#fragment-names}">
+
+        <gale:if expr="!&quot;&quot;.equals(${%concept?title}) &amp;&amp;
+            java.util.Arrays.asList(${#fragment-names}).indexOf(&quot;%concept&quot;) &lt; ${#visit-count}">
+            <gale:then>
+                <div class="level-container clearfix">
+                    <input class="course-level-toggle" type="checkbox"/>
+                    <h1 class="course-level-heading">
+                        <gale:variable expr="${%concept?title}" />
+                    </h1>
+                    <div class="expand">
+                        <gale:object name="%concept" />
+                    </div>
+                </div>
+            </gale:then>
+        </gale:if>
+
+    </gale:for>
+
+    <gale:if expr="${#knowledge} > 100">
+        <gale:then>
+            <div class="level-container clearfix"><gale:object name="completed"/></div>
+        </gale:then>
+    </gale:if>
+</div>

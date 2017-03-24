@@ -1,5 +1,9 @@
-harry-potter {->(extends)../hall-of-fame
+_concept {->(extends)../_concept
+
+}
+
+
+harry-potter {->(extends)_concept
     ->(parent)../hall-of-fame
     title 'Alumni: Harry Potter'
-    #fame-resource '[[=harry-potter.xhtml]]'
 }

@@ -1,24 +1,13 @@
-_course {->(extends) ../school
-
-    #[available-levels]:ArrayList ='new ArrayList(0)'
-
-    // Level is a wrapper around knowledge to be able to retrieve it as a number
-    #level ='~
-        return (int) Math.floor(0.05 * ${#knowledge} + 1);
-    '
-
-    // At the time of parsing #level, it will still be at the old value. Thus the + 1
-    event +'
-        ArrayList levelRefs = new ArrayList(0);
-
-        for(int i = 1; i <= Math.min(${#level}, 5); i++){
-
-            levelRefs.add("level" + i + ".xhtml");
-        }
-
-        ${#available-levels} = levelRefs;
-    '
+_course {->(extends)../_concept
+    #resource-course '[[=layout.xhtml]]'
+    #[visit-count]:Integer
     event +"${#knowledge} = ${#knowledge} < 120 ? ${#knowledge} + 20 : 120;"
+    event +"${#visit-count}++;"
+}
+
+completed {
+     title ''
+     #resource '[[=completed.xhtml]]'
 }
 
 // Each child concept needs a blank event otherwise changes won't be propagated
@@ -27,5 +16,53 @@ potions {->(extends)_course
     ->(parent)../school
     title 'Course: Potions'
     #level-locator "school/potions/"
+
+    #fragment-names ='new String[] {"potions/level1", "potions/level2", "potions/level3", "potions/level4", "potions/level5"}'
     event +
+}
+
+potions/fragments-potions {
+    #[visited]:Integer
+    event '${#visited}++;'
+}
+
+potions/level1 {->(extends)fragments-potions
+    title 'Level 1'
+    #resource '[[=potions/level1.xhtml]]'
+}
+
+potions/level2 {->(extends)fragments-potions
+    title 'Level 2'
+    #resource ='~
+        if (${../potions#knowledge} > 20)
+            return "[[=potions/level2.xhtml]]";
+        return "[[=empty.xml]]";
+    '
+}
+
+potions/level3 {->(extends)fragments-potions
+    title 'Level 3'
+    #resource ='~
+        if (${../potions#knowledge} > 40)
+            return "[[=potions/level3.xhtml]]";
+        return "[[=empty.xml]]";
+    '
+}
+
+potions/level4 {->(extends)fragments-potions
+    title 'Level 4'
+    #resource ='~
+        if (${../potions#knowledge} > 60)
+            return "[[=potions/level4.xhtml]]";
+        return "[[=empty.xml]]";
+    '
+}
+
+potions/level5 {->(extends)fragments-potions
+    title 'Level 5'
+    #resource ='~
+        if (${../potions#knowledge} > 80)
+            return "[[=potions/level5.xhtml]]";
+        return "[[=empty.xml]]";
+    '
 }

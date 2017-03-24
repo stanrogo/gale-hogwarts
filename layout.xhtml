@@ -11,70 +11,103 @@
 
     <body>
 
-        <div id="main-wrapper">
+        <div id="wrapper">
 
-            <input id="toggle-mobile-menu" class="is-hidden" type="checkbox"/>
-            <label for="toggle-mobile-menu" class="toggle-mobile-menu-label">
-                <i class="material-icons icon-menu">menu</i>
-                <i class="material-icons icon-close">close</i>
+            <!-- This is the toggle button used to show/hide the mobile tree view -->
+
+            <input id="nav-toggle" class="is-hidden" type="checkbox"/>
+            <label for="nav-toggle" class="nav-toggle--label">
+                <i class="material-icons nav-toggle--icon-menu">menu</i>
+                <i class="material-icons nav-toggle--icon-close">close</i>
             </label>
 
+            <!-- The header contains the top level navigation and logo and name of the application -->
+
             <header id="header">
-                <div class="flex-wrapper">
-                    <img class="logo" src="http://vignette4.wikia.nocookie.net/harrypotter/images/a/ae/Hogwartscrest.png/revision/latest/scale-to-width-down/350?cb=20110806202805"/>
-                    <div class="header-text">
-                        <h1 class="headline">Hogwarts School Of Witchcraft &amp; Wizardry</h1>
-                        <h2 class="motto">Draco Dormiens Nunquam Titillandus</h2>
+
+                <div class="hero--wrapper">
+                    <img class="hero--logo" src="./images/hogwarts_crest.png"/>
+                    <div class="hero--text">
+                        <h1 class="hero--headline">Hogwarts School Of Witchcraft &amp; Wizardry</h1>
+                        <h2 class="hero--motto">Draco Dormiens Nunquam Titillandus</h2>
                     </div>
                 </div>
 
-                <nav class="nav">
-                    <!-- The hack to give top level concepts a class starts -->
+                <nav class="tree-view--wrapper">
+
+                    <!-- The hack to give top level concepts a class -->
 
                     <gale:if expr="${-&gt;(parent)?title}.equals(&quot;Hogwarts School&quot;)"><gale:then>
-                        <div class="is-hidden hogwarts-active"></div>
+                        <div class="is-hidden tree-view--hogwarts-active"></div>
                     </gale:then></gale:if>
 
                     <gale:if expr="${-&gt;(parent)?title}.equals(&quot;The Great Hall&quot;)"><gale:then>
-                        <div class="is-hidden hall-active"></div>
+                        <div class="is-hidden tree-view--hall-active"></div>
                     </gale:then></gale:if>
 
                     <gale:if expr="${-&gt;(parent)?title}.equals(&quot;Hall of Fame&quot;)"><gale:then>
-                        <div class="is-hidden fame-active"></div>
+                        <div class="is-hidden tree-view--fame-active"></div>
                     </gale:then></gale:if>
 
                     <gale:if expr="${-&gt;(parent)?title}.equals(&quot;Hogwarts Information&quot;)"><gale:then>
-                        <div class="is-hidden information-active"></div>
+                        <div class="is-hidden tree-view--information-active"></div>
                     </gale:then></gale:if>
 
                     <gale:if expr="${-&gt;(parent)?title}.equals(&quot;Diagon Alley&quot;)"><gale:then>
-                        <div class="is-hidden diagon-active"></div>
+                        <div class="is-hidden tree-view--diagon-active"></div>
                     </gale:then></gale:if>
 
                     <!-- top level concept hack ends. We can now use the class to target the tree view -->
 
                     <gale:view name="static-tree-view" maxdepth="3"/>
                 </nav>
+
             </header>
 
+            <!-- The main section contains the sub level tree view and the content of the concepts -->
+
             <main id="main">
-                <nav class="sub-level-tree">
+
+                <nav class="tree-view--wrapper">
                     <gale:view name="static-tree-view" maxdepth="3"/>
                 </nav>
 
-                <div class="content-wrapper">
-                    <gale:object>
-                        <gale:attr-variable name="data" expr="${#concept-resource}" />
-                    </gale:object>
+                <div class="resource--wrapper">
+
+                    <section class="row">
+                        <div class="small-12 columns material-card hogwarts-section">
+
+                            <h1>
+                                <gale:variable expr="${?title}"/>
+                            </h1>
+
+                            <gale:if expr="${.}.getAttribute(&quot;level-locator&quot;) != null">
+                                <gale:then>
+                                    <gale:object>
+                                        <gale:attr-variable name="data" expr="${#resource-course}" />
+                                    </gale:object>
+                                </gale:then>
+                                <gale:else>
+                                    <gale:object>
+                                        <gale:attr-variable name="data" expr="${.}.getUri() + &quot;.xhtml&quot;" />
+                                    </gale:object>
+                                </gale:else>
+                            </gale:if>
+                        </div>
+                    </section>
                 </div>
 
                 <!-- This button should be perhaps gale enabled to take you to the next recommended topic -->
-                <button class="button next-button">Next</button>
+                <button class="button button--next">Next</button>
             </main>
 
+            <!-- Add an empty footer with a scroll to top button -->
+
             <footer id="footer">
-                <button class="to-top" onclick="window.scrollTo(0, 0)">To Top</button>
+                <button class="footer--to-top" onclick="window.scrollTo(0, 0)">To Top</button>
             </footer>
+
         </div>
+
     </body>
 </html>

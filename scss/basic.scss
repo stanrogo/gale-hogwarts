@@ -1,10 +1,6 @@
 @import "_general.scss";
 
 #basic{
-  .hogwarts-section{
-    position: relative;
-  }
-
   .image-wrapper {
     position: relative;
     margin: 0 -.9375rem 1rem;
@@ -15,16 +11,6 @@
     .image{
       @include position-center();
       top: 75%;
-    }
-  }
-
-  .ready-card{
-    position: relative;
-
-    .button-diagon-alley{
-      position: absolute;
-      right: 1rem;
-      bottom: -2.2rem;
     }
   }
 }

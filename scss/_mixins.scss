@@ -1,54 +1,78 @@
-// @file _mixins.scss
-//
-// This file contains commonly used mixins in our css.
-// Mixins allow us to reuse code by replacing occurrences of these mixins in our code by the actual content.
-@import 'variables.scss';
+/**
+ * @file _mixins.scss
+ *
+ * Useful mixins to enable code reuse throughout the project
+ *
+ * @author Stanley Clark <s.clark@student.tue.nl>
+ * @version 1.0.0
+ */
+
+@import '_variables.scss';
+
+/// This mixin lets you position an element in the center of its parent
+/// The parent must have position: relative set for this to work
 
 @mixin position-center() {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
 }
+
+/// Create a highlight as an after element that can be used to accent an element
 
 @mixin nav-highlight() {
-  &:after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: $accent;
-    height: 2px;
-  }
+	&:after {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: $accent;
+		height: 2px;
+	}
 }
+
+/// Stretches an element to overlay the parent's content completely
 
 @mixin stretch-absolute() {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  top: 0;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
 }
 
+/// This box shadow is used in a lot of places and is easier to import as a mixin
+/// If the shadows ever need to be tweaked, then they can be tweaked all at the same time easily
+
+@mixin material-shadow() {
+	box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
+}
+
+/// Mixin allowing particular css to be applied only at certain screen widths
+/// This mixin support xs, sm, md and lg
+/// Note that good principles of web design dictate a mobile first approach,
+/// so you should never really need the xs option
+
 @mixin breakpoint($class) {
-  @if $class == xs {
-    @media (max-width: 767px) {
-      @content;
-    }
-  } @else if $class == sm {
-    @media (min-width: 768px) {
-      @content;
-    }
-  } @else if $class == md {
-    @media (min-width: 992px) {
-      @content;
-    }
-  } @else if $class == lg {
-    @media (min-width: 1200px) {
-      @content;
-    }
-  } @else {
-    @warn "Breakpoint mixin supports: xs, sm, md, lg";
-  }
+	@if $class == xs {
+		@media (max-width: 767px) {
+			@content;
+		}
+	} @else if $class == sm {
+		@media (min-width: 768px) {
+			@content;
+		}
+	} @else if $class == md {
+		@media (min-width: 992px) {
+			@content;
+		}
+	} @else if $class == lg {
+		@media (min-width: 1200px) {
+			@content;
+		}
+	} @else {
+		@warn "Breakpoint mixin supports: xs, sm, md, lg";
+	}
 }

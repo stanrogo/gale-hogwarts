@@ -1,0 +1,39 @@
+/**
+ * @file reset.scss
+ *
+ * Reset all default browser properties to a state that we actually want them to be in
+ *
+ * @author Stanley Clark <s.clark@student.tue.nl>
+ * @version 1.0.0
+ */
+
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+html, body, button{
+	font-family: 'Cormorant SC', serif;
+}
+
+h1, h2, h3, h4, h5, h6{
+	font-family: 'Calligraffitti', cursive;
+}
+
+h1{
+	font-size: 2rem;
+}
+
+h2{
+	font-size: 1.6rem;
+}
+
+button{
+	cursor: pointer;
+}
+
+input[type=checkbox]+label{
+	margin: 0;
+}

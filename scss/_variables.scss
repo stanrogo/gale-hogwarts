@@ -1,3 +1,12 @@
+/**
+ * @file _variables.scss
+ *
+ * Variable definition. Colours, z-indexes and font sizes
+ *
+ * @author Stanley Clark <s.clark@student.tue.nl>
+ * @version 1.0.0
+ */
+
 $black: #000000;
 $white: #ffffff;
 $primary-dark: #212121;
@@ -11,3 +20,7 @@ $first-floor: 25;
 $second-floor: 50;
 $third-floor: 75;
 $fourth-floor: 100;
+
+$font-s: 0.8rem;
+$font-m: 1rem;
+$font-l: 1.2rem;

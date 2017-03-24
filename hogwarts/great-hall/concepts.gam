@@ -1,5 +1,9 @@
-houses {->(extends)../great-hall
+_concept {->(extends)../_concept
+
+}
+
+houses {->(extends)_concept
     ->(parent)../great-hall
+
     title 'The houses of hogwarts'
-    #hall-resource '[[=houses.xhtml]]'
 }

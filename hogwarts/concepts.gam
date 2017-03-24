@@ -2,19 +2,13 @@ _concept {->(extends)../_concept
 
 }
 
-letter {->(extends)_concept
-    title 'Letter From Hogwarts'
-    #resource '[[=letter.xhtml]]'
-}
-
 basic {->(extends)_concept
     ->(parent)../hogwarts
     <-(parent)basic/headmasters {}
     <-(parent)basic/provisions {}
     <-(parent)basic/schools {}
+
     title 'Hogwarts Information'
-    #concept-resource '[[=basic.xhtml]]'
-    #base-resource '[[=basic/about.xhtml]]'
 }
 
 diagon-alley {->(extends)_concept
@@ -22,32 +16,27 @@ diagon-alley {->(extends)_concept
     <-(parent)diagon-alley/broomstix {}
     <-(parent)diagon-alley/flourish-and-blotts {}
     <-(parent)diagon-alley/olivanders {}
+
     title 'Diagon Alley'
-    #concept-resource '[[=diagon-alley.xhtml]]'
-    #base-resource '[[=diagon-alley/diagon-alley.xhtml]]'
-    #class 'diagon-alley-active'
 }
 
 great-hall {->(extends)_concept
     ->(parent)../hogwarts
     <-(parent)great-hall/houses {}
+
     title 'The Great Hall'
-    #concept-resource '[[=great-hall.xhtml]]'
-    #base-resource '[[=great-hall/great-hall.xhtml]]'
 }
 
 school {->(extends)_concept
     ->(parent)../hogwarts
     <-(parent)school/potions {}
+
     title 'Hogwarts School'
-    #concept-resource '[[=school.xhtml]]'
-    #base-resource '[[=school/school.xhtml]]'
 }
 
 hall-of-fame {->(extends)_concept
     ->(parent)../hogwarts
     <-(parent)hall-of-fame/harry-potter {}
+
     title 'Hall of Fame'
-    #concept-resource '[[=hall-of-fame.xhtml]]'
-    #base-resource '[[=hall-of-fame/hall-of-fame.xhtml]]'
 }

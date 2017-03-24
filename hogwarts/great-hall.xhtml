@@ -1,24 +1,7 @@
-<div id="great-hall" xmlns="http://www.w3.org/1999/xhtml" xmlns:gale="http://gale.tue.nl/adaptation">
-    <section class="row">
-        <div class="small-12 columns material-card hogwarts-section">
+<section id="great-hall" xmlns="http://www.w3.org/1999/xhtml" xmlns:gale="http://gale.tue.nl/adaptation">
+    <p>
+        This is the great hall where you can learn about all the sorting ceremony and houses.
 
-            <h1>
-                <gale:variable expr="${?title}"/>
-            </h1>
-
-
-            <gale:if expr="${?title}.equals(&quot;The Great Hall&quot;)">
-                <gale:then>
-                    <gale:object>
-                        <gale:attr-variable name="data" expr="${#base-resource}" />
-                    </gale:object>
-                </gale:then>
-                <gale:else>
-                    <gale:object>
-                        <gale:attr-variable name="data" expr="${#hall-resource}" />
-                    </gale:object>
-                </gale:else>
-            </gale:if>
-        </div>
-    </section>
-</div>
+        Please also include a speech by the headmaster.
+    </p>
+</section>

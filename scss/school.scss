@@ -1,42 +1,51 @@
 @import "_general.scss";
 
-#school{
-  .level-container{
-    .course-level-heading, .toggle-label{
-      display: inline-block;
-      font-size: 1.6rem;
-    }
+#school {
+	.level-container {
+		.course-level-heading {
+			display: inline-block;
+			font-size: 1.6rem;
+		}
 
-    &:not(:last-of-type){
-      .course-level-toggle:checked{
-        ~ .course-level-heading .toggle-label::before{
-          content: '-';
-        }
+		.course-level-toggle {
+			display: none;
+		}
 
-        ~ .expand{
-          display: block;
-        }
-      }
+		&:not(:last-of-type) {
+			.course-level-toggle:checked {
+				~ .course-level-heading .toggle-label::before {
+					content: '-';
+				}
 
-      .expand {
-        display: none;
-        overflow: hidden;
-      }
+				~ .expand {
+					display: block;
+				}
 
-      .toggle-label::before{
-        font-family: Consolas, monaco, monospace;
-        font-weight: bold;
-        font-size: 15px;
-        content: "+";
-        vertical-align: middle;
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        margin-right: 3px;
-        padding-left: 6px;
-        line-height: 18px;
-        background: radial-gradient(ellipse at center, #CCC 50%, transparent 50%);
-      }
-    }
-  }
+				&:before {
+					content: '-';
+					padding: 2px 9px;
+				}
+			}
+
+			.expand {
+				display: none;
+				overflow: hidden;
+			}
+
+			.course-level-toggle {
+				display: inline-block;
+				margin: 0 0.5rem;
+				vertical-align: text-top;
+
+				&:before {
+					content: '+';
+					padding: 2px 7px;
+					margin-left: -4px;
+					line-height: 16px;
+					background: $primary;
+					border-radius: 50%;
+				}
+			}
+		}
+	}
 }

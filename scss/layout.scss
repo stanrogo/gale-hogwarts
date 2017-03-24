@@ -1,232 +1,232 @@
-// @file layout.scss
-//
-// This file is responsible for the layout of our page.
-// It includes some top level id selectors which have contents on the layout.xhtml page.
+/**
+ * @file layout.scss
+ *
+ * Defines the skeleton framework for our application's content
+ *
+ * @author Stanley Clark <s.clark@student.tue.nl>
+ * @version 1.0.0
+ */
 
 @import "_general.scss";
 
 // Set up a flex box display wrapper
 
-#main-wrapper{
-  display: flex;
-  flex-flow: column;
-  min-height: 100%;
-}
+#wrapper {
+	display: flex;
+	flex-flow: column;
+	min-height: 100%;
 
-#header {
-  flex: 0 1 auto;
-  background: url(../images/header-bg.jpg) top center / cover no-repeat fixed;
+	// Set up a css toggle switch to reveal an off canvas menu when on mobile devices
 
-  @include breakpoint("md"){
-    background-size: contain;
-  }
+	#nav-toggle:checked {
+		~ .nav-toggle--label {
+			.nav-toggle--icon-close {
+				display: block;
+			}
+			.nav-toggle--icon-menu {
+				display: none;
+			}
+		}
 
-  .flex-wrapper{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
-  }
+		~ #main .sub-level-tree{
+			left: 0;
+		}
+	}
 
-  .logo{
-    flex: 1;
-    width: 100px;
-  }
+	.nav-toggle--label {
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
 
-  .header-text {
-    flex: 1;
-    padding: 2rem 0 0;
-    text-align: center;
+		@include breakpoint("md") {
+			.nav-toggle--icon-close, .nav-toggle--icon-menu {
+				display: none;
+			}
+		}
 
-    .headline{
-      color: $text-primary;
-    }
+		.nav-toggle--icon-close {
+			display: none;
+		}
+		.nav-toggle--icon-menu {
+			display: block;
+		}
+	}
 
-    .motto{
-      font-size: 1rem;
-      color: $text-secondary;
-    }
-  }
+	#header {
+		flex: 0 1 auto;
+		background: url(../images/header_background.jpg) top center / cover no-repeat fixed;
 
-  .nav {
-    display: none;
-    flex-direction: column;
-    background: rgba($primary-dark, 0.3);
+		@include breakpoint("md") {
+			background-size: contain;
+		}
 
-    @include breakpoint("md"){
-      display: flex;
-    }
+		.hero--wrapper {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 1rem;
 
-    // We start the hack to display a highlight on parent concepts.
-    // We do not know the order in which the concepts will appear.
-    // TODO: figure out if this is safe and change if needed.
+			.hero--logo {
+				flex: 1;
+				width: 100px;
+			}
 
-    .hogwarts-active + table tr:nth-of-type(4) td{
-      @include nav-highlight();
-    }
+			.hero--text {
+				flex: 1;
+				padding: 2rem 0 0;
+				text-align: center;
+			}
 
-    .hall-active + table tr:nth-of-type(5) td{
-      @include nav-highlight();
-    }
+			.hero--headline {
+				color: $text-primary;
+			}
 
-    .fame-active + table tr:nth-of-type(3) td{
-      @include nav-highlight();
-    }
+			.hero--motto {
+				color: $text-secondary;
+				font-size: $font-m;
+			}
+		}
 
-    .diagon-active + table tr:nth-of-type(2) td{
-      @include nav-highlight();
-    }
+		.tree-view--wrapper {
+			display: none;
+			flex-direction: column;
+			background: rgba($primary-dark, 0.3);
 
-    .information-active + table tr:nth-of-type(6) td{
-      @include nav-highlight();
-    }
+			@include breakpoint("md") {
+				display: flex;
+			}
 
-    // We hook into the fact that the padding-left of the tree view increases by 15px
-    // in order to make our rows
+			// We start the hack to display a highlight on parent concepts.
+			// We do not know the order in which the concepts will appear.
+			// TODO: figure out if this is safe and change if needed.
 
-    table{
-      margin-bottom: 0;
-      border-collapse: collapse;
-    }
+			.tree-view--diagon-active + table tr:nth-of-type(2) td,
+			.tree-view--fame-active + table tr:nth-of-type(3) td,
+			.tree-view--hogwarts-active + table tr:nth-of-type(4) td,
+			.tree-view--hall-active + table tr:nth-of-type(5) td,
+			.tree-view--information-active + table tr:nth-of-type(6) td {
+				@include nav-highlight();
+			}
 
-    tbody{
-      border: 0;
-    }
+			table {
+				margin: 0 0 0 15px;
+				width: calc(100% - 15px);
+				border-collapse: collapse;
+			}
 
-    tr{
-      display: block;
-      float: left;
-      background: inherit;
+			tbody {
+				border: 0;
+				background: inherit;
+			}
 
-      &:first-of-type{
-        display: none;
-      }
-    }
+			tr {
+				display: block;
+				float: left;
+				background: inherit;
 
-    td{
-      position: relative;
-      padding: 0.5rem 15px;
-    }
+				// Don't display the root hogwarts concept
 
-    table{
-      margin-left: 15px;
-      width: calc(100% - 15px);
-    }
+				&:first-of-type {
+					display: none;
+				}
+			}
 
-    tbody{
-      background: transparent;
-    }
+			td {
+				position: relative;
+				padding: 0.5rem 15px;
 
-    td[style="padding-left: 30px;"]{
-      display: none;
-    }
+				// Don't display sub level concepts
 
-    a{
-      padding: 0 1rem;
-      color: $white;
-    }
+				&[style="padding-left: 30px;"]{
+					display: none;
+				}
+			}
 
-    b{
-      font-weight: 400;
-      @include nav-highlight();
-    }
-  }
-}
+			a {
+				padding: 0 1rem;
+				color: $white;
+			}
 
-#toggle-mobile-menu:checked ~ .toggle-mobile-menu-label {
-  .icon-close{display:block;}
-  .icon-menu{display:none;}
-}
+			b {
+				font-weight: 400;
+				@include nav-highlight();
+			}
+		}
+	}
 
-#toggle-mobile-menu:checked ~ #main .sub-level-tree {
-  left: 0;
-}
+	#main {
+		display: flex;
+		flex: 1 1 auto;
 
-.toggle-mobile-menu-label{
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
+		$tree-view--width: 200px;
 
-  .icon-close{display:none;}
-  .icon-menu{display:block;}
+		.tree-view--wrapper {
+			position: fixed;
+			top: 0;
+			bottom: 0;
+			left: -1 * $tree-view--width;
+			width: $tree-view--width;
+			background: $primary;
+			z-index: $second-floor;
+			transition: left 0.3s;
+			@include material-shadow();
 
-  @include breakpoint("md"){
-    .icon-close{display:none;}
-    .icon-menu{display:none;}
-  }
-}
+			@include breakpoint("md") {
+				position: relative;
+				left: auto;
+				box-shadow: none;
+			}
 
-#main {
-  flex: 1 1 auto;
-  display: flex;
+			tr, tbody {
+				background: transparent;
+			}
 
-  .sub-level-tree{
-    position: fixed;
-    top: 0;
-    left: -200px;
-    bottom: 0;
-    width: 200px;
-    background: $primary;
-    z-index: $second-floor;
-    transition: left 0.3s;
-    box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.2);
+			tr:first-child {
+				display: none;
+			}
 
-    @include breakpoint("md"){
-      position: relative;
-      left: auto;
-      box-shadow: none;
-    }
+			// Don't display top level concepts on desktop devices
 
-    tr, tbody{
-        background: transparent;
-    }
+			td[style="padding-left: 15px;"] {
+				@include breakpoint("md") {
+					display: none;
+				}
+			}
+		}
 
-    tr:first-child{
-      display: none;
-    }
+		.resource--wrapper {
+			flex: 1;
+			padding-bottom: 4rem;
 
-    td[style="padding-left: 15px;"]{
-      @include breakpoint("md"){
-        display: none;
-      }
-    }
-  }
+			@include breakpoint("md") {
+				margin-right: $tree-view--width;
+				margin-left: 1rem;
+			}
+		}
 
-  .content-wrapper{
-    flex: 1;
-    padding-bottom: 4rem;
+		.button--next {
+			position: fixed;
+			width: 10rem;
+			right: 1rem;
+			bottom: 0;
+			z-index: $first-floor;
+		}
+	}
 
-    @include breakpoint("md"){
-      margin-right: 200px;
-      margin-left: 1rem;
-    }
-  }
+	#footer {
+		position: relative;
+		flex: 0 1 25px;
+		display: flex;
+		justify-content: center;
+		background: rgba($primary-dark, 0.3);
 
-  .next-button {
-    position: fixed;
-    width: 10rem;
-    right: 1rem;
-    bottom: 0;
-    z-index: $first-floor;
-  }
-}
+		.footer--to-top {
+			position: absolute;
+			top: -38px;
+			height: 38px;
+			padding: 0.5rem 2rem;
+			background: inherit;
+		}
+	}
 
-#footer {
-  position: relative;
-  flex: 0 1 25px;
-  display: flex;
-  justify-content: center;
-  background: rgba($primary-dark, 0.3);
-
-  .to-top{
-    position: absolute;
-    top: -38px;
-    height: 38px;
-    padding: 0.5rem 2rem;
-    background-color: inherit;
-
-    a{
-      color: $white;
-    }
-  }
 }

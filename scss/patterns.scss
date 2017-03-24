@@ -1,0 +1,28 @@
+/**
+ * @file patterns.scss
+ *
+ * We define reusable component classes that should be implemented on the page for consistency
+ *
+ * @author Stanley Clark <s.clark@student.tue.nl>
+ * @version 1.0.0
+ */
+
+@import "_general.scss";
+
+.material-card{
+	margin: 0 0 1rem;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	@include material-shadow();
+
+	@include breakpoint("md"){
+		margin: 1rem 0 0;
+	}
+}
+
+.button{
+	background: $accent;
+	color: $white;
+	border-radius: 50px;
+	@include material-shadow();
+}

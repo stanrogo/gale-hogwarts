@@ -4,6 +4,11 @@ _concept {
     #[knowledge]:Integer
 }
 
+letter {->(extends)_concept
+    title 'Letter From Hogwarts'
+    #resource '[[=letter.xhtml]]'
+}
+
 hogwarts {->(extends)_concept
     <-(parent)hogwarts/basic {}
     <-(parent)hogwarts/diagon-alley {}
