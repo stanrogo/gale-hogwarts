@@ -30,6 +30,7 @@ great-hall {->(extends)_concept
 school {->(extends)_concept
     ->(parent)../hogwarts
     <-(parent)school/potions {}
+    <-(parent)school/divination {}
 
     title 'Hogwarts School'
 }

@@ -81,10 +81,10 @@
                                 <gale:variable expr="${?title}"/>
                             </h1>
 
-                            <gale:if expr="${.}.getAttribute(&quot;resource-course&quot;) != null">
+                            <gale:if expr="${.}.getAttribute(&quot;sub-resource&quot;) != null">
                                 <gale:then>
                                     <gale:object>
-                                        <gale:attr-variable name="data" expr="${#resource-course}" />
+                                        <gale:attr-variable name="data" expr="${#sub-resource}" />
                                     </gale:object>
                                 </gale:then>
                                 <gale:else>

@@ -36,7 +36,8 @@ _concept {
     // Store this concept in memory as the last accessed concept
 
     event +'
-        ${_concept->(personal)#last-concept} = ${.}.getUriString();
+        ${_concept->(personal)#last-concept} = ${_concept->(personal)#current-concept};
+        ${_concept->(personal)#current-concept} = ${.}.getUriString();
     '
 
     // Layout specific things:
@@ -57,6 +58,7 @@ _concept {
 _personal {
     #[first-time]:Boolean 'true' // First time to visit the application
     #[last-concept] // The last concept that was accessed by the user (especially useful for course learning)
+    #[current-concept] // The concept that is currently accessed
     //TODO: set this via a form - see intro.xhtml of the thesis
     #[role]:String 'beginner'  // One of: beginner, intermediate or expert (default blank until choice is made)
 }
