@@ -1,8 +1,12 @@
-_course {->(extends)../_concept
+_concept {->(extends)../_concept
+    ->(personal)../../_personal
+}
+
+_course {->(extends)_concept
     #resource-course '[[=layout.xhtml]]'
-    #[visit-count]:Integer
-    event +"${#knowledge} = ${#knowledge} < 120 ? ${#knowledge} + 20 : 120;"
-    event +"${#visit-count}++;"
+    #[course-knowledge]:Integer
+    event +"${#course-knowledge} = ${#course-knowledge} < 120 ? ${#course-knowledge} + 20 : 120;"
+    #own-knowledge ='Math.min((${#course-knowledge} / 100.0), 1.0)'
 }
 
 completed {
@@ -15,15 +19,13 @@ completed {
 potions {->(extends)_course
     ->(parent)../school
     title 'Course: Potions'
-    #level-locator "school/potions/"
 
     #fragment-names ='new String[] {"potions/level1", "potions/level2", "potions/level3", "potions/level4", "potions/level5"}'
     event +
 }
 
 potions/fragments-potions {
-    #[visited]:Integer
-    event '${#visited}++;'
+
 }
 
 potions/level1 {->(extends)fragments-potions
@@ -34,7 +36,7 @@ potions/level1 {->(extends)fragments-potions
 potions/level2 {->(extends)fragments-potions
     title 'Level 2'
     #resource ='~
-        if (${../potions#knowledge} > 20)
+        if (${../potions#course-knowledge} > 20)
             return "[[=potions/level2.xhtml]]";
         return "[[=empty.xml]]";
     '
@@ -43,7 +45,7 @@ potions/level2 {->(extends)fragments-potions
 potions/level3 {->(extends)fragments-potions
     title 'Level 3'
     #resource ='~
-        if (${../potions#knowledge} > 40)
+        if (${../potions#course-knowledge} > 40)
             return "[[=potions/level3.xhtml]]";
         return "[[=empty.xml]]";
     '
@@ -52,7 +54,7 @@ potions/level3 {->(extends)fragments-potions
 potions/level4 {->(extends)fragments-potions
     title 'Level 4'
     #resource ='~
-        if (${../potions#knowledge} > 60)
+        if (${../potions#course-knowledge} > 60)
             return "[[=potions/level4.xhtml]]";
         return "[[=empty.xml]]";
     '
@@ -61,7 +63,7 @@ potions/level4 {->(extends)fragments-potions
 potions/level5 {->(extends)fragments-potions
     title 'Level 5'
     #resource ='~
-        if (${../potions#knowledge} > 80)
+        if (${../potions#course-knowledge} > 80)
             return "[[=potions/level5.xhtml]]";
         return "[[=empty.xml]]";
     '

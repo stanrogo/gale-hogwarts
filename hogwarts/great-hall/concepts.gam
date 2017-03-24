@@ -1,5 +1,5 @@
 _concept {->(extends)../_concept
-
+    ->(personal)../../_personal
 }
 
 houses {->(extends)_concept

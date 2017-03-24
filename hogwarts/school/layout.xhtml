@@ -3,7 +3,7 @@
     <gale:for var="concept" expr="${#fragment-names}">
 
         <gale:if expr="!&quot;&quot;.equals(${%concept?title}) &amp;&amp;
-            java.util.Arrays.asList(${#fragment-names}).indexOf(&quot;%concept&quot;) &lt; ${#visit-count}">
+            java.util.Arrays.asList(${#fragment-names}).indexOf(&quot;%concept&quot;) &lt; (${#course-knowledge} / 20)">
             <gale:then>
                 <div class="level-container clearfix">
                     <input class="course-level-toggle" type="checkbox"/>
@@ -19,7 +19,7 @@
 
     </gale:for>
 
-    <gale:if expr="${#knowledge} > 100">
+    <gale:if expr="${#course-knowledge} > 100">
         <gale:then>
             <div class="level-container clearfix"><gale:object name="completed"/></div>
         </gale:then>

@@ -1,12 +1,64 @@
 // This is the root concept of the entire application
+
 _concept {
-    #resource '[[=layout.xhtml]]'
-    #[knowledge]:Integer
+
+    ->(personal)_personal
+
+    strict 'true'
+
+    #[visited]:Integer
+
+    event +'
+        ${#visited}++;
+    '
+
+    // If a role has not been determined yet, retrieve the letter screen.
+    // Otherwise return the normal layout
+
+    #resource ='~
+        if ("".equals(${_concept->(personal)#role}))
+            return "[[=letter.xhtml]]";
+        return "[[=layout.xhtml]]";
+    '
+
+    // Own knowledge by default will get set to 1 since you have now viewed the page
+
+    #[own-knowledge]:Double '1.0'
+
+    // The knowledge value is the average of the parent knowledge and itself
+
+    #knowledge:Double ='avg(new Object[] {${<=(parent)#knowledge}, ${#own-knowledge}})'
+    #known-all:Boolean ='${#knowledge} > 0.8'
+    #known:Boolean ='${#own-knowledge} > 0.8'
+    #unknown:Boolean ="false"
+    #suitability:Boolean ='and(new Object[] {${=>(prereq-all)#known-all}}))'
+
+    // Store this concept in memory as the last accessed concept
+
+    event +'
+        ${_concept->(personal)#last-concept} = ${.}.getUriString();
+    '
+
+    // Layout specific things:
+
+    #layout.title '"Hogwarts - "+${.}.getTitle()'
+
+    #link.classexpr '~
+        if (${#unknown}) return "unknown";
+        if (!${#suitability}) return "bad";
+        if (${#visited}==0) return "good";
+        return "neutral";
+    '
+    #link.iconlist 'null'
 }
 
-letter {->(extends)_concept
-    title 'Letter From Hogwarts'
-    #resource '[[=letter.xhtml]]'
+// User stored settings for the entire application
+
+_personal {
+    #[first-time]:Boolean 'true' // First time to visit the application
+    #[last-concept] // The last concept that was accessed by the user (especially useful for course learning)
+    //TODO: set this via a form - see intro.xhtml of the thesis
+    #[role]:String 'beginner'  // One of: beginner, intermediate or expert (default blank until choice is made)
 }
 
 hogwarts {->(extends)_concept
