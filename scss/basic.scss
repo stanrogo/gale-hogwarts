@@ -1,16 +1,36 @@
 @import "_general.scss";
 
-#basic{
-  .image-wrapper {
-    position: relative;
-    margin: 0 -.9375rem 1rem;
-    max-width: calc(100% + 2 * .9375rem);
-    height: 13rem;
-    overflow: hidden;
+.resource--wrapper{
+	.image-wrapper {
+		position: relative;
+		margin: 0 -.9375rem 1rem;
+		max-width: calc(100% + 2 * .9375rem);
+		height: 13rem;
+		overflow: hidden;
 
-    .image{
-      @include position-center();
-      top: 75%;
-    }
-  }
+		.image {
+			@include position-center();
+			top: 75%;
+			max-width: none;
+			width: 100%;
+		}
+	}
+}
+
+#headmasters{
+	.headmasters--figure {
+		float: left;
+
+		@include breakpoint(md){
+			width: 50%;
+			margin: 0 1rem 0 0;
+		}
+	}
+}
+
+#schools{
+	.school--crest{
+		float: right;
+		width: 100px;
+	}
 }

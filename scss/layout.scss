@@ -28,7 +28,7 @@
 			}
 		}
 
-		~ #main .sub-level-tree{
+		~ #main .tree-view--wrapper{
 			left: 0;
 		}
 	}
@@ -38,17 +38,17 @@
 		top: 1rem;
 		right: 1rem;
 
-		@include breakpoint("md") {
-			.nav-toggle--icon-close, .nav-toggle--icon-menu {
-				display: none;
-			}
-		}
-
 		.nav-toggle--icon-close {
 			display: none;
 		}
 		.nav-toggle--icon-menu {
 			display: block;
+		}
+
+		@include breakpoint(md) {
+			.nav-toggle--icon-close, .nav-toggle--icon-menu {
+				display: none;
+			}
 		}
 	}
 
@@ -56,7 +56,7 @@
 		flex: 0 1 auto;
 		background: url(../images/header_background.jpg) top center / cover no-repeat fixed;
 
-		@include breakpoint("md") {
+		@include breakpoint(md) {
 			background-size: contain;
 		}
 
@@ -92,7 +92,7 @@
 			flex-direction: column;
 			background: rgba($primary-dark, 0.3);
 
-			@include breakpoint("md") {
+			@include breakpoint(md) {
 				display: flex;
 			}
 
@@ -171,7 +171,7 @@
 			transition: left 0.3s;
 			@include material-shadow();
 
-			@include breakpoint("md") {
+			@include breakpoint(md) {
 				position: relative;
 				left: auto;
 				box-shadow: none;
@@ -188,7 +188,7 @@
 			// Don't display top level concepts on desktop devices
 
 			td[style="padding-left: 15px;"] {
-				@include breakpoint("md") {
+				@include breakpoint(md) {
 					display: none;
 				}
 			}
@@ -198,7 +198,7 @@
 			flex: 1;
 			padding-bottom: 4rem;
 
-			@include breakpoint("md") {
+			@include breakpoint(md) {
 				margin-right: $tree-view--width;
 				margin-left: 1rem;
 			}
