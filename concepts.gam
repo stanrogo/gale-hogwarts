@@ -36,6 +36,14 @@ _concept {
         return "neutral";
     `
     #link.iconlist `null`
+
+    // Tags are shown based on whether you view the concept for the first time or not
+    #tags =`~
+        if (${#visited} > 2) return "default";
+        if ("true".equals(${?intro-first}))
+            return (${#visited} > 1?"default":"intro");
+        return "intro;default";
+    `
 }
 
 // User stored settings for the entire application

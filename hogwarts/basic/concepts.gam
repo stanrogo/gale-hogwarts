@@ -1,5 +1,6 @@
 _concept {->(extends)../_concept
     ->(personal)../../_personal
+    event +`${#visited}++;`
 }
 
 schools {->(extends)_concept
@@ -9,6 +10,7 @@ schools {->(extends)_concept
     #fragments =`~
         return new String[] {"schools/beaubaton","schools/durmstrang"};
     `
+    event +
 }
 
 provisions {->(extends)_concept
@@ -24,6 +26,7 @@ headmasters {->(extends)_concept
     #fragments =`~
         return new String[] {"headmasters/dumbledore","headmasters/minerva","headmasters/severus"};
     `
+    event +
 }
 
 headmasters/fragments {}
