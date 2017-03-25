@@ -1,5 +1,6 @@
 _concept {->(extends)../_concept
     ->(personal)../_personal
+    event +`${#visited}++; ${#own-knowledge} = 1.0;`
 }
 
 basic {->(extends)_concept
@@ -9,6 +10,7 @@ basic {->(extends)_concept
     <-(parent)basic/schools {}
 
     title `Hogwarts Information`
+    event +
 }
 
 diagon-alley {->(extends)_concept
@@ -18,6 +20,7 @@ diagon-alley {->(extends)_concept
     <-(parent)diagon-alley/olivanders {}
 
     title `Diagon Alley`
+    event +
 }
 
 great-hall {->(extends)_concept
@@ -25,6 +28,7 @@ great-hall {->(extends)_concept
     <-(parent)great-hall/houses {}
 
     title `The Great Hall`
+    event +
 }
 
 school {->(extends)_concept
@@ -33,6 +37,7 @@ school {->(extends)_concept
     <-(parent)school/divination {}
 
     title `Hogwarts School`
+    event +
 }
 
 hall-of-fame {->(extends)_concept
@@ -40,4 +45,5 @@ hall-of-fame {->(extends)_concept
     <-(parent)hall-of-fame/harry-potter {}
 
     title `Hall of Fame`
+    event +
 }

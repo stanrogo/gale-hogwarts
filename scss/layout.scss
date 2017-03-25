@@ -192,6 +192,52 @@
 					display: none;
 				}
 			}
+
+			td{
+				position: relative;
+			}
+
+			// Include the styling for links when on the course page
+
+			.knowledge--level1{
+				@include nav-highlight();
+				&:after{
+					right: 80%;
+					background: #d8e2d7;
+				}
+			}
+
+			.knowledge--level2{
+				@include nav-highlight();
+				&:after{
+					right: 60%;
+					background: #ccdeca;
+				}
+			}
+
+			.knowledge--level3{
+				@include nav-highlight();
+				&:after{
+					right: 40%;
+					background: #d0eccd;
+				}
+			}
+
+			.knowledge--level4{
+				@include nav-highlight();
+				&:after{
+					right: 20%;
+					background: #aadaa4;
+				}
+			}
+
+			.knowledge--level5{
+				@include nav-highlight();
+				&:after{
+					right: 0;
+					background: #60d851;
+				}
+			}
 		}
 
 		.resource--wrapper {

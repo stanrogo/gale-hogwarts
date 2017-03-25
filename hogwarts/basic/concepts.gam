@@ -1,6 +1,6 @@
 _concept {->(extends)../_concept
     ->(personal)../../_personal
-    event +`${#visited}++;`
+    event +`${#visited}++; ${#own-knowledge} = 1.0;`
 }
 
 schools {->(extends)_concept
@@ -17,6 +17,7 @@ provisions {->(extends)_concept
     ->(parent)../basic
 
     title `Provisions at Hogwarts School`
+    event +
 }
 
 headmasters {->(extends)_concept

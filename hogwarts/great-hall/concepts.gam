@@ -1,9 +1,11 @@
 _concept {->(extends)../_concept
     ->(personal)../../_personal
+    event +`${#visited}++; ${#own-knowledge} = 1.0;`
 }
 
 houses {->(extends)_concept
     ->(parent)../great-hall
 
     title `The houses of hogwarts`
+    event +
 }

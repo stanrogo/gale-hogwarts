@@ -1,21 +1,25 @@
 _concept {->(extends)../_concept
     ->(personal)../../_personal
+    event +`${#visited}++; ${#own-knowledge} = 1.0;`
 }
 
 olivanders {->(extends)_concept
     ->(parent)../diagon-alley
 
     title `Olivanders Wands`
+    event +
 }
 
 broomstix {->(extends)_concept
     ->(parent)../diagon-alley
 
     title `Broomstix`
+    event +
 }
 
 flourish-and-blotts {->(extends)_concept
     ->(parent)../diagon-alley
 
     title `Flourish and Blotts`
+    event +
 }

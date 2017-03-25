@@ -18,10 +18,12 @@ _course {->(extends)_concept
     `
     #[course-knowledge]:Integer `0`
     event +`
-        if(!${.}.getUriString().equals(${_concept->(personal)#last-concept}))
-            ${#course-knowledge} = ${#course-knowledge} < 120 ? ${#course-knowledge} + 20 : 120;
+        if(!${.}.getUriString().equals(${_concept->(personal)#last-concept})){
+            Integer courseKnowledge = ${#course-knowledge} < 120 ? ${#course-knowledge} + 20 : 120;
+            ${#course-knowledge} = courseKnowledge;
+            ${#own-knowledge} = Math.min((courseKnowledge / 100.0), 1.0);
+        }
     `
-    #own-knowledge =`Math.min((${#course-knowledge} / 100.0), 1.0)`
 }
 
 completed {

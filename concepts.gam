@@ -5,9 +5,10 @@ _concept {
     ->(personal)_personal
 
     #[visited]:Integer `0`           // Integer determining how many times a concept has been visited
-    #[own-knowledge]:Double `1.0`   // Own knowledge by default will get set to 1 since you have now viewed the page
+    #[own-knowledge]:Double `0.0`   // Own knowledge by default will get set to 1 since you have now viewed the page
+    #[course-knowledge]:Integer `-1`
 
-    event +`${#visited}++;`
+    event +`${#visited}++; ${#own-knowledge} = 1.0;`
 
     // If a role has not been determined yet, retrieve the letter screen.
     // Otherwise return the normal layout
@@ -18,7 +19,7 @@ _concept {
 
     #knowledge:Double =`avg(new Object[] {${<=(parent)#knowledge}, ${#own-knowledge}})`
     #known-all:Boolean =`${#knowledge} > 0.8`
-    #known:Boolean =`${#own-knowledge} > 0.8`
+    #known:Boolean =`${#own-knowledge} == 1.0`
     #unknown:Boolean =`false`
     #suitability:Boolean =`and(new Object[] {${=>(prereq-all)#known-all}}))`
 
@@ -27,13 +28,15 @@ _concept {
     #layout.title `"Hogwarts - "+${.}.getTitle()`
 
     // Classes to use when displaying adaptive links
-    // TODO: check if this actually works
 
     #link.classexpr `~
-        if (${#unknown}) return "unknown";
-        if (!${#suitability}) return "bad";
-        if (${#visited}==0) return "good";
-        return "neutral";
+        if (${#course-knowledge} == 20) return "knowledge--level1";
+        if (${#course-knowledge} == 40) return "knowledge--level2";
+        if (${#course-knowledge} == 60) return "knowledge--level3";
+        if (${#course-knowledge} == 80) return "knowledge--level4";
+        if (${#course-knowledge} >= 100) return "knowledge--level5";
+        if(${#known}) return "knowledge--known";
+        return "knowledge--unknown";
     `
     #link.iconlist `null`
 
