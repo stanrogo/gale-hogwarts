@@ -1,8 +1,9 @@
 <section id="basic" xmlns="http://www.w3.org/1999/xhtml" xmlns:gale="http://gale.tue.nl/adaptation">
+
     <p>
         So, it looks like you have received an invitation letter and are now going to
         Hogwarts School of Witchcraft and Wizardry. <strong>Congratulations!</strong>
-        Hogwarts School has a rich history of traditions that go back to the year 1658.
+        Hogwarts School has a rich history of traditions that go back to the 10th century.
     </p>
     <figure class="image-wrapper">
         <img class="image" src="./images/hogwarts.jpg"/>
@@ -14,6 +15,70 @@
         will be in the securest building in the country and can study for their magical education in peace.
     </p>
 
-    <gale:variable expr="${#known}"></gale:variable>
-    <gale:variable expr="${#own-knowledge}"></gale:variable>
+    <p>
+        Hogwarts School of Witchcraft and Wizardry is the British wizarding school,
+        located in the Highlands of Scotland, with breathtaking views and scenic landscapes, as well as world class
+        education.
+        We take students from the United Kingdom of Great Britain and Northern Ireland, and Ireland. It's surely great
+        that you have been accepted to this school and we look forward to seeing you here along with all of your
+        equipment!
+    </p>
+
+    <h2>
+        A History
+    </h2>
+    <p>
+        Howgwarts School is established inside a castle located in the mountains near a loch.
+        The precise location of the school can never be uncovered because it was rendered Unplottable, so we advise
+        students not to try to find this information out for themselves.
+        To Muggles the school looks like an old abandoned castle, in the same way that the other wizarding schools
+        protect their grounds to prevent our ways of teaching being revealed,
+        as well as protect the students and schools themselves from any harm.
+    </p>
+    <p>
+        Established around the 10th century, Hogwarts is considered to be one of the finest magical institutions in
+        the wizarding world, though other notable schools included Beauxbatons Academy of Magic and
+        the Durmstrang Institute. Our motto is Draco Dormiens Nunquam Titillandus, which, translated from Latin,
+        means "Never tickle a sleeping dragon".
+    </p>
+
+    <p>
+        Feel free to browse through the following media gallery to give yourself an impression of what it is like
+        to study at our school:
+    </p>
+
+    <div class="media-gallery">
+        <input id="image-radio--lake" class="image-radio" type="radio" name="hogwarts-image" checked="checked"/>
+        <input id="image-radio--dormitories" class="image-radio" type="radio" name="hogwarts-image"/>
+        <input id="image-radio--quidditch" class="image-radio" type="radio" name="hogwarts-image"/>
+        <input id="image-radio--library" class="image-radio" type="radio" name="hogwarts-image"/>
+
+        <div class="image-wrapper image-container clearfix">
+            <figure class="hogwarts-figure hogwarts-figure--lake">
+                <img class="hogwarts-image " src="./images/hogwarts_lake.jpg"/>
+                <figcaption class="hogwarts-image--caption">
+                    View Of Hogwarts School From The Lake
+                </figcaption>
+            </figure>
+            <figure class="hogwarts-figure hogwarts-figure--dormitories">
+                <img class="hogwarts-image" src="./images/hogwarts_dormitories.jpg"/>
+                <figcaption class="hogwarts-image--caption">
+                    The Student Dormitories At Hogwarts
+                </figcaption>
+            </figure>
+            <figure class="hogwarts-figure hogwarts-figure--quidditch">
+                <img class="hogwarts-image" src="./images/hogwarts_quidditch.jpg"/>
+                <figcaption class="hogwarts-image--caption">
+                    The Sports Fields At Howgarts
+                </figcaption>
+            </figure>
+            <figure class="hogwarts-figure hogwarts-figure--library">
+                <img class="hogwarts-image " src="./images/hogwarts_library.jpg"/>
+                <figcaption class="hogwarts-image--caption">
+                    The Library At Hogwarts
+                </figcaption>
+            </figure>
+        </div>
+    </div>
+
 </section>
