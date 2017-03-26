@@ -104,8 +104,13 @@
             <!-- Add an empty footer with a scroll to top button -->
 
             <footer id="footer">
-                <button class="footer--to-top" onclick="window.scrollTo(0, 0)">To Top</button>
+                <a class="footer--to-top">
+                    <gale:attr-variable name="href"
+                            expr="GaleUtil.getContextURL(gale.req()) + &quot;/concept/&quot; + ${.}.getUriString() + &quot;#wrapper&quot;"/>
+                    To Top
+                </a>
             </footer>
+
 
         </div>
 
