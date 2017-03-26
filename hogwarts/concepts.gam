@@ -1,13 +1,21 @@
+$options {
+    // By including this, the concepts will be displayed in the tree-view in
+    // the order that is listed in this file.
+    default.order "auto"
+    module "basic"
+    module "diagon-alley"
+    module "great-hall"
+    module "school"
+    module "hall-of-fame"
+}
+
 _concept {->(extends)../_concept
     ->(personal)../_personal
-    event +`${#visited}++; ${#own-knowledge} = 1.0;`
+    event +
 }
 
 basic {->(extends)_concept
     ->(parent)../hogwarts
-    <-(parent)basic/headmasters {}
-    <-(parent)basic/provisions {}
-    <-(parent)basic/schools {}
 
     title `Hogwarts Information`
     event +
@@ -15,9 +23,6 @@ basic {->(extends)_concept
 
 diagon-alley {->(extends)_concept
     ->(parent)../hogwarts
-    <-(parent)diagon-alley/broomstix {}
-    <-(parent)diagon-alley/flourish-and-blotts {}
-    <-(parent)diagon-alley/olivanders {}
 
     title `Diagon Alley`
     event +
@@ -33,9 +38,6 @@ great-hall {->(extends)_concept
 
 school {->(extends)_concept
     ->(parent)../hogwarts
-    <-(parent)school/potions {}
-    <-(parent)school/divination {}
-    <-(parent)school/transfiguration {}
 
     title `Hogwarts School`
     event +
@@ -43,7 +45,6 @@ school {->(extends)_concept
 
 hall-of-fame {->(extends)_concept
     ->(parent)../hogwarts
-    <-(parent)hall-of-fame/harry-potter {}
 
     title `Hall of Fame`
     event +

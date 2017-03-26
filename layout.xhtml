@@ -37,24 +37,24 @@
 
                     <!-- The hack to give top level concepts a class -->
 
-                    <gale:if expr="${-&gt;(parent)?title}.equals(&quot;Hogwarts School&quot;)">
-                        <div class="is-hidden tree-view--hogwarts-active"></div>
-                    </gale:if>
-
-                    <gale:if expr="${-&gt;(parent)?title}.equals(&quot;The Great Hall&quot;)">
-                        <div class="is-hidden tree-view--hall-active"></div>
-                    </gale:if>
-
-                    <gale:if expr="${-&gt;(parent)?title}.equals(&quot;Hall of Fame&quot;)">
-                        <div class="is-hidden tree-view--fame-active"></div>
-                    </gale:if>
-
                     <gale:if expr="${-&gt;(parent)?title}.equals(&quot;Hogwarts Information&quot;)">
                         <div class="is-hidden tree-view--information-active"></div>
                     </gale:if>
 
                     <gale:if expr="${-&gt;(parent)?title}.equals(&quot;Diagon Alley&quot;)">
                         <div class="is-hidden tree-view--diagon-active"></div>
+                    </gale:if>
+
+                    <gale:if expr="${-&gt;(parent)?title}.equals(&quot;The Great Hall&quot;)">
+                        <div class="is-hidden tree-view--hall-active"></div>
+                    </gale:if>
+
+                    <gale:if expr="${-&gt;(parent)?title}.equals(&quot;Hogwarts School&quot;)">
+                        <div class="is-hidden tree-view--hogwarts-active"></div>
+                    </gale:if>
+
+                    <gale:if expr="${-&gt;(parent)?title}.equals(&quot;Hall of Fame&quot;)">
+                        <div class="is-hidden tree-view--fame-active"></div>
                     </gale:if>
 
                     <!-- top level concept hack ends. We can now use the class to target the tree view -->

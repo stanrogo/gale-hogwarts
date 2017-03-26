@@ -1,3 +1,7 @@
+$options {
+    module "hogwarts"
+}
+
 // This is the root concept of the entire application
 
 _concept {
@@ -8,7 +12,11 @@ _concept {
     #[own-knowledge]:Double `0.0`   // Own knowledge by default will get set to 1 since you have now viewed the page
     #[course-knowledge]:Integer `-1`
 
-    event +`${#visited}++; ${#own-knowledge} = 1.0;`
+    event +`
+        ${#visited}++; ${#own-knowledge} = 1.0;
+        ${_concept->(personal)#last-concept} = ${_concept->(personal)#current-concept};
+        ${_concept->(personal)#current-concept} = ${.}.getUriString();
+    `
 
     // If a role has not been determined yet, retrieve the letter screen.
     // Otherwise return the normal layout
@@ -61,11 +69,6 @@ _personal {
 }
 
 hogwarts {->(extends)_concept
-    <-(parent)hogwarts/basic {}
-    <-(parent)hogwarts/diagon-alley {}
-    <-(parent)hogwarts/great-hall {}
-    <-(parent)hogwarts/school {}
-    <-(parent)hogwarts/hall-of-fame {}
     title `Hogwarts`
     no-title `true`
 }

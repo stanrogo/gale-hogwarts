@@ -4,7 +4,7 @@
  * Defines the skeleton framework for our application's content
  *
  * @author Stanley Clark <s.clark@student.tue.nl>
- * @version 1.0.0
+ * @version 1.1.0
  */
 
 @import "_general.scss";
@@ -97,14 +97,14 @@
 			}
 
 			// We start the hack to display a highlight on parent concepts.
-			// We do not know the order in which the concepts will appear.
-			// TODO: figure out if this is safe and change if needed.
+			// Concepts appear in the order they are declared in the .gam file
 
-			.tree-view--diagon-active + table tr:nth-of-type(2) td,
-			.tree-view--fame-active + table tr:nth-of-type(3) td,
-			.tree-view--hogwarts-active + table tr:nth-of-type(4) td,
-			.tree-view--hall-active + table tr:nth-of-type(5) td,
-			.tree-view--information-active + table tr:nth-of-type(6) td {
+			.tree-view--information-active + table tr:nth-of-type(2) td,
+			.tree-view--diagon-active + table tr:nth-of-type(3) td,
+			.tree-view--hall-active + table tr:nth-of-type(4) td,
+			.tree-view--hogwarts-active + table tr:nth-of-type(5) td,
+			.tree-view--fame-active + table tr:nth-of-type(6) td
+			{
 				@include nav-highlight();
 			}
 

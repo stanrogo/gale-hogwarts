@@ -1,10 +1,6 @@
 _concept {->(extends)../_concept
     ->(personal)../../_personal
-
-    event +`
-        ${_concept->(personal)#last-concept} = ${_concept->(personal)#current-concept};
-        ${_concept->(personal)#current-concept} = ${.}.getUriString();
-    `
+    event +
 }
 
 _course {->(extends)_concept

@@ -1,6 +1,6 @@
 _concept {->(extends)../_concept
     ->(personal)../../_personal
-    event +`${#visited}++; ${#own-knowledge} = 1.0;`
+    event +
 }
 
 schools {->(extends)_concept
