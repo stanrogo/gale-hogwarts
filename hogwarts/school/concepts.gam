@@ -8,17 +8,24 @@ _concept {->(extends)../_concept
 }
 
 _course {->(extends)_concept
-    #resource-course `[[=layout.xhtml]]`
-
-    // TODO: also don't display later when all siblings have a knowledge level that is at 1.0
+    // The "later" screen is shown if the previously accessed concept is also the current concept
+    // and only if you have not yet finished the course
+    // and only when the siblings knowledge is not full (to avoid blocking finishing in this situation)
     #sub-resource =`~
-        if (${.}.getUriString().equals(${_concept->(personal)#last-concept}) && ${#course-knowledge} < 120)
+        if (
+            ${.}.getUriString().equals(${_concept->(personal)#last-concept})
+            && ${#course-knowledge} < 100
+            && sum(${->(parent)<=(parent)#course-knowledge}) < ((${->(parent)<-(parent)}.length - 1) * 100)
+        )
             return "[[=later.xhtml]]";
         return "[[=layout.xhtml]]";
     `
     #[course-knowledge]:Integer `0`
     event +`
-        if(!${.}.getUriString().equals(${_concept->(personal)#last-concept})){
+        if(
+            !${.}.getUriString().equals(${_concept->(personal)#last-concept})
+            || sum(${->(parent)<=(parent)#course-knowledge}) >= ((${->(parent)<-(parent)}.length - 1) * 100)
+        ){
             Integer courseKnowledge = ${#course-knowledge} < 120 ? ${#course-knowledge} + 20 : 120;
             ${#course-knowledge} = courseKnowledge;
             ${#own-knowledge} = Math.min((courseKnowledge / 100.0), 1.0);
@@ -97,4 +104,37 @@ divination/level4 {
 divination/level5 {
     title `Level 5`
     #resource `[[=divination/level5.xhtml]]`
+}
+
+transfiguration {->(extends)_course
+    ->(parent)../school
+    title `Course: Transfiguration`
+
+    #fragment-names =`new String[] {"transfiguration/level1", "transfiguration/level2", "transfiguration/level3", "transfiguration/level4", "transfiguration/level5"}`
+    event +
+}
+
+transfiguration/level1 {
+    title `Level 1`
+    #resource `[[=transfiguration/level1.xhtml]]`
+}
+
+transfiguration/level2 {
+    title `Level 2`
+    #resource `[[=transfiguration/level2.xhtml]]`
+}
+
+transfiguration/level3 {
+    title `Level 3`
+    #resource `[[=transfiguration/level3.xhtml]]`
+}
+
+transfiguration/level4 {
+    title `Level 4`
+    #resource `[[=transfiguration/level4.xhtml]]`
+}
+
+transfiguration/level5 {
+    title `Level 5`
+    #resource `[[=transfiguration/level5.xhtml]]`
 }

@@ -35,6 +35,7 @@ school {->(extends)_concept
     ->(parent)../hogwarts
     <-(parent)school/potions {}
     <-(parent)school/divination {}
+    <-(parent)school/transfiguration {}
 
     title `Hogwarts School`
     event +
