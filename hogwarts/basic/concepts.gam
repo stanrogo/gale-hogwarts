@@ -1,6 +1,11 @@
+$options {
+    module "provisions"
+}
+
 _concept {->(extends)../_concept
     ->(personal)../../_personal
     event +
+    #layout.css =`${#base-url} + "/css/basic.css;" + ${#base-url} + "/css/root-concept.css;"`
 }
 
 schools {->(extends)_concept

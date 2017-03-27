@@ -1,0 +1,9 @@
+@import "../_general.scss";
+
+#header table tr:nth-of-type(2) td{
+	@include nav-highlight();
+}
+
+#body{
+	font-size: 5rem;
+}

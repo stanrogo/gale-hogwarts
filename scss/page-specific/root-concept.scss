@@ -1,0 +1,29 @@
+@import "../_general.scss";
+
+#main .tree-view--wrapper{
+	// Don't display the "hogwarts" concept
+	td[style="padding-left: 0px;"] {
+		display: none;
+	}
+
+	td[style="padding-left: 15px;"] {
+		@include breakpoint(md) {
+			// Use important because of overriding the style attribute
+			display: none;
+		}
+	}
+
+	td[style="padding-left: 30px;"] {
+		@include breakpoint(md) {
+			// Use important because of overriding the style attribute
+			padding-left: 15px !important;
+		}
+	}
+
+	td[style="padding-left: 45px;"] {
+		@include breakpoint(md) {
+			// Use important because of overriding the style attribute
+			padding-left: 30px !important;
+		}
+	}
+}

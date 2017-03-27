@@ -1,6 +1,7 @@
 _concept {->(extends)../_concept
     ->(personal)../../_personal
     event +
+    #layout.css =`${#base-url} + "/css/hall-of-fame.css;" + ${#base-url} + "/css/root-concept.css;"`
 }
 
 

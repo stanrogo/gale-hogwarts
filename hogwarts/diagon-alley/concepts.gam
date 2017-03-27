@@ -1,6 +1,7 @@
 _concept {->(extends)../_concept
     ->(personal)../../_personal
     event +
+    #layout.css =`${#base-url} + "/css/diagon-alley.css;" + ${#base-url} + "/css/root-concept.css;"`
 }
 
 olivanders {->(extends)_concept

@@ -16,6 +16,30 @@
 	flex-flow: column;
 	min-height: 100%;
 
+	// Tree view table default styling
+
+	table{
+
+		tr, tbody {
+			background: transparent;
+			border: 0;
+			display: block;
+		}
+
+		// Never show the "Hogwarts" concept
+		tr:first-child{
+			display: none;
+		}
+
+		td{
+			position: relative;
+		}
+
+		a {
+			color: $text-primary;
+		}
+	}
+
 	// Set up a css toggle switch to reveal an off canvas menu when on mobile devices
 
 	#nav-toggle:checked {
@@ -96,60 +120,29 @@
 				display: flex;
 			}
 
-			// We start the hack to display a highlight on parent concepts.
-			// Concepts appear in the order they are declared in the .gam file
-
-			.tree-view--information-active + table tr:nth-of-type(2) td,
-			.tree-view--diagon-active + table tr:nth-of-type(3) td,
-			.tree-view--hall-active + table tr:nth-of-type(4) td,
-			.tree-view--hogwarts-active + table tr:nth-of-type(5) td,
-			.tree-view--fame-active + table tr:nth-of-type(6) td
-			{
-				@include nav-highlight();
-			}
-
 			table {
 				margin: 0 0 0 15px;
 				width: calc(100% - 15px);
 				border-collapse: collapse;
 			}
 
-			tbody {
-				border: 0;
-				background: inherit;
-			}
-
 			tr {
-				display: block;
 				float: left;
-				background: inherit;
-
-				// Don't display the root hogwarts concept
-
-				&:first-of-type {
-					display: none;
-				}
 			}
 
 			td {
-				position: relative;
 				padding: 0.5rem 15px;
 
 				// Don't display sub level concepts
 
-				&[style="padding-left: 30px;"]{
+				&[style="padding-left: 30px;"],
+				&[style="padding-left: 45px;"]{
 					display: none;
 				}
 			}
 
-			a {
-				padding: 0 1rem;
-				color: $white;
-			}
-
-			b {
+			b{
 				font-weight: 400;
-				@include nav-highlight();
 			}
 		}
 	}
@@ -175,26 +168,6 @@
 				position: relative;
 				left: auto;
 				box-shadow: none;
-			}
-
-			tr, tbody {
-				background: transparent;
-			}
-
-			tr:first-child {
-				display: none;
-			}
-
-			// Don't display top level concepts on desktop devices
-
-			td[style="padding-left: 15px;"] {
-				@include breakpoint(md) {
-					display: none;
-				}
-			}
-
-			td{
-				position: relative;
 			}
 
 			// Include the styling for links when on the course page

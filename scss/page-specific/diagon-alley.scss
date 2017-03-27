@@ -1,0 +1,6 @@
+@import "../_general.scss";
+
+#header table tr:nth-of-type(3) td{
+	@include nav-highlight();
+}
+

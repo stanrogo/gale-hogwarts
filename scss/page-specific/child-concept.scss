@@ -1,0 +1,6 @@
+#main .tree-view--wrapper{
+	// Don't display the "hogwarts" concept
+	td[style="padding-left: 0px;"] {
+		display: none;
+	}
+}

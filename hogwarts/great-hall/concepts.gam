@@ -1,6 +1,7 @@
 _concept {->(extends)../_concept
     ->(personal)../../_personal
     event +
+    #layout.css =`${#base-url} + "/css/great-hall.css;" + ${#base-url} + "/css/root-concept.css;"`
 }
 
 houses {->(extends)_concept

@@ -19,6 +19,7 @@ basic {->(extends)_concept
 
     title `Hogwarts Information`
     event +
+    #layout.css =`${#base-url} + "/css/basic.css;" + ${#base-url} + "/css/root-concept.css;"`
 }
 
 diagon-alley {->(extends)_concept
@@ -26,6 +27,7 @@ diagon-alley {->(extends)_concept
 
     title `Diagon Alley`
     event +
+   #layout.css =`${#base-url} + "/css/diagon-alley.css;" + ${#base-url} + "/css/root-concept.css;"`
 }
 
 great-hall {->(extends)_concept
@@ -34,6 +36,7 @@ great-hall {->(extends)_concept
 
     title `The Great Hall`
     event +
+    #layout.css =`${#base-url} + "/css/great-hall.css;" + ${#base-url} + "/css/root-concept.css;"`
 }
 
 school {->(extends)_concept
@@ -41,6 +44,7 @@ school {->(extends)_concept
 
     title `Hogwarts School`
     event +
+    #layout.css =`${#base-url} + "/css/school.css;" + ${#base-url} + "/css/root-concept.css;"`
 }
 
 hall-of-fame {->(extends)_concept
@@ -48,4 +52,5 @@ hall-of-fame {->(extends)_concept
 
     title `Hall of Fame`
     event +
+    #layout.css =`${#base-url} + "/css/hall-of-fame.css;" + ${#base-url} + "/css/root-concept.css;"`
 }
