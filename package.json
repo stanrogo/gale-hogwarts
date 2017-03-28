@@ -1,22 +1,30 @@
 {
   "name": "gale_hogwarts",
   "version": "1.0.0",
-  "description": "Provides the code for an adaptable learning experience and Hogwarts School of Witchcraft and Wizardry",
+  "description": "Code for adaptable learning experience at Hogwarts School",
+  "author": "Stanley Clark <me@stanrogo.com>",
+  "contributors": [{
+    "name": "Wesley Brants",
+    "email": "w.m.g.brants@student.tue.nl"
+  },
+  {
+    "name": "Lisette van der Steeg",
+    "email": "l.s.j.v.d.steeg@student.tue.nl"
+  }],
   "scripts": {
-    "scss": "node-sass --output-style compressed scss/main.scss css/main.css",
-    "scss-pages": "node-sass --output-style compressed -o css scss/page-specific",
+    "scss:main": "node-sass --output-style compressed scss/main.scss css/main.css",
+    "scss:pages": "node-sass --output-style compressed -o css scss/page-specific",
     "autoprefixer": "postcss -u autoprefixer -r css/*",
-    "build:css": "npm run scss && npm run scss-pages && npm run autoprefixer",
+    "build:css": "npm run scss:main && npm run scss:pages && npm run autoprefixer",
     "watch:css": "onchange \"scss/**/*.scss\" -- npm run build:css",
     "serve": "http-server -p 8000",
-    "start": "npm run build:css && parallelshell \"npm run serve\" \"npm run watch:css\""
+    "start": "npm run build:css && parallelshell \"npm run serve\" \"npm run watch:css\"",
+    "build": "npm run build:css"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stanrogo/gale_hogwarts.git"
   },
-  "author": "Stanley Clark",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/stanrogo/gale_hogwarts/issues"
   },
@@ -28,5 +36,7 @@
     "onchange": "3.2.1",
     "parallelshell": "2.0.0",
     "postcss-cli": "3.0.0-beta"
-  }
+  },
+  "private": true,
+  "license": "ISC"
 }
