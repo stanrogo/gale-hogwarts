@@ -13,7 +13,7 @@ schools {->(extends)_concept
 
     title `Other Schools of Wizardry`
     #fragments =`~
-        return new String[] {"schools/beaubaton","schools/durmstrang"};
+        return new String[] {"[[=schools/beaubaton.xhtml]]","[[=schools/durmstrang.xhtml]]"};
     `
     event +
 }
@@ -30,38 +30,7 @@ headmasters {->(extends)_concept
 
     title `Headmasters`
     #fragments =`~
-        return new String[] {"headmasters/dumbledore","headmasters/minerva","headmasters/severus"};
+        return new String[] {"[[=headmasters/dumbledore.xhtml]]","[[=headmasters/minerva.xhtml]]","[[=headmasters/severus.xhtml]]"};
     `
     event +
-}
-
-headmasters/fragments {}
-
-headmasters/dumbledore {->(extends)fragments
-    title `Albus Dumbledore (1971 - 1997)`
-    #resource `[[=headmasters/dumbledore.xhtml]]`
-}
-
-headmasters/severus {->(extends)fragments
-    title `Severus Snape (1997 - 1998)`
-    #resource `[[=headmasters/severus.xhtml]]`
-}
-
-headmasters/minerva {->(extends)fragments
-    title `Minerva McGonagall (1998 - present)`
-    #resource `[[=headmasters/minerva.xhtml]]`
-}
-
-schools/school-fragments {}
-
-schools/beaubaton {->(extends)school-fragments
-    title `Beauxbaton Academy For Girls (France)`
-    #resource `[[=schools/beaubaton.xhtml]]`
-    #crest `beauxbatons_crest.png`
-}
-
-schools/durmstrang {->(extends)school-fragments
-    title `Durmstrang (Bulgaria)`
-    #resource `[[=schools/durmstrang.xhtml]]`
-    #crest `durmstrang_crest.png`
 }

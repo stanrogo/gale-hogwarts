@@ -26,3 +26,12 @@
 	border-radius: 50px;
 	@include material-shadow();
 }
+
+.floating-figure {
+	float: left;
+
+	@include breakpoint(md){
+		width: 50%;
+		margin: 0 1rem 0 0;
+	}
+}

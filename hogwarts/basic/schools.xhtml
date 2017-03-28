@@ -8,13 +8,11 @@
         </p>
     </gale:text>
 
+
     <gale:for var="concept" expr="${#fragments}">
-        <h2>
-            <gale:variable expr="${%concept?title}"/>
-        </h2>
-        <img class="school--crest">
-            <gale:attr-variable name="src" expr="&quot;./images/&quot; + ${%concept#crest}"/>
-        </img>
-        <gale:object name="%concept" />
+        <gale:object>
+            <gale:attr-variable name="data" expr="&quot;%concept&quot;"/>
+        </gale:object>
+        <br/>
     </gale:for>
 </div>

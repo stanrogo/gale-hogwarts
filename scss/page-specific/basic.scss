@@ -4,6 +4,104 @@
 	@include nav-highlight();
 }
 
-#body{
-	font-size: 5rem;
+.resource--wrapper{
+	.image-wrapper {
+		position: relative;
+		margin: 0 -.9375rem 1rem;
+		max-width: calc(100% + 2 * .9375rem);
+		height: 13rem;
+		overflow: hidden;
+
+		.image {
+			@include position-center();
+			top: 75%;
+			max-width: none;
+			width: 100%;
+		}
+	}
+}
+
+#basic{
+
+	.media-gallery{
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+
+	.hogwarts-figure{
+		display: none;
+		width: 150%;
+		height: 200px;
+		text-align: center;
+
+		@include breakpoint(md){
+			width: 100%;
+			height: 300px;
+		}
+	}
+
+	.hogwarts-image{
+		width: 100%;
+		@include position-center();
+	}
+
+	.hogwarts-image--caption{
+		position: absolute;
+		padding-top: 0.5rem;
+		top: calc(200px - 1.8rem);
+		width: 100%;
+		background: white;
+
+		@include breakpoint(md){
+			top: calc(300px - 1.8rem);
+		}
+	}
+
+	.image-radio{
+		margin: 1rem;
+	}
+
+	.image-container{
+		flex: 0 0 110%;
+		height: 200px;
+
+		@include breakpoint(md){
+			height: 300px;
+		}
+	}
+
+	#image-radio--lake:checked ~ .image-container .hogwarts-figure--lake{
+		display: inline-block;
+	}
+
+	#image-radio--dormitories:checked ~ .image-container .hogwarts-figure--dormitories{
+		display: inline-block;
+	}
+
+	#image-radio--library:checked ~ .image-container .hogwarts-figure--library{
+		display: inline-block;
+	}
+
+	#image-radio--quidditch:checked ~ .image-container .hogwarts-figure--quidditch{
+		display: inline-block;
+	}
+}
+
+#headmasters{
+	.headmasters--figure {
+		float: left;
+
+		@include breakpoint(md){
+			width: 50%;
+			margin: 0 1rem 0 0;
+		}
+	}
+}
+
+#schools{
+	.school--crest{
+		float: right;
+		width: 100px;
+	}
 }

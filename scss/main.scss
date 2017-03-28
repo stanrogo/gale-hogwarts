@@ -7,14 +7,7 @@
  * @version 1.0.0
  */
 
-@import "_general.scss";
-
 @import "reset.scss";
 @import "patterns.scss";
 @import "layout.scss";
-
-// Module specific import follow from this point
-
-@import "basic.scss";
-@import "school.scss";
 

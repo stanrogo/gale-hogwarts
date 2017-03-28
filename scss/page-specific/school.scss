@@ -3,3 +3,53 @@
 #header table tr:nth-of-type(5) td{
 	@include nav-highlight();
 }
+
+#school {
+	.level-container {
+		.course-level-heading {
+			display: inline-block;
+			font-size: 1.6rem;
+		}
+
+		.course-level-toggle {
+			display: none;
+		}
+
+		&:not(:last-of-type) {
+			.course-level-toggle:checked {
+				~ .course-level-heading .toggle-label::before {
+					content: '-';
+				}
+
+				~ .expand {
+					display: block;
+				}
+
+				&:before {
+					content: '-';
+					padding: 2px 9px;
+				}
+			}
+
+			.expand {
+				display: none;
+				overflow: hidden;
+			}
+
+			.course-level-toggle {
+				display: inline-block;
+				margin: 0 0.5rem;
+				vertical-align: text-top;
+
+				&:before {
+					content: '+';
+					padding: 2px 7px;
+					margin-left: -4px;
+					line-height: 16px;
+					background: $primary;
+					border-radius: 50%;
+				}
+			}
+		}
+	}
+}

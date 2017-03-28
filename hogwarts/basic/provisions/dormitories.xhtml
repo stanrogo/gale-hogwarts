@@ -6,6 +6,53 @@
         relax, or do some studying in the company of your fellow students.
     </p>
 
-    <gale:variable expr="${houses?title}"/>
+    <!-- You can only get a detailed explanation about the house dormitories after you have learned about the houses -->
+
+    <gale:text expr="${../../great-hall/houses#knowledge} > 0.8">
+
+        <h2>Slytherin Dormitories</h2>
+
+        <p>
+            The Slytherin dormitories are located down in the atmospheric dungeon inside Hogwarts School.
+            In general, it sports several shades of green and the mantle is adorned with a portrait of a serpent
+            (all associated with the house).
+        </p>
+
+        <figure class="floating-figure">
+            <img src="./images/slytherin_dungeon.jpg"/>
+            <figcaption>The slytherin common room</figcaption>
+        </figure>
+        <p>
+            The password to the common room changes every fortnight, and it is posted on the noticeboard. You will have
+            to remember this and stay up to date if you fancy sleeping in your bed!
+            Slytherin students are warned never to bring students from other houses into the common room,
+            or to reveal the password. At slytherin house we pride ourselves that no outsider has entered the common room
+            for more than seven centuries.
+        </p>
+
+        <h2>Gryffindor Dormitories</h2>
+
+        <p>
+            The Gryffindor Dormitory is located inside the Gryffindor Tower and is where the Gryffindor
+            students go to sleep at night. Every dorm room is equipped with a centrally-located stove and each student
+            gets their own four poster bed, flanked by a set of windows and space for storing personal belongings.
+            On the window sill, a water jug is placed, in case any of the students should
+            feel the need for a drink in the middle of the night.
+        </p>
+
+        <figure class="floating-figure">
+            <img src="./images/gryffindor_dormitory.jpg"/>
+            <figcaption>The gryffindor common room</figcaption>
+        </figure>
+        <p>
+            <strong>Fun fact</strong>: In Albus Dumbledore's fourth year at Hogwarts,
+            he set fire to the curtains in this dormitory: whether this was accidental or intentional is uncertain.
+            He claimed it was accidental, though he also stated that he hated them, so this statement is questionable
+        </p>
+        <p>
+            <strong>Fun fact</strong>: Although boys cannot enter the girls' dormitory,
+            the opposite doesn't hold true: girls have access to the boy's dormitories. WE won't reveal why this is done.
+        </p>
+    </gale:text>
 
 </section>
