@@ -248,4 +248,49 @@
 		}
 	}
 
+
+	#cookie-bar{
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 6rem;
+		display: flex;
+		background: #0c0a0d;
+		color: $white;
+		z-index: $fourth-floor;
+		@include material-shadow();
+
+		.image-wrapper{
+			flex: 0 0 150px;
+		}
+
+		.text-wrapper{
+			flex: 1;
+			position: relative;
+			padding: 1rem;
+		}
+
+		.extra-text{
+			display: none;
+
+			@include breakpoint(md){
+				display: inline;
+			}
+		}
+
+		.cookie-button {
+			position: fixed;
+			bottom: 0.5rem;
+			right: 0.5rem;
+			padding: 0.5rem;
+			margin: 0;
+
+			@include breakpoint(sm){
+				position: absolute;
+				bottom: 1rem;
+				right: 1rem;
+			}
+		}
+	}
 }

@@ -86,6 +86,14 @@
                 </a>
             </footer>
 
+            <!-- Show the cookie bar if the user has not clicked it away yet -->
+
+            <gale:if expr="!${_concept->(personal)#cookies-accepted}">
+                <gale:object>
+                    <gale:attr-variable name="data" expr="${#base-url} + &quot;/hogwarts/cookie-bar.xhtml&quot;"/>
+                </gale:object>
+            </gale:if>
+
         </div>
 
     </body>

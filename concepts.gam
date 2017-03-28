@@ -68,6 +68,7 @@ _personal {
 
     //TODO: set this via a form - see intro.xhtml of the thesis
     #[role]:String `beginner`       // One of: beginner, intermediate or expert (default blank until choice is made)
+    #[cookies-accepted]:Boolean `false` // Changes when the user has accepted cookies
 }
 
 hogwarts {->(extends)_concept

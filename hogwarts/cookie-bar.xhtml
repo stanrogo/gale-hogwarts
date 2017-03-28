@@ -1,0 +1,25 @@
+<section id="cookie-bar" xmlns="http://www.w3.org/1999/xhtml" xmlns:gale="http://gale.tue.nl/adaptation">
+
+    <div class="text-wrapper">
+        Did you know? This site uses cookies
+
+        <span class="extra-text">
+            to enhance your experience leading to an adaptive experience.
+            By being on this site you consent to your browsing habits being stored for this site.
+        </span>
+
+        <form id="accept-cookies" method="post">
+            <gale:attr-variable name="action" expr="gale.req().getRequestURL()+&quot;?plugin=form&quot;" />
+            <a href="#" class="button cookie-button" onclick="document.forms['accept-cookies'].submit(); return false">I understand</a>
+
+            <input name="exec" type="hidden" value="${_concept-&gt;(personal)#cookies-accepted} = true;" />
+            <input name="redirect" type="hidden" value="true">
+                <gale:attr-variable name="value" expr="${.}.getUriString()" />
+            </input>
+        </form>
+    </div>
+
+    <div class="image-wrapper">
+        <img class="dobby-image" src="./images/dobby.jpg"/>
+    </div>
+</section>
