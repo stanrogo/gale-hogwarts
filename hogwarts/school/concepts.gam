@@ -70,37 +70,37 @@ potions/level5 {
     #resource `[[=potions/level5.xhtml]]`
 }
 
-divination {->(extends)_course
+herbology {->(extends)_course
     ->(parent)../school
-    title `Course: Divination`
+    title `Course: herbology`
 
-    #fragment-names =`new String[] {"divination/level1", "divination/level2", "divination/level3", "divination/level4", "divination/level5"}`
+    #fragment-names =`new String[] {"herbology/level1", "herbology/level2", "herbology/level3", "herbology/level4", "herbology/level5"}`
     event +
 }
 
-divination/level1 {
+herbology/level1 {
     title `Level 1`
-    #resource `[[=divination/level1.xhtml]]`
+    #resource `[[=herbology/level1.xhtml]]`
 }
 
-divination/level2 {
+herbology/level2 {
     title `Level 2`
-    #resource `[[=divination/level2.xhtml]]`
+    #resource `[[=herbology/level2.xhtml]]`
 }
 
-divination/level3 {
+herbology/level3 {
     title `Level 3`
-    #resource `[[=divination/level3.xhtml]]`
+    #resource `[[=herbology/level3.xhtml]]`
 }
 
-divination/level4 {
+herbology/level4 {
     title `Level 4`
-    #resource `[[=divination/level4.xhtml]]`
+    #resource `[[=herbology/level4.xhtml]]`
 }
 
-divination/level5 {
+herbology/level5 {
     title `Level 5`
-    #resource `[[=divination/level5.xhtml]]`
+    #resource `[[=herbology/level5.xhtml]]`
 }
 
 transfiguration {->(extends)_course
