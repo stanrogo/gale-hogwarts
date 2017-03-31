@@ -72,7 +72,7 @@ potions/level5 {
 
 herbology {->(extends)_course
     ->(parent)../school
-    title `Course: herbology`
+    title `Course: Herbology`
 
     #fragment-names =`new String[] {"herbology/level1", "herbology/level2", "herbology/level3", "herbology/level4", "herbology/level5"}`
     event +
