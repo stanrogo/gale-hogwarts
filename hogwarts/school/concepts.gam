@@ -135,3 +135,36 @@ transfiguration/level5 {
     title `Level 5`
     #resource `[[=transfiguration/level5.xhtml]]`
 }
+
+dada {->(extends)_course
+    ->(parent)../school
+    title `Course: Defence Against the Dark Arts`
+
+    #fragment-names =`new String[] {"dada/level1", "dada/level2", "dada/level3", "dada/level4", "dada/level5"}`
+    event +
+}
+
+dada/level1 {
+    title `Level 1`
+    #resource `[[=dada/level1.xhtml]]`
+}
+
+dada/level2 {
+    title `Level 2`
+    #resource `[[=dada/level2.xhtml]]`
+}
+
+dada/level3 {
+    title `Level 3`
+    #resource `[[=dada/level3.xhtml]]`
+}
+
+dada/level4 {
+    title `Level 4`
+    #resource `[[=dada/level4.xhtml]]`
+}
+
+dada/level5 {
+    title `Level 5`
+    #resource `[[=dada/level5.xhtml]]`
+}
