@@ -66,6 +66,10 @@ _personal {
     #[last-concept]:String ``       // The last concept that was accessed by the user (especially useful for course learning)
     #[current-concept]:String ``    // The concept that is currently accessed
 
+    //Made by Wesley and Lisette, not yet tested
+    #[user_name]:String ``          // Username of learner
+    #[user_house]:String `none`         // House of the learner
+
     //TODO: set this via a form - see intro.xhtml of the thesis
     #[role]:String `beginner`       // One of: beginner, intermediate or expert (default blank until choice is made)
     #[cookies-accepted]:Boolean `false` // Changes when the user has accepted cookies

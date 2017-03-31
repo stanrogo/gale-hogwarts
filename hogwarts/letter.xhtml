@@ -5,7 +5,7 @@
 		<title>You're a wizard!</title>
 	</head>
 	<body>
-		<p>Dear ...,<br/>
+		<p>Dear <variable name="gale://gale.tue.nl/personal/#user_name"/>,<br/>
 		<br/>
 		We are pleased to inform you that you have been accepted at Hogwarts School of Witchcraft and Wizardry.<br/>
 		<br/>
@@ -14,7 +14,8 @@
 		Terms begin on September 1. We await an owl by no later then July 31. with your choice of level.<br/>
 		Please choose from the following options.
 		<br/>
-		<form>
+		<form action ="/concepts.gam/personal#user_house" method="post">
+
 			<input type="radio" name="InitChoice" value="Never"/>I am a new student and know nothing<br/>
 			<input type="radio" name="InitChoice" value="KnowWhat"/>I am a new student but do not need to visit Diagon Alley anymore<br/>
 			<input type="radio" name="InitChoice" value="Gryffindor"/>I am enrolled already in Gryffindor<br/>
@@ -31,5 +32,5 @@
 		Headmistress
 		</p>
 	</body>
-</html> 
+</html>
 </span>
