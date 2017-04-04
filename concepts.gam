@@ -24,7 +24,7 @@ _concept {
     // If a role has not been determined yet, retrieve the letter screen.
     // Otherwise return the normal layout
 
-    #resource =`"".equals(${_concept->(personal)#role}) ? "[[=letter.xhtml]]" : "[[=layout.xhtml]]"`
+    #resource =`"".equals(${_concept->(personal)#role}) ? "[[=hogwarts/Welcome_screen.xhtml]]" : "[[=layout.xhtml]]"`
 
     // The knowledge value is the average of the parent knowledge and itself
 
@@ -71,7 +71,7 @@ _personal {
     #[user_house]:String `none`         // House of the learner
 
     //TODO: set this via a form - see intro.xhtml of the thesis
-    #[role]:String `beginner`       // One of: beginner, intermediate or expert (default blank until choice is made)
+    #[role]:String ``       // One of: beginner, intermediate or expert (default blank until choice is made)
     #[cookies-accepted]:Boolean `false` // Changes when the user has accepted cookies
 }
 
