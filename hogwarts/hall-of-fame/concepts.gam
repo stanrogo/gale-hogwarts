@@ -1,3 +1,8 @@
+$options {
+default.order "auto"
+}
+
+
 _concept {->(extends)../_concept
     ->(personal)../../_personal
     event +
@@ -5,8 +10,32 @@ _concept {->(extends)../_concept
 }
 
 
+dumbledore {->(extends)_concept
+    ->(parent)../hall-of-fame
+    title `Alumni: Albus Dumbledore`
+    event +
+}
+
+hermione-granger {->(extends)_concept
+    ->(parent)../hall-of-fame
+    title `Alumni: Hermione Granger`
+    event +
+}
+
 harry-potter {->(extends)_concept
     ->(parent)../hall-of-fame
     title `Alumni: Harry Potter`
+    event +
+}
+
+tom-marvalo-riddle {->(extends)_concept
+    ->(parent)../hall-of-fame
+    title `Alumni: Tom Marvalo Riddle`
+    event +
+}
+
+ron-weasley {->(extends)_concept
+    ->(parent)../hall-of-fame
+    title `Alumni: Ron Weasley`
     event +
 }

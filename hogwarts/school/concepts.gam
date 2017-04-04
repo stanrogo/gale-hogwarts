@@ -168,3 +168,10 @@ dada/level5 {
     title `Level 5`
     #resource `[[=dada/level5.xhtml]]`
 }
+
+
+
+OWL {->(extends)_course
+    ->(parent)../school
+    title `Owl Exam`
+}
