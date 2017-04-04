@@ -1,0 +1,32 @@
+body {
+    background-image: url("../images/smoke.jpg");
+	background-repeat: no-repeat;
+	background-size:cover;
+}
+
+#name {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+#letter {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-image: url("../images/parchment.jpg");
+}
+
+#bar{
+	height: 50px;
+	width: 200px;
+}
+
+#submit{
+	background-color: WhiteSmoke;
+	font-size: 30px;
+	padding: 7px 16px;
+	
+}
