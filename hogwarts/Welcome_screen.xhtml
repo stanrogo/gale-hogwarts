@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:gale="http://gale.tue.nl/adaptation">
 	<head>
 		<title>Welcome...</title>
-		<link rel="stylesheet" type="text/css" href="ws.css"></link>
+		<link rel="stylesheet" type="text/css" href="../css/welcome-screen.css"/>
 	</head>
 	<body>
 
@@ -12,9 +12,11 @@
 				<form id="welcome-form" method="post">
 					<gale:attr-variable name="action" expr="gale.req().getRequestURL()+&quot;?plugin=form&quot;" />
 					<input type="text" id="bar" name="username"/>
-					<a href="#" class="button cookie-button" id="submit" onclick="document.forms['welcome-form'].submit(); return false">Submit</a>
+					<a href="#" class="button cookie-button" id="submit"
+					   onclick="document.forms['welcome-form'].submit(); return false">Submit</a>
 
-					<input name="exec" type="hidden" value="${_concept-&gt;(personal)#user_name} = gale.req().getParameter(&quot;username&quot;);"/>
+					<input name="exec" type="hidden"
+						   value="${_concept-&gt;(personal)#user_name} = gale.req().getParameter(&quot;username&quot;);"/>
 					<input name="redirect" type="hidden" value="true">
 						<gale:attr-variable name="value" expr="${.}.getUriString()" />
 					</input>
@@ -23,61 +25,120 @@
 			</gale:then>
 			<gale:else>
                 <div id="letter">
-				<p>
-					Dear <gale:variable expr="${_concept-&gt;(personal)#user_name}"/>,
-				</p>
-				<p>
-					We are pleased to inform you that you have been accepted at Hogwarts School of Witchcraft and Wizardry.
-				</p>
-				<p>
 
-					Please find enclosed a <a href="necc_list.xhtml">list of all necessary books and equipment</a>
-				</p>
-				<p>
-					Terms begin on September 1. We await an owl by no later then July 31. with your choice of level.
-					Please choose from the following options.
-				</p>
+					<p>
+						Dear <gale:variable expr="${_concept-&gt;(personal)#user_name}"/>,
+					</p>
+					<p>
+						We are pleased to inform you that you have been accepted at Hogwarts School of Witchcraft and Wizardry.
+					</p>
+					<p>
 
-				<form id="knowledge-form" method="post">
+						Please find enclosed a <a href="necc_list.xhtml">list of all necessary books and equipment</a>
+					</p>
+					<p>
+						Terms begin on September 1. We await an owl by no later then July 31. with your choice of level.
+						Please choose from the following options.
+					</p>
 
-					<gale:attr-variable name="action" expr="gale.req().getRequestURL()+&quot;?plugin=form&quot;" />
+					<form id="knowledge-form-beginner" method="post">
 
-					<input type="radio" name="init-choice" id="beginner-choice" value="beginner"/>
-					<label for="beginner-choice">I am a new student and know nothing</label>
+						<gale:attr-variable name="action" expr="GaleUtil.getContextURL(gale.req()) + &quot;/concept/&quot; + ${#base-url} + &quot;/hogwarts/basic?plugin=form&quot;"/>
 
-					<input type="radio" name="init-choice" id="intermediate-choice" value="intermediate"/>
-					<label for="intermediate-choice">I am a new student but do not need to visit Diagon Alley anymore</label>
+						<a href="#" class="button cookie-button"
+						   onclick="document.forms['knowledge-form-beginner'].submit(); return false">
+							I am a new student and know nothing
+						</a>
 
-					<input type="radio" name="init-choice" id="gryffindor" value="Gryffindor"/>
-					<label for="gryffindor">I am enrolled already in Gryffindor</label>
+						<input name="exec" type="hidden" value="${_concept-&gt;(personal)#role} = &quot;beginner&quot;;"/>
+						<input name="redirect" type="hidden">
+							<gale:attr-variable name="value" expr="${#base-url} + &quot;/hogwarts/basic&quot;"/>
+						</input>
+					</form>
 
-					<input type="radio" name="init-choice" id="slytherin" value="Slytherin"/>
-					<label for="slytherin">I am enrolled already in Slytherin</label>
+					<form id="knowledge-form-intermediate" method="post">
 
-					<input type="radio" name="init-choice" id="ravenclaw" value="Ravenclaw"/>
-					<label for="ravenclaw">I am enrolled already in Ravenclaw</label>
+						<gale:attr-variable name="action" expr="GaleUtil.getContextURL(gale.req()) + &quot;/concept/&quot; + ${#base-url} + &quot;/hogwarts/great-hall?plugin=form&quot;"/>
 
-					<input type="radio" name="init-choice" id="hufflepuff" value="Hufflepuff"/>
-					<label for="hufflepuff">I am enrolled already in Hufflepuff</label>
+						<a href="#" class="button cookie-button"
+						   onclick="document.forms['knowledge-form-intermediate'].submit(); return false">
+							I am a new student but do not need to visit Diagon Alley anymore
+						</a>
 
-					<a href="#" class="button cookie-button" onclick="document.forms['knowledge-form'].submit(); return false">
-						Submit
-					</a>
+						<input name="exec" type="hidden" value="${_concept-&gt;(personal)#role} = &quot;intermediate&quot;;"/>
+						<input name="redirect" type="hidden">
+							<gale:attr-variable name="value" expr="${#base-url} + &quot;/hogwarts/great-hall&quot;"/>
+						</input>
+					</form>
 
-					<input name="exec" type="hidden" value="${_concept-&gt;(personal)#role} = gale.req().getParameter(&quot;init-choice&quot;);"/>
-					<input name="redirect" type="hidden" value="true">
-						<gale:attr-variable name="value" expr="${.}.getUriString()" />
-					</input>
-				</form>
+					<form id="knowledge-form-gryffindor" method="post">
 
-				<p>
-					Yours sincerely,
-				</p>
-				<img src="../images/signature.png" alt="Signature McGonagall" style="width:304px;height:88px;"></img>
-				<p>
-					Minerva McGonagall,<br/>
-					Headmistress
-				</p>
+						<gale:attr-variable name="action" expr="GaleUtil.getContextURL(gale.req()) + &quot;/concept/&quot; + ${#base-url} + &quot;/hogwarts/school?plugin=form&quot;" />
+
+						<a href="#" class="button cookie-button"
+						   onclick="document.forms['knowledge-form-gryffindor'].submit(); return false">
+							I am enrolled already in Gryffindor
+						</a>
+
+						<input name="exec" type="hidden" value="${_concept-&gt;(personal)#role} = &quot;expert&quot;;${_concept-&gt;(personal)#user_house} = &quot;Gryffindor&quot;;"/>
+						<input name="redirect" type="hidden">
+							<gale:attr-variable name="value" expr="${#base-url} + &quot;/hogwarts/school&quot;"/>
+						</input>
+					</form>
+
+					<form id="knowledge-form-slytherin" method="post">
+
+						<gale:attr-variable name="action" expr="GaleUtil.getContextURL(gale.req()) + &quot;/concept/&quot; + ${#base-url} + &quot;/hogwarts/school?plugin=form&quot;"/>
+
+						<a href="#" class="button cookie-button"
+						   onclick="document.forms['knowledge-form-slytherin'].submit(); return false">
+							I am enrolled already in Slytherin
+						</a>
+
+						<input name="exec" type="hidden" value="${_concept-&gt;(personal)#role} = &quot;expert&quot;;${_concept-&gt;(personal)#user_house} = &quot;Slytherin&quot;;"/>
+						<input name="redirect" type="hidden">
+							<gale:attr-variable name="value" expr="${#base-url} + &quot;/hogwarts/school&quot;"/>
+						</input>
+					</form>
+
+					<form id="knowledge-form-ravenclaw" method="post">
+
+						<gale:attr-variable name="action" expr="GaleUtil.getContextURL(gale.req()) + &quot;/concept/&quot; + ${#base-url} + &quot;/hogwarts/school?plugin=form&quot;"/>
+
+						<a href="#" class="button cookie-button"
+						   onclick="document.forms['knowledge-form-ravenclaw'].submit(); return false">
+							I am enrolled already in Ravenclaw
+						</a>
+
+						<input name="exec" type="hidden" value="${_concept-&gt;(personal)#role} = &quot;expert&quot;;${_concept-&gt;(personal)#user_house} = &quot;Ravenclaw&quot;;"/>
+						<input name="redirect" type="hidden">
+							<gale:attr-variable name="value" expr="${#base-url} + &quot;/hogwarts/school&quot;"/>
+						</input>
+					</form>
+
+					<form id="knowledge-form-hufflepuff" method="post">
+
+						<gale:attr-variable name="action" expr="GaleUtil.getContextURL(gale.req()) + &quot;/concept/&quot; + ${#base-url} + &quot;/hogwarts/school?plugin=form&quot;"/>
+
+						<a href="#" class="button cookie-button"
+						   onclick="document.forms['knowledge-form-hufflepuff'].submit(); return false">
+							I am enrolled already in Hufflepuff
+						</a>
+
+						<input name="exec" type="hidden" value="${_concept-&gt;(personal)#role} = &quot;expert&quot;;${_concept-&gt;(personal)#user_house} = &quot;Hufflepuff&quot;;"/>
+						<input name="redirect" type="hidden">
+							<gale:attr-variable name="value" expr="${#base-url} + &quot;/hogwarts/school&quot;"/>
+						</input>
+					</form>
+
+					<p>
+						Yours sincerely,
+					</p>
+					<img src="../images/signature.png" alt="Signature McGonagall" style="width:304px;height:88px;"/>
+					<p>
+						Minerva McGonagall,<br/>
+						Headmistress
+					</p>
 				</div>
 			</gale:else>
 		</gale:if>

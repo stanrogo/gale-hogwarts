@@ -1,21 +1,20 @@
+@import "../reset.scss";
+@import "../patterns.scss";
+@import "../general.scss";
+
 body {
-    background-image: url("../images/smoke.jpg");
+	position: relative;
+	background-image: url("../images/smoke.jpg");
 	background-repeat: no-repeat;
 	background-size:cover;
 }
 
 #name {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	@include position-center();
 }
 
 #letter {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	@include position-center();
 	background-image: url("../images/parchment.jpg");
 }
 
@@ -28,5 +27,5 @@ body {
 	background-color: WhiteSmoke;
 	font-size: 30px;
 	padding: 7px 16px;
-	
+
 }

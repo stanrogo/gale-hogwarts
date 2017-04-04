@@ -68,10 +68,28 @@ _personal {
 
     //Made by Wesley and Lisette, not yet tested
     #[user_name]:String ``          // Username of learner
-    #[user_house]:String `none`         // House of the learner
+    #[user_house]:String ``         // House of the learner
 
-    //TODO: set this via a form - see intro.xhtml of the thesis
-    #[role]:String ``       // One of: beginner, intermediate or expert (default blank until choice is made)
+    #[next-concept]:String ``
+
+    // One of: beginner, intermediate or expert (default blank until choice is made)
+    #[role]:String ``  {
+        event `
+           if ("beginner".equals(changed.newValue)) {
+
+               // do absolutely nothing
+           }
+           if ("intermediate".equals(changed.newValue)) {
+
+                // TODO: Update the knowledge levels of prerequisite concepts to known
+           }
+           if ("expert".equals(changed.newValue)) {
+
+               // TODO: Update the knowledge levels of prerequisite concepts to known
+           }
+        `
+    }
+
     #[cookies-accepted]:Boolean `false` // Changes when the user has accepted cookies
 }
 
