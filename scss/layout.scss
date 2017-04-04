@@ -254,7 +254,7 @@
 		bottom: 0;
 		left: 0;
 		right: 0;
-		height: 6rem;
+		height: 9rem;
 		display: flex;
 		background: #0c0a0d;
 		color: $white;
@@ -274,7 +274,7 @@
 		.extra-text{
 			display: none;
 
-			@include breakpoint(md){
+			@include breakpoint(sm){
 				display: inline;
 			}
 		}

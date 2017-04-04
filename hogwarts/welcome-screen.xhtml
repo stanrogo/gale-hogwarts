@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:gale="http://gale.tue.nl/adaptation">
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<link rel="stylesheet" href="../vendor/foundation.min.css" />
+		<link rel="stylesheet" href="../css/welcome-screen.css"/>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Calligraffitti|Cormorant+SC|Quicksand" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+	</head>
+	<body>
+
+		<!-- If the user has not filled in their name yet then show the name input screen -->
+
+		<gale:if expr="&quot;&quot;.equals(${_concept-&gt;(personal)#user-name})">
+			<gale:then>
+				<gale:object data="welcome-screen/user-name.xhtml"/>
+			</gale:then>
+			<gale:else>
+
+					<input id="enclosed-toggle" type="checkbox" class="hidden"/>
+					<div class="parchment-flipper--container">
+						<div class="parchment-flipper">
+							<gale:object data="welcome-screen/letter.xhtml"/>
+							<gale:object data="welcome-screen/necc-list.xhtml"/>
+						</div>
+					</div>
+			</gale:else>
+		</gale:if>
+
+	</body>
+</html>

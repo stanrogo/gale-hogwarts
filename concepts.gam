@@ -24,7 +24,7 @@ _concept {
     // If a role has not been determined yet, retrieve the letter screen.
     // Otherwise return the normal layout
 
-    #resource =`"".equals(${_concept->(personal)#role}) ? "[[=hogwarts/Welcome_screen.xhtml]]" : "[[=layout.xhtml]]"`
+    #resource =`"".equals(${_concept->(personal)#role}) ? "[[=hogwarts/welcome-screen.xhtml]]" : "[[=layout.xhtml]]"`
 
     // The knowledge value is the average of the parent knowledge and itself
 
@@ -67,11 +67,11 @@ _personal {
     #[current-concept]:String ``    // The concept that is currently accessed
 
     //Made by Wesley and Lisette, not yet tested
-    #[user_name]:String ``          // Username of learner
-    #[user_house]:String ``         // House of the learner
+    #[user-name]:String ``          // Username of learner
+    #[user-house]:String ``         // House of the learner
 
-    // One of: beginner, intermediate or expert (default beginner)
-    #[role]:String `beginner`
+    // One of: beginner, intermediate or expert (default blank)
+    #[role]:String ``
 
     #[cookies-accepted]:Boolean `false` // Changes when the user has accepted cookies
 }

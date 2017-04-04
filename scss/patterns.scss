@@ -27,6 +27,24 @@
 	@include material-shadow();
 }
 
+.button-ok{
+	background: $suitable;
+
+	&:hover{
+		background: $suitable-dark;
+	}
+}
+
+.text-link{
+	display: inline-block;
+	color: #2ba6cb;
+	cursor: pointer;
+
+	&:hover{
+		color: #258dad;
+	}
+}
+
 .floating-figure {
 	float: left;
 

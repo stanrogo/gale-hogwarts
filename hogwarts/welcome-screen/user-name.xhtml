@@ -1,0 +1,23 @@
+<section xmlns="http://www.w3.org/1999/xhtml" xmlns:gale="http://gale.tue.nl/adaptation" class="flex-container">
+
+    <h1 class="user-name--heading">Welcome To Your Magical Experience</h1>
+
+    <form id="welcome-form" method="post">
+        <gale:attr-variable name="action" expr="gale.req().getRequestURL()+&quot;?plugin=form&quot;"/>
+
+        <input type="text" id="user-name--input" name="user-name" placeholder="Enter your name"/>
+        <label for="user-name--input" class="hidden">Username</label>
+
+        <a href="#" class="button button-ok user-name--button "
+           onclick="document.forms['welcome-form'].submit(); return false">Submit</a>
+
+        <input name="exec" type="hidden"
+               value="${_concept-&gt;(personal)#user-name} = gale.req().getParameter(&quot;user-name&quot;);"/>
+
+        <input name="redirect" type="hidden" value="true">
+            <gale:attr-variable name="value" expr="${.}.getUriString()" />
+        </input>
+
+    </form>
+
+</section>

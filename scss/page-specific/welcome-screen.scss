@@ -7,25 +7,98 @@ body {
 	background-image: url("../images/smoke.jpg");
 	background-repeat: no-repeat;
 	background-size:cover;
-}
 
-#name {
-	@include position-center();
-}
+	.flex-container{
+		min-height: 100%;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	}
 
-#letter {
-	@include position-center();
-	background-image: url("../images/parchment.jpg");
-}
+	.user-name--button{
+		display: block;
+	}
 
-#bar{
-	height: 50px;
-	width: 200px;
-}
+	.user-name--heading{
+		padding: 1rem;
+		color: $white;
+		text-align: center;
+	}
 
-#submit{
-	background-color: WhiteSmoke;
-	font-size: 30px;
-	padding: 7px 16px;
+	#welcome-form{
+		width: 25rem;
+		max-width: 90%;
+	}
 
+	.letter--container{
+		padding: 1rem;
+		background-image: url("../images/parchment.jpg");
+	}
+
+	.letter--signature{
+		width:304px;
+		height:88px;
+	}
+
+	#enclosed-toggle{
+		&:checked ~ .parchment-flipper--container .parchment-flipper{
+			transform: rotateY(180deg);
+		}
+	}
+
+	/* entire container, keeps perspective */
+	.parchment-flipper--container {
+		perspective: 1000px;
+		height: 100%;
+	}
+
+	.parchment-flipper {
+		transition: 0.6s;
+		transform-style: preserve-3d;
+		position: relative;
+		height: 100%;
+	}
+
+	/* hide back of pane during swap */
+	.necc--container, .letter--wrapper {
+		backface-visibility: hidden;
+		@include position-center();
+		transform: translateX(-50%);
+		top: 0;
+		width: 100%;
+
+		@include breakpoint(md){
+			width: auto;
+		}
+	}
+
+	/* front pane, placed above back */
+	.letter--wrapper {
+		z-index: 2;
+		transform: rotateY(0deg) translateX(-50%);
+	}
+
+	/* back, initially hidden pane */
+	.necc--container {
+		transform: rotateY(180deg) translateX(50%);
+	}
+
+	@media screen and ( min-height: 752px ) {
+
+		/* hide back of pane during swap */
+		.necc--container, .letter--wrapper {
+			transform: translate(-50%, -50%);
+			top: 50%;
+		}
+
+		/* front pane, placed above back */
+		.letter--wrapper {
+			transform: rotateY(0deg) translate(-50%, -50%);
+		}
+
+		/* back, initially hidden pane */
+		.necc--container {
+			transform: rotateY(180deg) translate(50%, -50%);
+		}
+	}
 }
