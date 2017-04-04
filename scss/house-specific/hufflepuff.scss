@@ -1,0 +1,14 @@
+@import "../_general.scss";
+
+#wrapper #header{
+	background-image: url("../images/hufflepuff-wallpaper.png");
+	background-size: cover;
+}
+
+#wrapper #header table a{
+	color: $white;
+}
+
+#wrapper #header .hero--wrapper .hero--headline{
+	color: $white;
+}

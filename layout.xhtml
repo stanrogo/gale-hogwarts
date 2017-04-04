@@ -7,6 +7,19 @@
         <link rel="stylesheet" href="css/main.css" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Calligraffitti|Cormorant+SC|Quicksand" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+
+        <gale:if expr="&quot;Slytherin&quot;.equals(${_concept->(personal)#user-house})">
+            <link rel="stylesheet" href="css/slytherin.css"/>
+        </gale:if>
+        <gale:if expr="&quot;Gryffindor&quot;.equals(${_concept->(personal)#user-house})">
+            <link rel="stylesheet" href="css/gryffindor.css"/>
+        </gale:if>
+        <gale:if expr="&quot;Hufflepuff&quot;.equals(${_concept->(personal)#user-house})">
+            <link rel="stylesheet" href="css/hufflepuff.css"/>
+        </gale:if>
+        <gale:if expr="&quot;Ravenclaw&quot;.equals(${_concept->(personal)#user-house})">
+            <link rel="stylesheet" href="css/ravenclaw.css"/>
+        </gale:if>
     </head>
 
     <body>

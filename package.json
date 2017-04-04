@@ -14,8 +14,9 @@
   "scripts": {
     "scss:main": "node-sass --output-style compressed scss/main.scss css/main.css",
     "scss:pages": "node-sass --output-style compressed -o css scss/page-specific",
+    "scss:houses": "node-sass --output-style compressed -o css scss/house-specific",
     "autoprefixer": "postcss -u autoprefixer -r css/*",
-    "build:css": "npm run scss:main && npm run scss:pages && npm run autoprefixer",
+    "build:css": "npm run scss:main && npm run scss:pages && npm run scss:houses && npm run autoprefixer",
     "watch:css": "onchange \"scss/**/*.scss\" -- npm run build:css",
     "serve": "http-server -p 8000",
     "start": "npm run build:css && parallelshell \"npm run serve\" \"npm run watch:css\"",
