@@ -1,0 +1,45 @@
+<section id="unsuitable" xmlns="http://www.w3.org/1999/xhtml" xmlns:gale="http://gale.tue.nl/adaptation">
+
+    <div class="overlay"></div>
+    <div class="unsuitable-info--wrapper">
+        <div class="unsuitable-info">
+            <div class="overlay--aragog"></div>
+            <div class="unsuitable--text">
+                <p>
+                    Woops. Who goes there? Aragog is going to feast tonight. You have come to a place with which you are
+                    unfamiliar. Only the confident may pass through the forest without the feast that Aragog's children
+                    are about to have.
+                </p>
+
+                <p>
+                    You haven't passed through all the content needed on your journey in order to read this page!
+                    If you would like to proceed regardless then do so now. The journey ahead is not
+                    for the light hearted. You have been warned.
+                </p>
+
+                <p>
+                    Alternatively, click go back to go back to the safety of the place you just came from.
+                </p>
+
+                <a class="button button-ok">
+                    <gale:attr-variable name="href" expr="
+                        GaleUtil.getContextURL(gale.req()) + &quot;/concept/&quot;
+                        + ${_concept->(personal)#last-unique-concept}
+                    "/>
+                    Go back
+                </a>
+
+                <form id="continue-unsuitable" method="post">
+                    <gale:attr-variable name="action" expr="gale.req().getRequestURL()+&quot;?plugin=form&quot;" />
+                    <a href="#" class="button button-unsuitable"
+                       onclick="document.forms['continue-unsuitable'].submit(); return false">Continue Regardless</a>
+
+                    <input name="exec" type="hidden" value="${#user-available} = true;" />
+                    <input name="redirect" type="hidden" value="true">
+                        <gale:attr-variable name="value" expr="${.}.getUriString()" />
+                    </input>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

@@ -16,6 +16,52 @@
 	flex-flow: column;
 	min-height: 100%;
 
+	a.knowledge--unsuitable{
+		color: rgba($primary-dark, 0.2);
+		cursor: auto;
+	}
+
+	#unsuitable{
+
+		.overlay{
+			@include stretch-absolute();
+			position: fixed;
+			background-color: rgba($black, 0.6);
+			z-index: $fourth-floor;
+		}
+
+		.unsuitable-info--wrapper{
+			@include stretch-absolute();
+			position: fixed;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: $pent-house;
+		}
+
+		.unsuitable-info{
+			position: relative;
+			width: 40rem;
+			max-width: 90%;
+			padding: 1rem;
+			background: url("../images/aragog.jpg");
+			background-size: cover;
+			color: $white;
+			@include material-shadow();
+
+			.overlay--aragog{
+				@include stretch-absolute();
+				background: rgba($primary-dark, 0.7);
+				z-index: $ground-floor;
+			}
+
+			.unsuitable--text{
+				position: relative;
+				z-index: $first-floor;
+			}
+		}
+	}
+
 	// Tree view table default styling
 
 	table{

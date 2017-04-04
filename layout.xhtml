@@ -26,6 +26,10 @@
 
         <div id="wrapper">
 
+            <gale:if expr="!${#suitability}">
+                <gale:object data="hogwarts/unsuitable.xhtml"/>
+            </gale:if>
+
             <!-- This is the toggle button used to show/hide the mobile tree view -->
 
             <input id="nav-toggle" class="is-hidden" type="checkbox"/>

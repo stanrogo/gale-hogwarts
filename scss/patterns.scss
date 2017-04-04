@@ -35,6 +35,14 @@
 	}
 }
 
+.button-unsuitable{
+	background: $unsuitable;
+
+	&:hover{
+		background: $unsuitable-dark;
+	}
+}
+
 .text-link{
 	display: inline-block;
 	color: #2ba6cb;

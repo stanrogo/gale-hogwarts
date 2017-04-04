@@ -157,6 +157,7 @@ school {->(extends)_concept
 
 hall-of-fame {->(extends)_concept
     ->(parent)../hogwarts
+    ->(prereq)school
 
     title `Hall of Fame`
     event +
