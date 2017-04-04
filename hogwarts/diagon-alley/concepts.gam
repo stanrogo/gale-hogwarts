@@ -1,26 +1,58 @@
+$options {
+default.order "auto"
+}
 _concept {->(extends)../_concept
-    ->(personal)../../_personal
-    event +
-    #layout.css =`${#base-url} + "/css/diagon-alley.css;" + ${#base-url} + "/css/root-concept.css;"`
+->(personal)../../_personal
+event +
+#layout.css =`${#base-url} + "/css/diagon-alley.css;" + ${#base-url} + "/css/root-concept.css;"`
+}
+
+
+broomstix {->(extends)_concept
+->(parent)../diagon-alley
+
+title `Broomstix`
+event +
+}
+
+daily_prophet {->(extends)_concept
+->(parent)../diagon-alley
+
+title `The Daily Prophet`
+event +
+}
+
+gringotts {->(extends)_concept
+->(parent)../diagon-alley
+
+title `Gringotts`
+event +
+}
+
+leaky_cauldron {->(extends)_concept
+->(parent)../diagon-alley
+
+title `Leaky Cauldron`
+event +
 }
 
 olivanders {->(extends)_concept
-    ->(parent)../diagon-alley
+->(parent)../diagon-alley
 
-    title `Olivanders Wands`
-    event +
+title `Olivanders Wands`
+event +
 }
 
-broomstix {->(extends)_concept
-    ->(parent)../diagon-alley
+scribbulus {->(extends)_concept
+->(parent)../diagon-alley
 
-    title `Broomstix`
-    event +
+title `Scribbulus Writing Implements`
+event +
 }
 
-flourish-and-blotts {->(extends)_concept
-    ->(parent)../diagon-alley
+weasleys {->(extends)_concept
+->(parent)../diagon-alley
 
-    title `Flourish and Blotts`
-    event +
+title `Weasleys' Wizard Wheezes`
+event +
 }

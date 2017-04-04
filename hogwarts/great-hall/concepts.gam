@@ -10,3 +10,10 @@ houses {->(extends)_concept
     title `The houses of hogwarts`
     event +
 }
+
+ghosts {->(extends)_concept
+    ->(parent)../great-hall
+
+    title `The ghosts of hogwarts`
+    event +
+}
