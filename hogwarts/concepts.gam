@@ -1,6 +1,8 @@
 $options {
+
     // By including this, the concepts will be displayed in the tree-view in
     // the order that is listed in this file.
+
     default.order "auto"
     module "basic"
     module "diagon-alley"
@@ -14,38 +16,144 @@ _concept {->(extends)../_concept
     event +
 }
 
+// You are always ready to start learning about hogwarts and so this concept has no prerequisites
+
 basic {->(extends)_concept
     ->(parent)../hogwarts
 
+     // Mark all child concepts (and child of child concepts) as known if user has expert or intermediate knowledge
+
+    event +`
+
+        String role = ${_concept->(personal)#role};
+
+        if("intermediate".equals(role) || "expert".equals(role)){
+
+            Concept[] list = ${<-(parent)};
+            for (int i = 0; i < list.length; i++) {
+                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
+                session.put(uri, new EntityValue(uri, 1d));
+            }
+
+            list = ${<-(parent)<-(parent)};
+            for (int i = 0; i < list.length; i++) {
+                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
+                session.put(uri, new EntityValue(uri, 1d));
+            }
+        }
+    `
+
     title `Hogwarts Information`
-    event +
     #layout.css =`${#base-url} + "/css/basic.css;" + ${#base-url} + "/css/root-concept.css;"`
 }
 
+// Diagon Alley should only be accessed after learning about hogwarts
+
 diagon-alley {->(extends)_concept
     ->(parent)../hogwarts
+    ->(prereq)basic
+
+    // Mark all child concepts as known if user has expert or intermediate knowledge
+
+    event +`
+
+        String role = ${_concept->(personal)#role};
+
+        if("intermediate".equals(role) || "expert".equals(role)){
+
+            Concept[] list = ${<-(parent)};
+            for (int i = 0; i < list.length; i++) {
+                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
+                session.put(uri, new EntityValue(uri, 1d));
+            }
+        }
+    `
 
     title `Diagon Alley`
-    event +
-   #layout.css =`${#base-url} + "/css/diagon-alley.css;" + ${#base-url} + "/css/root-concept.css;"`
+    #layout.css =`${#base-url} + "/css/diagon-alley.css;" + ${#base-url} + "/css/root-concept.css;"`
 }
+
+// The great hall should only be accessed after visiting the shops at diagon alley
 
 great-hall {->(extends)_concept
     ->(parent)../hogwarts
-    <-(parent)great-hall/houses {}
+    ->(prereq)diagon-alley
+
+    // Mark all hardcoded prerequisite knowledge as known if user has the intermediate knowledge level
+    // for basic and diagon alley. Further, mark the children of this concept as known
+    // if the user is intermediate or expert
+
+    event +`
+
+        String role = ${_concept->(personal)#role};
+
+        if("intermediate".equals(role)){
+
+            Concept[] list = ${->(prereq)};
+            for (int i = 0; i < list.length; i++) {
+                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
+                session.put(uri, new EntityValue(uri, 1d));
+            }
+
+            list = ${diagon-alley->(prereq)};
+            for (int i = 0; i < list.length; i++) {
+                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
+                session.put(uri, new EntityValue(uri, 1d));
+            }
+        }
+
+        if("intermediate".equals(role) || "expert".equals(role)){
+
+            Concept[] list = ${<-(parent)};
+            for (int i = 0; i < list.length; i++) {
+                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
+                session.put(uri, new EntityValue(uri, 1d));
+            }
+        }
+    `
 
     title `The Great Hall`
-    event +
     #layout.css =`${#base-url} + "/css/great-hall.css;" + ${#base-url} + "/css/root-concept.css;"`
 }
 
+// School should only be accessed once you have been in the great hall and passed the sorting ceremony
+
 school {->(extends)_concept
     ->(parent)../hogwarts
+    ->(prereq)great-hall
+
+    // Mark all prerequisite knowledge as known if user has the expert knowledge level
+    // for basic, diagon alley and great hall concepts
+
+    event +`
+
+        if("expert".equals(${_concept->(personal)#role})){
+
+            Concept[] list = ${->(prereq)};
+            for (int i = 0; i < list.length; i++) {
+                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
+                session.put(uri, new EntityValue(uri, 1d));
+            }
+
+            list = ${great-hall->(prereq)};
+            for (int i = 0; i < list.length; i++) {
+                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
+                session.put(uri, new EntityValue(uri, 1d));
+            }
+
+            list = ${diagon-alley->(prereq)};
+            for (int i = 0; i < list.length; i++) {
+                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
+                session.put(uri, new EntityValue(uri, 1d));
+            }
+        }
+    `
 
     title `Hogwarts School`
-    event +
     #layout.css =`${#base-url} + "/css/school.css;" + ${#base-url} + "/css/root-concept.css;"`
 }
+
+// The hall of fame only unlocks once the prerequisite knowledge at school has been met
 
 hall-of-fame {->(extends)_concept
     ->(parent)../hogwarts

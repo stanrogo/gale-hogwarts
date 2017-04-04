@@ -70,25 +70,8 @@ _personal {
     #[user_name]:String ``          // Username of learner
     #[user_house]:String ``         // House of the learner
 
-    #[next-concept]:String ``
-
-    // One of: beginner, intermediate or expert (default blank until choice is made)
-    #[role]:String ``  {
-        event `
-           if ("beginner".equals(changed.newValue)) {
-
-               // do absolutely nothing
-           }
-           if ("intermediate".equals(changed.newValue)) {
-
-                // TODO: Update the knowledge levels of prerequisite concepts to known
-           }
-           if ("expert".equals(changed.newValue)) {
-
-               // TODO: Update the knowledge levels of prerequisite concepts to known
-           }
-        `
-    }
+    // One of: beginner, intermediate or expert (default beginner)
+    #[role]:String `beginner`
 
     #[cookies-accepted]:Boolean `false` // Changes when the user has accepted cookies
 }
