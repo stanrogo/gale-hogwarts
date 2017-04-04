@@ -29,6 +29,9 @@ basic {->(extends)_concept
 
         if("intermediate".equals(role) || "expert".equals(role)){
 
+            ${#user-available} = true;
+            ${#own-knowledge} = 1.0;
+
             Concept[] list = ${<-(parent)};
             for (int i = 0; i < list.length; i++) {
                 URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
@@ -61,6 +64,9 @@ diagon-alley {->(extends)_concept
 
         if("intermediate".equals(role) || "expert".equals(role)){
 
+             ${#user-available} = true;
+             ${#own-knowledge} = 1.0;
+
             Concept[] list = ${<-(parent)};
             for (int i = 0; i < list.length; i++) {
                 URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
@@ -89,6 +95,9 @@ great-hall {->(extends)_concept
 
         if("intermediate".equals(role)){
 
+             ${#user-available} = true;
+             ${#own-knowledge} = 1.0;
+
             Concept[] list = ${->(prereq)};
             for (int i = 0; i < list.length; i++) {
                 URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
@@ -103,6 +112,9 @@ great-hall {->(extends)_concept
         }
 
         if("intermediate".equals(role) || "expert".equals(role)){
+
+             ${#user-available} = true;
+             ${#own-knowledge} = 1.0;
 
             Concept[] list = ${<-(parent)};
             for (int i = 0; i < list.length; i++) {
@@ -128,6 +140,9 @@ school {->(extends)_concept
     event +`
 
         if("expert".equals(${_concept->(personal)#role})){
+
+            ${#user-available} = true;
+            ${#own-knowledge} = 1.0;
 
             Concept[] list = ${->(prereq)};
             for (int i = 0; i < list.length; i++) {
