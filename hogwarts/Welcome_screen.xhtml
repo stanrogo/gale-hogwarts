@@ -5,7 +5,7 @@
 		<link rel="stylesheet" type="text/css" href="ws.css"></link>
 	</head>
 	<body>
-		
+
 		<gale:if expr="&quot;&quot;.equals(${_concept-&gt;(personal)#user_name})">
 			<gale:then>
 				<div id="name">
@@ -22,26 +22,55 @@
 				</div>
 			</gale:then>
 			<gale:else>
-				<div id="letter">
-				<p>Dear <gale:variable expr="${_concept-&gt;(personal)#user_name}"/>,
-					<br/>
-					We are pleased to inform you that you have been accepted at Hogwarts School of Witchcraft and Wizardry.<br/>
-					<br/>
-					Please find enclosed a <a href="necc_list.xhtml">list of all necessary books and equipment</a><br/>
-					<br/>
-					Terms begin on September 1. We await an owl by no later then July 31. with your choice of level.<br/>
-					Please choose from the following options.
-					<br/>
-					<form action ="/concepts.gam/personal#user_house" method="post">
+                <div id="letter">
+				<p>
+					Dear <gale:variable expr="${_concept-&gt;(personal)#user_name}"/>,
+				</p>
+				<p>
+					We are pleased to inform you that you have been accepted at Hogwarts School of Witchcraft and Wizardry.
+				</p>
+				<p>
 
-						<input type="radio" name="InitChoice" value="Never"/>I am a new student and know nothing<br/>
-						<input type="radio" name="InitChoice" value="KnowWhat"/>I am a new student but do not need to visit Diagon Alley anymore<br/>
-						<input type="radio" name="InitChoice" value="Gryffindor"/>I am enrolled already in Gryffindor<br/>
-						<input type="radio" name="InitChoice" value="Slytherin"/> I am enrolled already in Slytherin<br/>
-						<input type="radio" name="InitChoice" value="Ravenclaw"/> I am enrolled already in Ravenclaw<br/>
-						<input type="radio" name="InitChoice" value="Hufflepuff"/> I am enrolled already in Hufflepuff
-					</form>
-					<br/>
+					Please find enclosed a <a href="necc_list.xhtml">list of all necessary books and equipment</a>
+				</p>
+				<p>
+					Terms begin on September 1. We await an owl by no later then July 31. with your choice of level.
+					Please choose from the following options.
+				</p>
+
+				<form id="knowledge-form" method="post">
+
+					<gale:attr-variable name="action" expr="gale.req().getRequestURL()+&quot;?plugin=form&quot;" />
+
+					<input type="radio" name="init-choice" id="beginner-choice" value="beginner"/>
+					<label for="beginner-choice">I am a new student and know nothing</label>
+
+					<input type="radio" name="init-choice" id="intermediate-choice" value="intermediate"/>
+					<label for="intermediate-choice">I am a new student but do not need to visit Diagon Alley anymore</label>
+
+					<input type="radio" name="init-choice" id="gryffindor" value="Gryffindor"/>
+					<label for="gryffindor">I am enrolled already in Gryffindor</label>
+
+					<input type="radio" name="init-choice" id="slytherin" value="Slytherin"/>
+					<label for="slytherin">I am enrolled already in Slytherin</label>
+
+					<input type="radio" name="init-choice" id="ravenclaw" value="Ravenclaw"/>
+					<label for="ravenclaw">I am enrolled already in Ravenclaw</label>
+
+					<input type="radio" name="init-choice" id="hufflepuff" value="Hufflepuff"/>
+					<label for="hufflepuff">I am enrolled already in Hufflepuff</label>
+
+					<a href="#" class="button cookie-button" onclick="document.forms['knowledge-form'].submit(); return false">
+						Submit
+					</a>
+
+					<input name="exec" type="hidden" value="${_concept-&gt;(personal)#role} = gale.req().getParameter(&quot;init-choice&quot;);"/>
+					<input name="redirect" type="hidden" value="true">
+						<gale:attr-variable name="value" expr="${.}.getUriString()" />
+					</input>
+				</form>
+
+				<p>
 					Yours sincerely,
 				</p>
 				<img src="../images/signature.png" alt="Signature McGonagall" style="width:304px;height:88px;"></img>
