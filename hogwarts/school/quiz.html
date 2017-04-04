@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>O.W.L. Exam</title>
+</head>
+
+<body>
+  <div id="main"><!-- open main div -->
+    <div id="header"><!-- open header div -->
+      <h1>O.W.L. Exam</h1>
+    </div><!-- close header div -->
+
+    <form  id="form1" action=" ">
+      <p>Which subject was tought by Albus Dumbledoor?</p>
+      <input type="radio" name="tran1" value="0" />Herbology <br/>
+      <input type="radio" name="tran1" value="0" />Defence Against the Dark Arts <br/>
+      <input type="radio" name="tran1" value="0" />Potions <br/>
+      <input type="radio" name="tran1" value="50" />Transfiguration <br/>
+
+      <p>Which (part of a) plant can be used to breathe underwater?</p>
+      <input type="radio" name="herb1" value="0" />Snorkelroot<br/>
+      <input type="radio" name="herb1" value="0" />Mandrake <br/>
+      <input type="radio" name="herb1" value="50" />Gillyweed <br/>
+      <input type="radio" name="herb1" value="0" />Breathleaves<br/>
+
+      <p>What is the correct order for ingredients for Wideye Potion?</p>
+      <input type="radio" name="poti1" value="0" />Snake fangs - Billywig stings - Standard ingredient - Wolfsbane <br/>
+      <input type="radio" name="poti1" value="0" />Standard ingredient - Snake fangs - Billywig stings - Wolfsbane <br/>
+      <input type="radio" name="poti1" value="0" />Billywig stings - Snake fangs - Standard ingredient - Wolfsbane <br/>
+      <input type="radio" name="poti1" value="50" />Snake fangs - Standard ingredient - Billywig stings - Wolfsbane<br/>
+
+      <p>Which incantation <b>cannot</b> be used to make another person laugh?</p>
+      <input type="radio" name="dada1" value="0" />Riddikulus<br/>
+      <input type="radio" name="dada1" value="50"/>Revomai <br/>
+      <input type="radio" name="dada1" value="0" />Rictusempra<br/>
+
+      <p>What does not influence an intended transformation?</p>
+      <input type="radio" name="tran2" value="0" />Bodyweight <br/>
+      <input type="radio" name="tran2" value="50"/>Age <br/>
+      <input type="radio" name="tran2" value="0" />Wand Power  <br/>
+      <input type="radio" name="tran2" value="0" />Concentration <br/>
+
+      <p>For which potion can a mandragora be used as ingredient?</p>
+      <input type="radio" name="herb2" value="50" />Restorative Draught<br/>
+      <input type="radio" name="herb2" value="0" />Amortentia <br/>
+      <input type="radio" name="herb2" value="0" />Felix Fortunatis <br/>
+      <input type="radio" name="herb2" value="0" />Erumpent Potion<br/>
+
+      <p>Which book did students not need to buy when Gildery Lockhart was teacher for Defence Against the Dark Arts?</p>
+      <input type="radio" name="dada2" value="50" />Away with Animagi<br/>
+      <input type="radio" name="dada2" value="0" />Travels with Trolls.<br/>
+      <input type="radio" name="dada2" value="0" />Year with a Yeti <br/>
+      <input type="radio" name="dada2" value="0" />Gadding with Ghouls.<br/>
+
+      <p>To transform into a specific person, what is typically used as ingredient for Polyjuice Potion?</p>
+      <input type="radio" name="poti2" value="0" />Toenail<br/>
+      <input type="radio" name="poti2" value="0" />Sweat <br/>
+      <input type="radio" name="poti2" value="50" />Hair <br/>
+      <input type="radio" name="poti2" value="0" />Earwax<br/>
+
+      <input type="submit" value="Submit">
+    </form>
+
+    <p>Your grade for herbology is a <span id="grade">__</span><br/>
+      Your grade for potions is a <span id="grade2">__</span><br/>
+      Your grade for transfiguration is a <span id="grade3">__</span><br/>
+      Your grade for defence against the dark arts is a <span id="grade4">__</span></p>
+
+
+      <!--<p id="grade2"></p> -->
+    </div><!-- close main div -->
+  </body>
+  </html>
+
+  <script>
+  document.getElementById("form1").onsubmit=function() {
+
+    herb1 = parseInt(document.querySelector('input[name = "herb1"]:checked').value);
+    herb2 = parseInt(document.querySelector('input[name = "herb2"]:checked').value);
+
+    poti1 = parseInt(document.querySelector('input[name = "poti1"]:checked').value);
+    poti2 = parseInt(document.querySelector('input[name = "poti2"]:checked').value);
+
+    tran1 = parseInt(document.querySelector('input[name = "tran1"]:checked').value);
+    tran2 = parseInt(document.querySelector('input[name = "tran2"]:checked').value);
+
+    dada1 = parseInt(document.querySelector('input[name = "dada1"]:checked').value);
+    dada2 = parseInt(document.querySelector('input[name = "dada2"]:checked').value);
+
+    document.getElementById("grade").innerHTML = (herb1 + herb2);
+    document.getElementById("grade2").innerHTML = (poti1 + poti2);
+    document.getElementById("grade3").innerHTML = (tran1 + tran2);
+    document.getElementById("grade4").innerHTML = (dada1 + dada2);
+
+    return false; // required to not refresh the page; just leave this here
+
+    if(grade==!100) {
+      set #knowledge#herbology to 0
+    }
+    if(grade2==!100) {
+      set #knowledge#potion to 0
+    }
+    if(grade3==!100) {
+          set #knowledge#transfiguration to 0
+        }
+    if(grade4==!100) {
+              set #knowledge#dada to 0
+            }
+  } //this ends the submit function
+
+  </script>
