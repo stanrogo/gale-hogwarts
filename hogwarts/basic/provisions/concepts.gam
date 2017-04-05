@@ -1,7 +1,7 @@
 _concept {->(extends)../_concept
     ->(personal)../../../_personal
     event +
-    #layout.css =`${#base-url} + "/css/basic.css;" + ${#base-url} + "/css/child-concept.css;"`
+    #layout-resources =`new String[]{"css/basic.css", "css/child-concept.css"}`
 }
 
 dormitories {->(extends)_concept

@@ -50,6 +50,44 @@ _concept {
 
     #layout.title `"Hogwarts - "+${.}.getTitle()`
 
+    #layout-resources:String[] =`new String[0]`
+
+    // Include all the needed css files in the head
+    // The files that should be included last should go first here.
+
+    #layout.css =`~
+        StringBuilder sb = new StringBuilder("");
+
+        sb.append(";https://fonts.googleapis.com/css?family=Calligraffitti|Cormorant+SC|Quicksand");
+        sb.append(";https://fonts.googleapis.com/icon?family=Material+Icons");
+
+        if("Slytherin".equals(${_concept->(personal)#user-house})){
+
+            sb.append("css/slytherin.css");
+        } else if("Gryffindor".equals(${_concept->(personal)#user-house})){
+
+            sb.append("css/gryffindor.css");
+        } else if("Hufflepuff".equals(${_concept->(personal)#user-house})){
+
+            sb.append("css/hufflepuff.css");
+        } else if("Ravenclaw".equals(${_concept->(personal)#user-house})){
+
+            sb.append("css/ravenclaw.css");
+        } else{
+            // Do nothing
+        }
+
+        for (int i = 0; i < ${#layout-resources}.length; i++) {
+
+             sb.append(";" + ${#layout-resources}[i]);
+        }
+
+        sb.append(";css/main.css");
+        sb.append(";vendor/foundation.min.css");
+
+        return sb.toString();
+    `
+
     // Classes to use when displaying adaptive links
 
     #link.classexpr `~

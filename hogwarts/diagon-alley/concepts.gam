@@ -1,58 +1,59 @@
 $options {
-default.order "auto"
+    default.order "auto"
 }
+
 _concept {->(extends)../_concept
-->(personal)../../_personal
-event +
-#layout.css =`${#base-url} + "/css/diagon-alley.css;" + ${#base-url} + "/css/root-concept.css;"`
+    ->(personal)../../_personal
+    event +
+    #layout-resources =`new String[]{"css/diagon-alley.css", "css/root-concept.css"}`
 }
 
 
 broomstix {->(extends)_concept
-->(parent)../diagon-alley
+    ->(parent)../diagon-alley
 
-title `Broomstix`
-event +
+    title `Broomstix`
+    event +
 }
 
 daily_prophet {->(extends)_concept
-->(parent)../diagon-alley
+    ->(parent)../diagon-alley
 
-title `The Daily Prophet`
-event +
+    title `The Daily Prophet`
+    event +
 }
 
 gringotts {->(extends)_concept
-->(parent)../diagon-alley
+    ->(parent)../diagon-alley
 
-title `Gringotts`
-event +
+    title `Gringotts`
+    event +
 }
 
 leaky_cauldron {->(extends)_concept
-->(parent)../diagon-alley
+    ->(parent)../diagon-alley
 
-title `Leaky Cauldron`
-event +
+    title `Leaky Cauldron`
+    event +
 }
 
 olivanders {->(extends)_concept
-->(parent)../diagon-alley
+    ->(parent)../diagon-alley
 
-title `Olivanders Wands`
-event +
+    title `Olivanders Wands`
+    event +
 }
 
 scribbulus {->(extends)_concept
-->(parent)../diagon-alley
+    ->(parent)../diagon-alley
 
-title `Scribbulus Writing Implements`
-event +
+    title `Scribbulus Writing Implements`
+    event +
 }
 
 weasleys {->(extends)_concept
-->(parent)../diagon-alley
+    ->(parent)../diagon-alley
 
-title `Weasleys' Wizard Wheezes`
-event +
+    title `Weasleys' Wizard Wheezes`
+    event +
 }

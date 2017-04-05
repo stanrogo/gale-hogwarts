@@ -47,7 +47,7 @@ basic {->(extends)_concept
     `
 
     title `Hogwarts Information`
-    #layout.css =`${#base-url} + "/css/basic.css;" + ${#base-url} + "/css/root-concept.css;"`
+    #layout-resources =`new String[]{"css/basic.css", "css/root-concept.css"}`
 }
 
 // Diagon Alley should only be accessed after learning about hogwarts
@@ -76,7 +76,7 @@ diagon-alley {->(extends)_concept
     `
 
     title `Diagon Alley`
-    #layout.css =`${#base-url} + "/css/diagon-alley.css;" + ${#base-url} + "/css/root-concept.css;"`
+    #layout-resources =`new String[]{"css/diagon-alley.css", "css/root-concept.css"}`
 }
 
 // The great hall should only be accessed after visiting the shops at diagon alley
@@ -125,7 +125,8 @@ great-hall {->(extends)_concept
     `
 
     title `The Great Hall`
-    #layout.css =`${#base-url} + "/css/great-hall.css;" + ${#base-url} + "/css/root-concept.css;"`
+    #is-root-concept =`true`;
+    #layout-resources =`new String[]{"css/great-hall.css", "css/root-concept.css"}`
 }
 
 // School should only be accessed once you have been in the great hall and passed the sorting ceremony
@@ -165,7 +166,7 @@ school {->(extends)_concept
     `
 
     title `Hogwarts School`
-    #layout.css =`${#base-url} + "/css/school.css;" + ${#base-url} + "/css/root-concept.css;"`
+    #layout-resources =`new String[]{"css/school.css", "css/root-concept.css"}`
 }
 
 // The hall of fame only unlocks once the prerequisite knowledge at school has been met
@@ -176,5 +177,5 @@ hall-of-fame {->(extends)_concept
 
     title `Hall of Fame`
     event +
-    #layout.css =`${#base-url} + "/css/hall-of-fame.css;" + ${#base-url} + "/css/root-concept.css;"`
+    #layout-resources =`new String[]{"css/hall-of-fame.css", "css/root-concept.css"}`
 }

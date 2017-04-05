@@ -5,7 +5,7 @@ $options {
 _concept {->(extends)../_concept
     ->(personal)../../_personal
     event +
-    #layout.css =`${#base-url} + "/css/basic.css;" + ${#base-url} + "/css/root-concept.css;"`
+    #layout-resources =`new String[]{"css/basic.css", "css/root-concept.css"}`
 }
 
 schools {->(extends)_concept

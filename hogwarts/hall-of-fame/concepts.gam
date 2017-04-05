@@ -6,7 +6,7 @@ default.order "auto"
 _concept {->(extends)../_concept
     ->(personal)../../_personal
     event +
-    #layout.css =`${#base-url} + "/css/hall-of-fame.css;" + ${#base-url} + "/css/root-concept.css;"`
+    #layout-resources =`new String[]{"css/hall-of-fame.css", "css/root-concept.css"}`
 }
 
 
