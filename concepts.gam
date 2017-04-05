@@ -36,7 +36,7 @@ _concept {
     // If a role has not been determined yet, retrieve the letter screen.
     // Otherwise return the normal layout
 
-    #resource =`"".equals(${_concept->(personal)#role}) ? "[[=hogwarts/welcome-screen.xhtml]]" : "[[=layout.xhtml]]"`
+    #resource =`"".equals(${_concept->(personal)#role}) ? "[[=welcome-screen.xhtml]]" : "[[=layout.xhtml]]"`
 
     // The knowledge value is the average of the parent knowledge and itself
 
@@ -58,21 +58,21 @@ _concept {
     #layout.css =`~
         StringBuilder sb = new StringBuilder("");
 
-        sb.append(";https://fonts.googleapis.com/css?family=Calligraffitti|Cormorant+SC|Quicksand");
+        sb.append("https://fonts.googleapis.com/css?family=Calligraffitti|Cormorant+SC|Quicksand");
         sb.append(";https://fonts.googleapis.com/icon?family=Material+Icons");
 
         if("Slytherin".equals(${_concept->(personal)#user-house})){
 
-            sb.append("css/slytherin.css");
+            sb.append(";css/slytherin.css");
         } else if("Gryffindor".equals(${_concept->(personal)#user-house})){
 
-            sb.append("css/gryffindor.css");
+            sb.append(";css/gryffindor.css");
         } else if("Hufflepuff".equals(${_concept->(personal)#user-house})){
 
-            sb.append("css/hufflepuff.css");
+            sb.append(";css/hufflepuff.css");
         } else if("Ravenclaw".equals(${_concept->(personal)#user-house})){
 
-            sb.append("css/ravenclaw.css");
+            sb.append(";css/ravenclaw.css");
         } else{
             // Do nothing
         }
@@ -118,7 +118,6 @@ _personal {
     #[current-concept]:String ``    // The concept that is currently accessed
     #[last-unique-concept]:String ``    // The last accessed concept not the same as the current one
 
-    //Made by Wesley and Lisette, not yet tested
     #[user-name]:String ``          // Username of learner
     #[user-house]:String ``         // House of the learner
 
