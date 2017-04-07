@@ -5,7 +5,7 @@
 	background-size: cover;
 }
 
-#wrapper #header table a.knowledge--known{
+#wrapper #header table a.knowledge--known:not(.knowledge--known-all){
 	color: $white;
 }
 
@@ -14,7 +14,7 @@
 }
 
 .house-knowledge--gryffindor{
-	@include house-icon($gryffindor-color);
+	@include include-icon('star_rate', $gryffindor-color);
 }
 
 #header table tr td:after{
@@ -26,5 +26,11 @@
 
 	&:hover{
 		background-color: $gryffindor-color-dark;
+	}
+}
+
+#header .tree-view--wrapper {
+	a.knowledge--first-time{
+		@include include-icon--absolute('fiber_new', $gryffindor-color);
 	}
 }

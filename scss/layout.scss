@@ -16,10 +16,37 @@
 	flex-flow: column;
 	min-height: 100%;
 
+	// Link styling setup
+
 	a.knowledge--unsuitable{
 		color: rgba($primary-dark, 0.2);
 		cursor: auto;
 	}
+
+	a.knowledge--suitable{
+		color:  #2566bb;
+	}
+
+	a.knowledge--known-all{
+		color: purple;
+	}
+
+	#header .tree-view--wrapper {
+
+		a:not(.knowledge--unsuitable):not(.knowledge--known-all){
+			color: $white;
+		}
+
+		a.knowledge--known-all{
+			color: #ff84ff;
+		}
+
+		a.knowledge--first-time{
+			@include include-icon--absolute('fiber_new', $white);
+		}
+	}
+
+	// Unsuitable modal box styling
 
 	#unsuitable{
 
@@ -160,7 +187,7 @@
 		.tree-view--wrapper {
 			display: none;
 			flex-direction: column;
-			background: rgba($primary-dark, 0.3);
+			background: rgba($primary-dark, 0.8);
 
 			@include breakpoint(md) {
 				display: flex;

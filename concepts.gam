@@ -44,11 +44,36 @@ _concept {
     #known-all:Boolean =`${#knowledge} > 0.8`
     #known:Boolean =`${#own-knowledge} == 1.0`
     #unknown:Boolean =`false`
-    #suitability:Boolean =`and(new Object[] {${=>(prereq)#known-all}}) || ${#user-available}`
+    #suitability:Boolean =`~
+
+        // If the user has an overview learning style
+        // and this is a concept that has at least three parents,
+        // then it will be unsuitable unless all siblings of the parent have been studied
+        // or if it is a user available concept.
+
+        if (${#user-available}) return true;
+
+        if(!${_concept->(personal)#learning-style-deep}){
+            if(${->(parent)}.length > 0){
+                if(${->(parent)->(parent)}.length > 0 ){
+                    if(${->(parent)->(parent)->(parent)}.length > 0){
+
+                        return and(${->(parent)->(parent)<=(parent)=>(prereq)#known-all}) ? true : false;
+                    }
+                }
+            }
+        }
+
+        // If the user has a deepened view learning style then we can take them down this path
+        // TODO: Implement this learning style
+
+        return and(new Object[] {${=>(prereq)#known-all}});
+    `
 
     // A concept can be affiliated with a house, which will then become recommended
 
     #affiliation =`""`
+    #course-blocked =`false`
 
     // Always start the title of the web page with "Hogwarts -"
 
@@ -105,7 +130,10 @@ _concept {
         if (${#course-knowledge} == 80) sb.append("knowledge--level4 ");
         if (${#course-knowledge} >= 100) sb.append("knowledge--level5 ");
         if (${#known}) sb.append("knowledge--known ");
+        if (${#known-all}) sb.append("knowledge--known-all ");
         if (!${#suitability}) sb.append("knowledge--unsuitable ");
+        if (${#suitability}) sb.append("knowledge--suitable ");
+        if (${#suitability} && ${#visited} == 0) sb.append("knowledge--first-time ");
         if(!${#known} && ${#suitability} && ${#course-knowledge} == 0) sb.append("knowledge--unknown");
         return sb.toString();
     `
@@ -134,6 +162,8 @@ _personal {
     #[role]:String ``
 
     #[cookies-accepted]:Boolean `false` // Changes when the user has accepted cookies
+
+    #[learning-style-deep]:Boolean 'false' // Assume the user prefers a high level overview
 }
 
 hogwarts {->(extends)_concept

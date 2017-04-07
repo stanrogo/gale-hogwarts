@@ -31,19 +31,21 @@
 	}
 }
 
+// We ran out of time to fix this properly so resort to using important in some cases
+
 .button-ok{
-	background: $suitable;
+	background: $suitable !important;
 
 	&:hover{
-		background: $suitable-dark;
+		background: $suitable-dark !important;
 	}
 }
 
 .button-unsuitable{
-	background: $unsuitable;
+	background: $unsuitable !important;
 
 	&:hover{
-		background: $unsuitable-dark;
+		background: $unsuitable-dark !important;
 	}
 }
 

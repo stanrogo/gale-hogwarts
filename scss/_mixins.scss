@@ -101,12 +101,26 @@
 	font-feature-settings: 'liga';
 }
 
-@mixin house-icon($color){
+@mixin include-icon($icon-name, $color){
 	&:before{
 		@extend .material-icons;
-		content: 'star_rate';
+		content: $icon-name;
 		float: left;
 		margin-left: -30px;
 		color: $color;
 	}
 }
+
+
+@mixin include-icon--absolute($icon-name, $color){
+	&:before{
+		@extend .material-icons;
+		content: $icon-name;
+		color: $color;
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+}
+
+
