@@ -90,6 +90,14 @@ great-hall {->(extends)_concept
                 uri = session.resolve(list[i].getUri() + "#visited");
                 session.put(uri, new EntityValue(uri, 1));
             }
+
+            list = ${basic/provisions<-(parent)};
+            for (int i = 0; i < list.length; i++) {
+                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
+                session.put(uri, new EntityValue(uri, 1d));
+                uri = session.resolve(list[i].getUri() + "#visited");
+                session.put(uri, new EntityValue(uri, 1));
+            }
         }
     `
 
@@ -113,6 +121,7 @@ school {->(extends)_concept
 
             ${#user-available} = true;
             ${#own-knowledge} = 1.0;
+            ${#visited}++;
 
             Concept[] list = ${->(prereq)};
             for (int i = 0; i < list.length; i++) {
@@ -155,6 +164,14 @@ school {->(extends)_concept
             }
 
             list = ${basic<-(parent)};
+            for (int i = 0; i < list.length; i++) {
+                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
+                session.put(uri, new EntityValue(uri, 1d));
+                uri = session.resolve(list[i].getUri() + "#visited");
+                session.put(uri, new EntityValue(uri, 1));
+            }
+
+            list = ${basic/provisions<-(parent)};
             for (int i = 0; i < list.length; i++) {
                 URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
                 session.put(uri, new EntityValue(uri, 1d));

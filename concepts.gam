@@ -114,12 +114,11 @@ _concept {
     `
 
     // Classes to use when displaying adaptive links
+    // The amount of statements used is currently the MAX that is available!
 
     #link.classexpr `~
-
         StringBuilder sb = new StringBuilder("");
         sb.append("house-knowledge--" + ${#affiliation} + " ");
-
         if (${#course-knowledge} == 20) sb.append("knowledge--level1 ");
         if (${#course-knowledge} == 40) sb.append("knowledge--level2 ");
         if (${#course-knowledge} == 60) sb.append("knowledge--level3 ");
@@ -127,6 +126,7 @@ _concept {
         if (${#course-knowledge} >= 100) sb.append("knowledge--level5 ");
         if (${#known}) sb.append("knowledge--known ");
         if (${#knowledge} == 1.0) sb.append("knowledge--known-all ");
+        if (${#course-blocked}) sb.append("course-blocked ");
         if (!${#suitability}) sb.append("knowledge--unsuitable ");
         if (${#suitability}) sb.append("knowledge--suitable ");
         if (${#suitability} && ${#visited} == 0) sb.append("knowledge--first-time ");

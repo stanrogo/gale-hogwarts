@@ -5,6 +5,25 @@
 }
 
 #main .tree-view--wrapper{
+
+	a.knowledge--known:not(.knowledge--level5):not(.course-blocked){
+
+		&.knowledge--suitable{
+			color:  #2566bb;
+		}
+
+		&.knowledge--unsuitable{
+			color: rgba($primary-dark, 0.2);
+		}
+	}
+
+	a.course-blocked{
+		color: #9e7272;
+
+	}
+}
+
+#main .tree-view--wrapper{
 	td[style="padding-left: 30px;"] {
 		@include breakpoint(md) {
 			padding-left: 30px !important;

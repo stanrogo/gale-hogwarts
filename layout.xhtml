@@ -7,6 +7,9 @@
 
     <body>
 
+    <gale:variable expr="${.}.getUriString()"/>
+    <gale:variable expr="${_concept->(personal)#last-concept}"/>
+
         <div id="wrapper">
 
             <gale:if expr="!${#suitability}">

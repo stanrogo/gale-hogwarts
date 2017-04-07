@@ -18,7 +18,10 @@ _course {->(extends)_concept
         return "[[=layout.xhtml]]";
     `
     #[course-knowledge]:Integer `0`
+
     event +`
+        ${#course-blocked} = true;
+
         if(
             !${.}.getUriString().equals(${_concept->(personal)#last-concept})
             || sum(${->(parent)<=(parent)#course-knowledge}) >= ((${->(parent)<-(parent)}.length - 1) * 100)
@@ -26,6 +29,21 @@ _course {->(extends)_concept
             Integer courseKnowledge = ${#course-knowledge} < 120 ? ${#course-knowledge} + 20 : 120;
             ${#course-knowledge} = courseKnowledge;
             ${#own-knowledge} = Math.min((courseKnowledge / 100.0), 1.0);
+
+            // Whenever we access a course that is not blocked, the others should become unblocked
+
+            Concept[] childrenList = ${->(parent)<-(parent)};
+            for (int i = 0; i < childrenList.length; i++) {
+
+                String siblingUriString = childrenList[i].getUriString();
+                String lastConcept = ${_concept->(personal)#last-concept};
+
+                if(!siblingUriString.equals(${.}.getUriString())){
+
+                    URI uri = session.resolve(childrenList[i].getUri() + "#course-blocked");
+                    session.put(uri, new EntityValue(uri, false));
+                }
+            }
         }
     `
 }
@@ -175,11 +193,12 @@ dada/level5 {
 
 
 
-OWL {->(extends)_course
+OWL {->(extends)_concept
     ->(parent)../school
     ->(prereq)dada
     ->(prereq)herbology
     ->(prereq)transfiguration
     ->(prereq)potions
     title `Owl Exam`
+    event +
 }
