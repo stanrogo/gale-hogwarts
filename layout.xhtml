@@ -6,8 +6,6 @@
     </head>
 
     <body>
-        <gale:variable expr="and(${dormitories->(parent)&lt;=(parent)#known}) ? true : false"/>
-        <gale:variable expr="${provisions/dormitories->(parent)->(parent)&lt;-(parent)->(prereq)[1]#known-all}"/>
 
         <div id="wrapper">
 

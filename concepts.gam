@@ -58,14 +58,11 @@ _concept {
                 if(${->(parent)->(parent)}.length > 0 ){
                     if(${->(parent)->(parent)->(parent)}.length > 0){
 
-                        return and(${->(parent)->(parent)<=(parent)=>(prereq)#known-all}) ? true : false;
+                        return and(${->(parent)->(parent)<=(parent)#known}) ? true : false;
                     }
                 }
             }
         }
-
-        // If the user has a deepened view learning style then we can take them down this path
-        // TODO: Implement this learning style
 
         return and(new Object[] {${=>(prereq)#known-all}});
     `
