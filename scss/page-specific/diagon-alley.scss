@@ -4,3 +4,10 @@
 	@include nav-highlight();
 }
 
+#wrapper{
+	.shop-list{
+		p{
+			margin-bottom: 0;
+		}
+	}
+}

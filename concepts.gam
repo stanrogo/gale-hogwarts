@@ -17,7 +17,7 @@ _concept {
     `
 
     event +`
-        if(${#suitability} || ${#user-available}){
+        if(${#suitability} || ${#user-available} && !"".equals(${_concept->(personal)#role})){
 
             ${#own-knowledge} = 1.0;
             ${#visited}++;
@@ -63,7 +63,7 @@ _concept {
             }
         }
 
-        return and(new Object[] {${=>(prereq)#known-all}});
+        return and(new Object[] {${=>(prereq)#known-all}}) && ${->(parent)#known};
     `
 
     // A concept can be affiliated with a house, which will then become recommended
@@ -126,7 +126,7 @@ _concept {
         if (${#course-knowledge} == 80) sb.append("knowledge--level4 ");
         if (${#course-knowledge} >= 100) sb.append("knowledge--level5 ");
         if (${#known}) sb.append("knowledge--known ");
-        if (${#known-all}) sb.append("knowledge--known-all ");
+        if (${#knowledge} == 1.0) sb.append("knowledge--known-all ");
         if (!${#suitability}) sb.append("knowledge--unsuitable ");
         if (${#suitability}) sb.append("knowledge--suitable ");
         if (${#suitability} && ${#visited} == 0) sb.append("knowledge--first-time ");
@@ -165,4 +165,6 @@ _personal {
 hogwarts {->(extends)_concept
     title `Hogwarts`
     no-title `true`
+
+    #own-knowledge =`1.0`
 }

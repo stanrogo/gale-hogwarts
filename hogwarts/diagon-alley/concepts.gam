@@ -16,7 +16,7 @@ broomstix {->(extends)_concept
     event +
 }
 
-daily_prophet {->(extends)_concept
+daily-prophet {->(extends)_concept
     ->(parent)../diagon-alley
 
     title `The Daily Prophet`
@@ -30,7 +30,7 @@ gringotts {->(extends)_concept
     event +
 }
 
-leaky_cauldron {->(extends)_concept
+leaky-cauldron {->(extends)_concept
     ->(parent)../diagon-alley
 
     title `Leaky Cauldron`
