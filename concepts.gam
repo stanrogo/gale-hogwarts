@@ -160,6 +160,15 @@ _personal {
     #[cookies-accepted]:Boolean `false` // Changes when the user has accepted cookies
 
     #[learning-style-deep]:Boolean 'false' // Assume the user prefers a high level overview
+    #[done1]:Boolean `false`
+    #[done2]:Boolean `false`
+    #[done3]:Boolean `false`
+    #[done4]:Boolean `false`
+    #[knowledge1]:Double ``
+    #[knowledge2]:Double ``
+    #[knowledge3]:Double ``
+    #[knowledge4]:Double ``
+
 }
 
 hogwarts {->(extends)_concept

@@ -1,3 +1,7 @@
+$options {
+default.order "auto"
+}
+
 _concept {->(extends)../_concept
     ->(personal)../../_personal
     event +
@@ -55,38 +59,38 @@ completed {
 
 // Each child concept needs a blank event otherwise changes won't be propagated
 
-potions {->(extends)_course
+dada {->(extends)_course
     ->(parent)../school
-    title `Potions`
+    title `Defence Against the Dark Arts`
 
-    #fragment-names =`new String[] {"potions/level1", "potions/level2", "potions/level3", "potions/level4", "potions/level5"}`
+    #fragment-names =`new String[] {"dada/level1", "dada/level2", "dada/level3", "dada/level4", "dada/level5"}`
     event +
-    #affiliation =`"slytherin"`
+    #affiliation =`"gryffindor"`
 }
 
-potions/level1 {
+dada/level1 {
     title `Level 1`
-    #resource `[[=potions/level1.xhtml]]`
+    #resource `[[=dada/level1.xhtml]]`
 }
 
-potions/level2 {
+dada/level2 {
     title `Level 2`
-    #resource `[[=potions/level2.xhtml]]`
+    #resource `[[=dada/level2.xhtml]]`
 }
 
-potions/level3 {
+dada/level3 {
     title `Level 3`
-    #resource `[[=potions/level3.xhtml]]`
+    #resource `[[=dada/level3.xhtml]]`
 }
 
-potions/level4 {
+dada/level4 {
     title `Level 4`
-    #resource `[[=potions/level4.xhtml]]`
+    #resource `[[=dada/level4.xhtml]]`
 }
 
-potions/level5 {
+dada/level5 {
     title `Level 5`
-    #resource `[[=potions/level5.xhtml]]`
+    #resource `[[=dada/level5.xhtml]]`
 }
 
 herbology {->(extends)_course
@@ -123,6 +127,40 @@ herbology/level5 {
     #resource `[[=herbology/level5.xhtml]]`
 }
 
+potions {->(extends)_course
+    ->(parent)../school
+    title `Potions`
+
+    #fragment-names =`new String[] {"potions/level1", "potions/level2", "potions/level3", "potions/level4", "potions/level5"}`
+    event +
+    #affiliation =`"slytherin"`
+}
+
+potions/level1 {
+    title `Level 1`
+    #resource `[[=potions/level1.xhtml]]`
+}
+
+potions/level2 {
+    title `Level 2`
+    #resource `[[=potions/level2.xhtml]]`
+}
+
+potions/level3 {
+    title `Level 3`
+    #resource `[[=potions/level3.xhtml]]`
+}
+
+potions/level4 {
+    title `Level 4`
+    #resource `[[=potions/level4.xhtml]]`
+}
+
+potions/level5 {
+    title `Level 5`
+    #resource `[[=potions/level5.xhtml]]`
+}
+
 transfiguration {->(extends)_course
     ->(parent)../school
     title `Transfiguration`
@@ -156,41 +194,6 @@ transfiguration/level5 {
     title `Level 5`
     #resource `[[=transfiguration/level5.xhtml]]`
 }
-
-dada {->(extends)_course
-    ->(parent)../school
-    title `Defence Against the Dark Arts`
-
-    #fragment-names =`new String[] {"dada/level1", "dada/level2", "dada/level3", "dada/level4", "dada/level5"}`
-    event +
-    #affiliation =`"gryffindor"`
-}
-
-dada/level1 {
-    title `Level 1`
-    #resource `[[=dada/level1.xhtml]]`
-}
-
-dada/level2 {
-    title `Level 2`
-    #resource `[[=dada/level2.xhtml]]`
-}
-
-dada/level3 {
-    title `Level 3`
-    #resource `[[=dada/level3.xhtml]]`
-}
-
-dada/level4 {
-    title `Level 4`
-    #resource `[[=dada/level4.xhtml]]`
-}
-
-dada/level5 {
-    title `Level 5`
-    #resource `[[=dada/level5.xhtml]]`
-}
-
 
 
 OWL {->(extends)_concept
