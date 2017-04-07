@@ -5,6 +5,6 @@
 		<link rel="stylesheet" type="text/css" href="es.css"></link>
 	</head>
 	<body>
-		<p id='text'>Congratulations! You've graduated!</p>
+		<gale:text id='text'>Congratulations, <gale:variable expr="${_concept-&gt;(personal)#user-name}"/>! You've graduated!</gale:text>
 	</body>
 </html>
