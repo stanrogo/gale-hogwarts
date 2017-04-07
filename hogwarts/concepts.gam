@@ -21,30 +21,7 @@ _concept {->(extends)../_concept
 basic {->(extends)_concept
     ->(parent)../hogwarts
 
-     // Mark all child concepts (and child of child concepts) as known if user has expert or intermediate knowledge
-
-    event +`
-
-        String role = ${_concept->(personal)#role};
-
-        if("intermediate".equals(role) || "expert".equals(role)){
-
-            ${#user-available} = true;
-            ${#own-knowledge} = 1.0;
-
-            Concept[] list = ${<-(parent)};
-            for (int i = 0; i < list.length; i++) {
-                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
-                session.put(uri, new EntityValue(uri, 1d));
-            }
-
-            list = ${<-(parent)<-(parent)};
-            for (int i = 0; i < list.length; i++) {
-                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
-                session.put(uri, new EntityValue(uri, 1d));
-            }
-        }
-    `
+    event +
 
     title `Hogwarts Information`
     #layout-resources =`new String[]{"css/basic.css", "css/root-concept.css"}`
@@ -56,24 +33,7 @@ diagon-alley {->(extends)_concept
     ->(parent)../hogwarts
     ->(prereq)basic
 
-    // Mark all child concepts as known if user has expert or intermediate knowledge
-
-    event +`
-
-        String role = ${_concept->(personal)#role};
-
-        if("intermediate".equals(role) || "expert".equals(role)){
-
-             ${#user-available} = true;
-             ${#own-knowledge} = 1.0;
-
-            Concept[] list = ${<-(parent)};
-            for (int i = 0; i < list.length; i++) {
-                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
-                session.put(uri, new EntityValue(uri, 1d));
-            }
-        }
-    `
+    event +
 
     title `Diagon Alley`
     #layout-resources =`new String[]{"css/diagon-alley.css", "css/root-concept.css"}`
@@ -95,31 +55,40 @@ great-hall {->(extends)_concept
 
         if("intermediate".equals(role)){
 
-             ${#user-available} = true;
-             ${#own-knowledge} = 1.0;
+            ${#user-available} = true;
+            ${#own-knowledge} = 1.0;
+            ${#visited}++;
 
             Concept[] list = ${->(prereq)};
             for (int i = 0; i < list.length; i++) {
                 URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
                 session.put(uri, new EntityValue(uri, 1d));
+                uri = session.resolve(list[i].getUri() + "#visited");
+                session.put(uri, new EntityValue(uri, 1));
             }
 
             list = ${diagon-alley->(prereq)};
             for (int i = 0; i < list.length; i++) {
                 URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
                 session.put(uri, new EntityValue(uri, 1d));
+                uri = session.resolve(list[i].getUri() + "#visited");
+                session.put(uri, new EntityValue(uri, 1));
             }
-        }
 
-        if("intermediate".equals(role) || "expert".equals(role)){
-
-             ${#user-available} = true;
-             ${#own-knowledge} = 1.0;
-
-            Concept[] list = ${<-(parent)};
+            list = ${diagon-alley<-(parent)};
             for (int i = 0; i < list.length; i++) {
                 URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
                 session.put(uri, new EntityValue(uri, 1d));
+                uri = session.resolve(list[i].getUri() + "#visited");
+                session.put(uri, new EntityValue(uri, 1));
+            }
+
+            list = ${basic<-(parent)};
+            for (int i = 0; i < list.length; i++) {
+                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
+                session.put(uri, new EntityValue(uri, 1d));
+                uri = session.resolve(list[i].getUri() + "#visited");
+                session.put(uri, new EntityValue(uri, 1));
             }
         }
     `
@@ -149,18 +118,48 @@ school {->(extends)_concept
             for (int i = 0; i < list.length; i++) {
                 URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
                 session.put(uri, new EntityValue(uri, 1d));
+                uri = session.resolve(list[i].getUri() + "#visited");
+                session.put(uri, new EntityValue(uri, 1));
             }
 
             list = ${great-hall->(prereq)};
             for (int i = 0; i < list.length; i++) {
                 URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
                 session.put(uri, new EntityValue(uri, 1d));
+                uri = session.resolve(list[i].getUri() + "#visited");
+                session.put(uri, new EntityValue(uri, 1));
             }
 
             list = ${diagon-alley->(prereq)};
             for (int i = 0; i < list.length; i++) {
                 URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
                 session.put(uri, new EntityValue(uri, 1d));
+                uri = session.resolve(list[i].getUri() + "#visited");
+                session.put(uri, new EntityValue(uri, 1));
+            }
+
+            list = ${great-hall<-(parent)};
+            for (int i = 0; i < list.length; i++) {
+                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
+                session.put(uri, new EntityValue(uri, 1d));
+                uri = session.resolve(list[i].getUri() + "#visited");
+                session.put(uri, new EntityValue(uri, 1));
+            }
+
+            list = ${diagon-alley<-(parent)};
+            for (int i = 0; i < list.length; i++) {
+                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
+                session.put(uri, new EntityValue(uri, 1d));
+                uri = session.resolve(list[i].getUri() + "#visited");
+                session.put(uri, new EntityValue(uri, 1));
+            }
+
+            list = ${basic<-(parent)};
+            for (int i = 0; i < list.length; i++) {
+                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
+                session.put(uri, new EntityValue(uri, 1d));
+                uri = session.resolve(list[i].getUri() + "#visited");
+                session.put(uri, new EntityValue(uri, 1));
             }
         }
     `

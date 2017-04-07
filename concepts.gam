@@ -17,11 +17,10 @@ _concept {
     `
 
     event +`
-        ${#visited}++;
-
         if(${#suitability} || ${#user-available}){
 
             ${#own-knowledge} = 1.0;
+            ${#visited}++;
         }
 
         if(!${.}.getUriString().equals(${_concept->(personal)#current-concept})){
