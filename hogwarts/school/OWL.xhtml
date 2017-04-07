@@ -1,0 +1,151 @@
+<div id="OWL" xmlns="http://www.w3.org/1999/xhtml" xmlns:gale="http://gale.tue.nl/adaptation">
+  <body>
+    <gale:if expr="${#done}"><gale:then>
+    <h1>O.W.L. Test Result</h1>
+    <p>
+      Your test score for Transfiguration was <gale:variable expr="${#knowledge1}.intValue()" />.
+      Your test score for Herbology was <gale:variable expr="${#knowledge2}.intValue()" />.
+      Your test score for Potions was <gale:variable expr="${#knowledge3}.intValue()" />.
+      Your test score for Defence Against the Dark Arts was <gale:variable expr="${#knowledge4}.intValue()" />.
+    </p>
+  </gale:then>
+  </gale:if>
+
+  <gale:test title="O.W.L. Examination, part 1" total="2" action="#{#knowledge1, value};#{#done, true};" expr="!${#done}" ask="2" alt="[You are not allowed to redo this test.]" verbose="true">
+    <gale:question answers="4" right="1"> Which subject was tought by Albus Dumbledore?
+      <gale:answer correct="false">Herbology
+        <gale:explain> Unfortunately, Herbology is not given by Albus Dumbledore. </gale:explain>
+      </gale:answer>
+      <gale:answer correct="false">Defence Against the Dark Arts
+        <gale:explain> Unfortunately, you choose the wrong subject. </gale:explain>
+      </gale:answer>
+      <gale:answer correct="false">Potions
+        <gale:explain> Unfortunately, Potions is not the right answer. </gale:explain>
+      </gale:answer>
+      <gale:answer correct="true">Transfiguration
+        <gale:explain> Yes, you are correct. Transfiguration has been given by Albus Dumbledore! </gale:explain>
+      </gale:answer>
+    </gale:question>
+
+    <gale:question answers="4" right="1"> What does not influence an intended transformation?
+      <gale:answer correct="false">Bodyweight
+        <gale:explain> No, this does influence it.</gale:explain>
+      </gale:answer>
+      <gale:answer correct="true">Age
+        <gale:explain> Yes, age indeed doens't influence it </gale:explain>
+      </gale:answer>
+      <gale:answer correct="false">Wand Power
+        <gale:explain> No, this does influence it </gale:explain>
+      </gale:answer>
+      <gale:answer correct="false">Concentration
+        <gale:explain> No, this does influence it </gale:explain>
+      </gale:answer>
+    </gale:question>
+    <gale:result>
+      Your test score for Transfiguration was <gale:variable expr="${#knowledge1}.intValue()" />.
+    </gale:result>
+  </gale:test>
+
+  <gale:test title="O.W.L. Examination, part 2" total="2" action="#{#knowledge2, value};#{#done, true};" expr="!${#done}" ask="2" alt="[You are not allowed to redo this test.]" verbose="true">
+    <gale:question answers="4" right="1"> Which (part of a) plant can be used to breathe underwater?
+      <gale:answer correct="false">Snorkelroot
+        <gale:explain> Did you even attend Herbology classes? </gale:explain>
+      </gale:answer>
+      <gale:answer correct="false">Mandrake
+        <gale:explain> No, you did read about it but this has other purposes... </gale:explain>
+      </gale:answer>
+      <gale:answer correct="true">Gillyweed
+        <gale:explain> Yes, you are right! Gillyweed only last an hour, so be careful! </gale:explain>
+      </gale:answer>
+      <gale:answer correct="false">Breathleaves
+        <gale:explain> No...Did you even pay attention during Herbology? </gale:explain>
+      </gale:answer>
+    </gale:question>
+
+    <gale:question answers="4" right="1"> For which potion can a mandragora be used as ingredient?
+      <gale:answer correct="true">Restaurative Draught
+        <gale:explain> Indeed, it can be used for this potion </gale:explain>
+      </gale:answer>
+      <gale:answer correct="false">Amortentia
+        <gale:explain> No, there is no mandragora needed for this potion </gale:explain>
+      </gale:answer>
+      <gale:answer correct="false">Felix Fortunatis
+        <gale:explain> No, liquid luck has other ingredients. </gale:explain>
+      </gale:answer>
+      <gale:answer correct="false">Erumpent Potion
+        <gale:explain> No, please re-read the herbology section </gale:explain>
+      </gale:answer>
+    </gale:question>
+    <gale:result>
+      Your test score for Herbology was <gale:variable expr="${#knowledge2}.intValue()" />.
+    </gale:result>
+  </gale:test>
+
+  <gale:test title="O.W.L. Examination, part 3" total="2" action="#{#knowledge3, value};#{#done, true};" expr="!${#done}" ask="2" alt="[You are not allowed to redo this test.]" verbose="true">
+    <gale:question answers="4" right="1"> What is the correct order for ingredients for Wideye Potion?
+      <gale:answer correct="false">Snake fangs - Billywig stings - Standard ingredient - Wolfsbane
+        <gale:explain> No, not the right order </gale:explain>
+      </gale:answer>
+      <gale:answer correct="false">Standard ingredient - Snake fangs - Billywig stings - Wolfsbane
+        <gale:explain> No, not the right order </gale:explain>
+      </gale:answer>
+      <gale:answer correct="false">Billywig stings - Snake fangs - Standard ingredient - Wolfsbane
+        <gale:explain> No, not the right order </gale:explain>
+      </gale:answer>
+      <gale:answer correct="true">Snake fangs - Standard ingredient - Billywig stings - Wolfsbane
+        <gale:explain> Yes, this is indeed the correct order!</gale:explain>
+      </gale:answer>
+    </gale:question>
+
+    <gale:question answers="4" right="1"> To transform into a specific person, what is typically used as ingredient for Polyjuice Potion?
+      <gale:answer correct="false">Toenail
+        <gale:explain> No, this is not typically used. </gale:explain>
+      </gale:answer>
+      <gale:answer correct="false">Sweat
+        <gale:explain> Yuk, even thinking of it is nauseating! Wrong answer </gale:explain>
+      </gale:answer>
+      <gale:answer correct="true">Hair
+        <gale:explain> Indeed, normally a hair is used for the transformation </gale:explain>
+      </gale:answer>
+      <gale:answer correct="false">Earwax
+        <gale:explain> No, re-learn potions! </gale:explain>
+      </gale:answer>
+    </gale:question>
+    <gale:result>
+      Your test score for Potions was <gale:variable expr="${#knowledge3}.intValue()" />.
+    </gale:result>
+  </gale:test>
+
+  <gale:test title="O.W.L. Examination, part 4" total="2" action="#{#knowledge4, value};#{#done, true};" expr="!${#done}" ask="2" alt="[You are not allowed to redo this test.]" verbose="true">
+    <gale:question answers="3" right="1"> Which incantation <b>cannot</b> be used to make another person laugh?
+      <gale:answer correct="false">Riddikulus
+        <gale:explain> No, this spells makes people laugh through the transformation of the Boggart </gale:explain>
+      </gale:answer>
+      <gale:answer correct="true">Revomai
+        <gale:explain> Yes, indeed. This spell causes the victim to burp uncontrollably. </gale:explain>
+      </gale:answer>
+      <gale:answer correct="false">Rictusempra
+        <gale:explain> No, Rictusempra makes a person laugh. Pay attention during Defence Against the Dark Arts! </gale:explain>
+      </gale:answer>
+    </gale:question>
+
+    <gale:question answers="4" right="1"> Which book did students not need to buy when Gildery Lockhart was teacher for Defence Against the Dark Arts?
+      <gale:answer correct="true">Away with Animagi
+        <gale:explain> Indeed, this book wasn't included on the list. </gale:explain>
+      </gale:answer>
+      <gale:answer correct="false"> Travel with Trolls
+        <gale:explain> Incorrect, this book was on the list </gale:explain>
+      </gale:answer>
+      <gale:answer correct="false"> Year with a Yeti
+        <gale:explain> Incorrect, this book was on the list </gale:explain>
+      </gale:answer>
+      <gale:answer correct="false"> Gadding with Ghouls
+        <gale:explain> Incorrect, this book was on the list </gale:explain>
+      </gale:answer>
+    </gale:question>
+    <gale:result>
+      Your test score for Defence Against the Dark Arts was <gale:variable expr="${#knowledge4}.intValue()" />.
+    </gale:result>
+</gale:test>
+  </body>
+</div>
