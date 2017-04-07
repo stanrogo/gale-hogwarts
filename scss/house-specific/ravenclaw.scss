@@ -12,3 +12,19 @@
 #wrapper #header .hero--wrapper .hero--headline{
 	color: $white;
 }
+
+.house-knowledge--gryffindor{
+	@include house-icon($ravenclaw-color);
+}
+
+#header table tr td:after{
+	background-color: $ravenclaw-color !important;
+}
+
+.button{
+	background-color: $ravenclaw-color;
+
+	&:hover{
+		background-color: $ravenclaw-color-dark;
+	}
+}

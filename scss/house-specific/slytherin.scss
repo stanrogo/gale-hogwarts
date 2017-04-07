@@ -12,3 +12,19 @@
 #wrapper #header .hero--wrapper .hero--headline{
 	color: $white;
 }
+
+.house-knowledge--gryffindor{
+	@include house-icon($slytherin-color);
+}
+
+#header table tr td:after{
+	background-color: $slytherin-color !important;
+}
+
+.button{
+	background-color: $slytherin-color;
+
+	&:hover{
+		background-color: $slytherin-color-dark;
+	}
+}

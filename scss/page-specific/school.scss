@@ -4,6 +4,14 @@
 	@include nav-highlight();
 }
 
+#main .tree-view--wrapper{
+	td[style="padding-left: 30px;"] {
+		@include breakpoint(md) {
+			padding-left: 30px !important;
+		}
+	}
+}
+
 #school {
 	.level-container {
 		.course-level-heading {

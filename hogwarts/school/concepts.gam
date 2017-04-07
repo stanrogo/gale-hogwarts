@@ -39,10 +39,11 @@ completed {
 
 potions {->(extends)_course
     ->(parent)../school
-    title `Course: Potions`
+    title `Potions`
 
     #fragment-names =`new String[] {"potions/level1", "potions/level2", "potions/level3", "potions/level4", "potions/level5"}`
     event +
+    #affiliation =`"slytherin"`
 }
 
 potions/level1 {
@@ -72,10 +73,11 @@ potions/level5 {
 
 herbology {->(extends)_course
     ->(parent)../school
-    title `Course: Herbology`
+    title `Herbology`
 
     #fragment-names =`new String[] {"herbology/level1", "herbology/level2", "herbology/level3", "herbology/level4", "herbology/level5"}`
     event +
+    #affiliation =`"hufflepuff"`
 }
 
 herbology/level1 {
@@ -105,10 +107,11 @@ herbology/level5 {
 
 transfiguration {->(extends)_course
     ->(parent)../school
-    title `Course: Transfiguration`
+    title `Transfiguration`
 
     #fragment-names =`new String[] {"transfiguration/level1", "transfiguration/level2", "transfiguration/level3", "transfiguration/level4", "transfiguration/level5"}`
     event +
+    #affiliation =`"ravenclaw"`
 }
 
 transfiguration/level1 {
@@ -138,10 +141,11 @@ transfiguration/level5 {
 
 dada {->(extends)_course
     ->(parent)../school
-    title `Course: Defence Against the Dark Arts`
+    title `Defence Against the Dark Arts`
 
     #fragment-names =`new String[] {"dada/level1", "dada/level2", "dada/level3", "dada/level4", "dada/level5"}`
     event +
+    #affiliation =`"gryffindor"`
 }
 
 dada/level1 {

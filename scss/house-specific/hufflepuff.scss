@@ -12,3 +12,19 @@
 #wrapper #header .hero--wrapper .hero--headline{
 	color: $white;
 }
+
+.house-knowledge--gryffindor{
+	@include house-icon($hufflepuff-color);
+}
+
+#header table tr td:after{
+	background-color: $hufflepuff-color !important;
+}
+
+.button{
+	background-color: $hufflepuff-color;
+
+	&:hover{
+		background-color: $hufflepuff-color-dark;
+	}
+}

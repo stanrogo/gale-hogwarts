@@ -46,6 +46,10 @@ _concept {
     #unknown:Boolean =`false`
     #suitability:Boolean =`and(new Object[] {${=>(prereq)#known-all}}) || ${#user-available}`
 
+    // A concept can be affiliated with a house, which will then become recommended
+
+    #affiliation =`""`
+
     // Always start the title of the web page with "Hogwarts -"
 
     #layout.title `"Hogwarts - "+${.}.getTitle()`
@@ -61,16 +65,16 @@ _concept {
         sb.append("https://fonts.googleapis.com/css?family=Calligraffitti|Cormorant+SC|Quicksand");
         sb.append(";https://fonts.googleapis.com/icon?family=Material+Icons");
 
-        if("Slytherin".equals(${_concept->(personal)#user-house})){
+        if("slytherin".equals(${_concept->(personal)#user-house})){
 
             sb.append(";css/slytherin.css");
-        } else if("Gryffindor".equals(${_concept->(personal)#user-house})){
+        } else if("gryffindor".equals(${_concept->(personal)#user-house})){
 
             sb.append(";css/gryffindor.css");
-        } else if("Hufflepuff".equals(${_concept->(personal)#user-house})){
+        } else if("hufflepuff".equals(${_concept->(personal)#user-house})){
 
             sb.append(";css/hufflepuff.css");
-        } else if("Ravenclaw".equals(${_concept->(personal)#user-house})){
+        } else if("ravenclaw".equals(${_concept->(personal)#user-house})){
 
             sb.append(";css/ravenclaw.css");
         } else{
@@ -91,14 +95,19 @@ _concept {
     // Classes to use when displaying adaptive links
 
     #link.classexpr `~
-        if (${#course-knowledge} == 20) return "knowledge--level1";
-        if (${#course-knowledge} == 40) return "knowledge--level2";
-        if (${#course-knowledge} == 60) return "knowledge--level3";
-        if (${#course-knowledge} == 80) return "knowledge--level4";
-        if (${#course-knowledge} >= 100) return "knowledge--level5";
-        if(${#known}) return "knowledge--known";
-        if(!${#suitability}) return "knowledge--unsuitable";
-        return "knowledge--unknown";
+
+        StringBuilder sb = new StringBuilder("");
+        sb.append("house-knowledge--" + ${#affiliation} + " ");
+
+        if (${#course-knowledge} == 20) sb.append("knowledge--level1 ");
+        if (${#course-knowledge} == 40) sb.append("knowledge--level2 ");
+        if (${#course-knowledge} == 60) sb.append("knowledge--level3 ");
+        if (${#course-knowledge} == 80) sb.append("knowledge--level4 ");
+        if (${#course-knowledge} >= 100) sb.append("knowledge--level5 ");
+        if (${#known}) sb.append("knowledge--known ");
+        if (!${#suitability}) sb.append("knowledge--unsuitable ");
+        if(!${#known} && ${#suitability} && ${#course-knowledge} == 0) sb.append("knowledge--unknown");
+        return sb.toString();
     `
     #link.iconlist `null`
 

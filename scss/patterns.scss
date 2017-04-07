@@ -21,10 +21,14 @@
 }
 
 .button{
-	background: $accent;
+	background-color: $accent;
 	color: $white;
 	border-radius: 50px;
 	@include material-shadow();
+
+	&:hover{
+		backgorund-color: $accent-dark;
+	}
 }
 
 .button-ok{
