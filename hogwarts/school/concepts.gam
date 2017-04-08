@@ -285,7 +285,7 @@ OWL {->(extends)_concept
             }
             if(${_concept->(personal)#done1} && ${_concept->(personal)#knowledge1} == 100){
                 ${transfiguration#course-knowledge} = 120;
-                ${transfiguration#own-knowledge} = 1;
+                ${transfiguration#own-knowledge} = 1.0;
             }
         `
     }
