@@ -2,11 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:gale="http://gale.tue.nl/adaptation">
 
     <head>
+        <!-- The needed files are imported into the head via gale -->
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
     </head>
 
     <body>
 
+    <gale:variable expr="session.get(session.resolve(${->(parent)[0]}.getUriString() + &quot;?title&quot;))"/>
         <div id="wrapper">
 
             <!-- Check the suitability and if not suitable display the relevant popup -->
@@ -87,7 +89,12 @@
                 </div>
 
                 <!-- This button should be perhaps gale enabled to take you to the next recommended topic -->
-                <button class="button button--next">Next</button>
+
+                <a class="button button--next">
+                    <gale:attr-variable name="href" expr="
+                        GaleUtil.getContextURL(gale.req()) + &quot;/concept/&quot; + ${_concept->(personal)#next-recommended}"/>
+                    Next
+                </a>
             </main>
 
             <!-- Add an empty footer with a scroll to top button -->
@@ -95,7 +102,8 @@
             <footer id="footer">
                 <a class="footer--to-top">
                     <gale:attr-variable name="href"
-                            expr="GaleUtil.getContextURL(gale.req()) + &quot;/concept/&quot; + ${.}.getUriString() + &quot;#wrapper&quot;"/>
+                            expr="GaleUtil.getContextURL(gale.req()) + &quot;/concept/&quot; +
+                             ${.}.getUriString() + &quot;#wrapper&quot;"/>
                     To Top
                 </a>
             </footer>

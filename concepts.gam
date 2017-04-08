@@ -44,6 +44,7 @@ _concept {
     #known:Boolean =`${#own-knowledge} == 1.0`
     #unknown:Boolean =`${#own-knowledge} == 0.0`
     #unvisited:Boolean =`${#visited} == 0`
+    #top-level =`false`
 
     // Define suitability as:
     //      - Overview Learning Style:  If the user has an overview learning style and this is a concept
@@ -221,6 +222,7 @@ _concept {
     // Define the main event for all concepts that we have. Here we:
     //      - Define when to update the knowledge value and visited (if suitable and the user has been assigned a role)
     //      - Store the last accessed concept URIs, along with the last unique concept.
+    //      - Look through the list of suitable concepts and select the one that is going to be recommended next
 
     event +`
         if(${#suitability} && !"".equals(${_concept->(personal)#role})){
@@ -236,6 +238,59 @@ _concept {
 
         ${_concept->(personal)#last-concept} = ${_concept->(personal)#current-concept};
         ${_concept->(personal)#current-concept} = ${.}.getUriString();
+
+        // Look through children, siblings, parent, and siblings of the parent
+        // to see which concept should be recommended next
+        // We prefer concepts that take you further into the children of the current concept
+
+        Boolean conceptFound = false;
+
+        Concept[] children = ${<-(parent)};
+        Concept[] siblings = ${->(parent)<-(parent)};
+        Concept[] siblingsChildren = ${->(parent)<-(parent)<-(parent)};
+        Concept[] parents = ${->(parent)};
+        Concept[] parentParentSiblings = ${->(parent)->(parent)<-(parent)};
+        Concept[] parentSiblings = ${->(parent)->(parent)->(parent)<-(parent)};
+
+        Concept[][] lists = new Concept[][]{parents, children, siblings, siblingsChildren, parentSiblings, parentParentSiblings};
+
+        for (int i = 0; i < lists.length; i++) {
+
+            if (!conceptFound){
+
+                for (int j = 0; j < lists[i].length; j++) {
+
+                    Concept concept = lists[i][j];
+
+                    URI uri = session.resolve(concept.getUri() + "#suitability");
+                    EntityValue ev = (EntityValue)session.get(uri);
+                    Boolean suitability = (Boolean)ev.getValue() == true;
+
+                    uri = session.resolve(concept.getUri() + "#visited");
+                    ev = (EntityValue)session.get(uri);
+                    Boolean notVisited = (Integer)ev.getValue() == 0;
+
+                    uri = session.resolve(concept.getUri() + "#top-level");
+                    ev = (EntityValue)session.get(uri);
+                    Boolean isRoot = (Boolean)ev.getValue() == true;
+
+                    if (suitability
+                        && notVisited
+                        && !concept.getUriString().equals(${_concept->(personal)#next-recommended})
+                        && !isRoot
+                    ){
+
+                        ${_concept->(personal)#next-recommended} = concept.getUriString();
+                        j = lists[i].length;
+                        conceptFound = true;
+                    }
+                }
+            }
+            else{
+
+                i = lists.length;
+            }
+        }
     `
 }
 
@@ -250,7 +305,8 @@ _personal {
     #[user-house]:String ``                 // House of the learner
     #[role]:String ``                       // One of: beginner, intermediate or expert (default blank)
     #[cookies-accepted]:Boolean `false`     // Changes when the user has accepted cookies
-    #[learning-style-deep]:Boolean 'false'  // Assume the user prefers a high level overview
+    #[learning-style-deep]:Boolean `false`  // Assume the user prefers a high level overview
+    #[next-recommended]:String `""`         // This stores the user's next recommended concept
     #[done1]:Boolean `false`
     #[done2]:Boolean `false`
     #[done3]:Boolean `false`
@@ -269,4 +325,5 @@ hogwarts {->(extends)_concept
     // we mark the root hogwarts concept as known so that sub concepts become suitable
 
     #own-knowledge =`1.0`
+    #top-level =`true`;
 }
