@@ -266,16 +266,16 @@ _concept {
                     EntityValue ev = (EntityValue)session.get(uri);
                     Boolean suitability = (Boolean)ev.getValue() == true;
 
-                    uri = session.resolve(concept.getUri() + "#visited");
+                    uri = session.resolve(concept.getUri() + "#own-knowledge");
                     ev = (EntityValue)session.get(uri);
-                    Boolean notVisited = (Integer)ev.getValue() == 0;
+                    Boolean notKnown = (Double)ev.getValue() != 1.0;
 
                     uri = session.resolve(concept.getUri() + "#top-level");
                     ev = (EntityValue)session.get(uri);
                     Boolean isRoot = (Boolean)ev.getValue() == true;
 
                     if (suitability
-                        && notVisited
+                        && notKnown
                         && !concept.getUriString().equals(${_concept->(personal)#next-recommended})
                         && !isRoot
                     ){
@@ -290,6 +290,11 @@ _concept {
 
                 i = lists.length;
             }
+        }
+
+        if(CountModule.getVisitedUriCache(${#base-url} + "/hogwarts", gale).length >=28){
+
+            ${_concept->(personal)#next-recommended} = ${#base-url} + "/hogwarts/school/OWL";
         }
     `
 }

@@ -87,6 +87,45 @@ school {->(extends)_concept
 
             ${#mark-prereq-all-visited}++;
         }
+
+        Concept[] courses = new Concept[]{${school/dada}, ${school/transfiguration}, ${school/herbology}, ${school/potions}};
+
+        ArrayList nonAffiliatedCourses = new ArrayList();
+        ArrayList affiliatedConcepts = new ArrayList();
+
+        for (int i = 0; i < courses.length; i++){
+
+            URI uri = session.resolve(courses[i].getUri() + "#affiliation");
+            EntityValue ev = (EntityValue)session.get(uri);
+            String affiliation = (String) ev.getValue();
+            Boolean isAffiliated = affiliation.equals(${_concept->(personal)#user-house});
+
+            uri = session.resolve(courses[i].getUri() + "#known");
+            ev = (EntityValue)session.get(uri);
+            Boolean isKnown = (Boolean)ev.getValue();
+
+            if (isAffiliated && !isKnown) {
+
+                affiliatedConcepts.add(courses[i].getUriString());
+            }
+            else if(!isKnown){
+
+                nonAffiliatedCourses.add(courses[i].getUriString());
+            }
+        }
+
+        if (affiliatedConcepts.size() > 0){
+
+            ${_concept->(personal)#next-recommended} = Objects.toString(affiliatedConcepts.get(0), null);
+        }
+        else if (nonAffiliatedCourses.size() > 0) {
+
+            int position = (int) Math.round(Math.random() * (nonAffiliatedCourses.size() - 1));
+            ${_concept->(personal)#next-recommended} = Objects.toString(nonAffiliatedCourses.get(position), null);
+        }
+        else if (nonAffiliatedCourses.size() == 0) {
+            ${_concept->(personal)#next-recommended} = ${hall-of-fame}.getUriString();
+        }
     `
 }
 
