@@ -7,6 +7,7 @@ _concept {->(extends)../_concept
     ->(personal)../../_personal
     event +
     #layout-resources =`new String[]{"css/hall-of-fame.css", "css/root-concept.css"}`
+    #unsuitable-resource =`"[[=hogwarts/sorting-popup.xhtml]]"`
 }
 
 

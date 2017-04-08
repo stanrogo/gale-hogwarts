@@ -137,9 +137,11 @@
 
 		.nav-toggle--icon-close {
 			display: none;
+			background: $white;
 		}
 		.nav-toggle--icon-menu {
 			display: block;
+			background: $white;
 		}
 
 		@include breakpoint(md) {
@@ -185,12 +187,20 @@
 		}
 
 		.tree-view--wrapper {
+			position: relative;
 			display: none;
 			flex-direction: column;
 			background: rgba($primary-dark, 0.8);
 
 			@include breakpoint(md) {
 				display: flex;
+			}
+
+			.user-message{
+				position: absolute;
+				right: 1rem;
+				top: 6px;
+				color: $white;
 			}
 
 			table {
@@ -241,6 +251,15 @@
 				position: relative;
 				left: auto;
 				box-shadow: none;
+			}
+
+			.user-message{
+				padding: 1rem;
+				border-bottom: 1px solid $black;
+
+				@include breakpoint(md){
+					display: none;
+				}
 			}
 
 			// Include the styling for links when on the course page

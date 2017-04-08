@@ -9,8 +9,13 @@
 
         <div id="wrapper">
 
+            <!-- Check the suitability and if not suitable display the relevant popup -->
+
             <gale:if expr="!${#suitability}">
-                <gale:object data="hogwarts/unsuitable.xhtml"/>
+
+                <gale:object>
+                    <gale:attr-variable name="data" expr="${#unsuitable-resource}"/>
+                </gale:object>
             </gale:if>
 
             <!-- This is the toggle button used to show/hide the mobile tree view -->
@@ -35,6 +40,10 @@
 
                 <nav class="tree-view--wrapper">
                     <gale:view name="static-tree-view" maxdepth="4"/>
+
+                    <div class="user-message">
+                        Good Day <gale:variable expr="${_concept->(personal)#user-name}"/>
+                    </div>
                 </nav>
 
             </header>
@@ -44,6 +53,11 @@
             <main id="main">
 
                 <nav class="tree-view--wrapper">
+
+                    <div class="user-message">
+                        Good Day <gale:variable expr="${_concept->(personal)#user-name}"/>
+                    </div>
+
                     <gale:view name="static-tree-view" maxdepth="3"/>
                 </nav>
 

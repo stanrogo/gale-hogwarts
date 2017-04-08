@@ -1,8 +1,16 @@
+//
+// @file ./hogwarts/concepts.gam
+// @description This is the concepts.gam file that defines the top level concepts of our application
+//
+// For each concept from now on, we are going to define the css files that should be loaded for that particular concept
+//
+// @author Stanley Clark <s.clark@student.tue.nl>
+// @version 1.0.0
+//
+
+// We define 5 modules that link to this module. Further, we include auto ordering in the tree view
+
 $options {
-
-    // By including this, the concepts will be displayed in the tree-view in
-    // the order that is listed in this file.
-
     default.order "auto"
     module "basic"
     module "diagon-alley"
@@ -11,12 +19,14 @@ $options {
     module "hall-of-fame"
 }
 
+// Extend from the root concept for easier use throughout the application
+
 _concept {->(extends)../_concept
     ->(personal)../_personal
     event +
 }
 
-// You are always ready to start learning about hogwarts and so this concept has no prerequisites
+// The basic concept, with no prerequisites
 
 basic {->(extends)_concept
     ->(parent)../hogwarts
@@ -39,71 +49,26 @@ diagon-alley {->(extends)_concept
     #layout-resources =`new String[]{"css/diagon-alley.css", "css/root-concept.css"}`
 }
 
-// The great hall should only be accessed after visiting the shops at diagon alley
+// The great hall should only be accessed after visiting the shops at Diagon Alley
+// However, the user can of course override this behaviour, and if the user is an intermediate user,
+// and ended up here by making the appropriate selection on the welcome screen, then all concepts before,
+// need to be marked as known.
 
 great-hall {->(extends)_concept
     ->(parent)../hogwarts
     ->(prereq)diagon-alley
 
-    // Mark all hardcoded prerequisite knowledge as known if user has the intermediate knowledge level
-    // for basic and diagon alley. Further, mark the children of this concept as known
-    // if the user is intermediate or expert
+    title `The Great Hall`
+    #layout-resources =`new String[]{"css/great-hall.css", "css/root-concept.css"}`
 
     event +`
+        if("intermediate".equals(${_concept->(personal)#role})){
 
-        String role = ${_concept->(personal)#role};
-
-        if("intermediate".equals(role)){
-
-            ${#user-available} = true;
+            ${#mark-prereq-all}++;
             ${#own-knowledge} = 1.0;
             ${#visited}++;
-
-            Concept[] list = ${->(prereq)};
-            for (int i = 0; i < list.length; i++) {
-                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
-                session.put(uri, new EntityValue(uri, 1d));
-                uri = session.resolve(list[i].getUri() + "#visited");
-                session.put(uri, new EntityValue(uri, 1));
-            }
-
-            list = ${diagon-alley->(prereq)};
-            for (int i = 0; i < list.length; i++) {
-                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
-                session.put(uri, new EntityValue(uri, 1d));
-                uri = session.resolve(list[i].getUri() + "#visited");
-                session.put(uri, new EntityValue(uri, 1));
-            }
-
-            list = ${diagon-alley<-(parent)};
-            for (int i = 0; i < list.length; i++) {
-                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
-                session.put(uri, new EntityValue(uri, 1d));
-                uri = session.resolve(list[i].getUri() + "#visited");
-                session.put(uri, new EntityValue(uri, 1));
-            }
-
-            list = ${basic<-(parent)};
-            for (int i = 0; i < list.length; i++) {
-                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
-                session.put(uri, new EntityValue(uri, 1d));
-                uri = session.resolve(list[i].getUri() + "#visited");
-                session.put(uri, new EntityValue(uri, 1));
-            }
-
-            list = ${basic/provisions<-(parent)};
-            for (int i = 0; i < list.length; i++) {
-                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
-                session.put(uri, new EntityValue(uri, 1d));
-                uri = session.resolve(list[i].getUri() + "#visited");
-                session.put(uri, new EntityValue(uri, 1));
-            }
         }
     `
-
-    title `The Great Hall`
-    #is-root-concept =`true`;
-    #layout-resources =`new String[]{"css/great-hall.css", "css/root-concept.css"}`
 }
 
 // School should only be accessed once you have been in the great hall and passed the sorting ceremony
@@ -112,77 +77,21 @@ school {->(extends)_concept
     ->(parent)../hogwarts
     ->(prereq)great-hall
 
+    title `School`
+    #layout-resources =`new String[]{"css/school.css", "css/root-concept.css"}`
+    #unsuitable-resource =`"[[=sorting-popup.xhtml]]"`
+
     // Mark all prerequisite knowledge as known if user has the expert knowledge level
     // for basic, diagon alley and great hall concepts
 
     event +`
-
         if("expert".equals(${_concept->(personal)#role})){
 
-            ${#user-available} = true;
+            ${#mark-prereq-all}++;
             ${#own-knowledge} = 1.0;
             ${#visited}++;
-
-            Concept[] list = ${->(prereq)};
-            for (int i = 0; i < list.length; i++) {
-                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
-                session.put(uri, new EntityValue(uri, 1d));
-                uri = session.resolve(list[i].getUri() + "#visited");
-                session.put(uri, new EntityValue(uri, 1));
-            }
-
-            list = ${great-hall->(prereq)};
-            for (int i = 0; i < list.length; i++) {
-                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
-                session.put(uri, new EntityValue(uri, 1d));
-                uri = session.resolve(list[i].getUri() + "#visited");
-                session.put(uri, new EntityValue(uri, 1));
-            }
-
-            list = ${diagon-alley->(prereq)};
-            for (int i = 0; i < list.length; i++) {
-                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
-                session.put(uri, new EntityValue(uri, 1d));
-                uri = session.resolve(list[i].getUri() + "#visited");
-                session.put(uri, new EntityValue(uri, 1));
-            }
-
-            list = ${great-hall<-(parent)};
-            for (int i = 0; i < list.length; i++) {
-                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
-                session.put(uri, new EntityValue(uri, 1d));
-                uri = session.resolve(list[i].getUri() + "#visited");
-                session.put(uri, new EntityValue(uri, 1));
-            }
-
-            list = ${diagon-alley<-(parent)};
-            for (int i = 0; i < list.length; i++) {
-                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
-                session.put(uri, new EntityValue(uri, 1d));
-                uri = session.resolve(list[i].getUri() + "#visited");
-                session.put(uri, new EntityValue(uri, 1));
-            }
-
-            list = ${basic<-(parent)};
-            for (int i = 0; i < list.length; i++) {
-                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
-                session.put(uri, new EntityValue(uri, 1d));
-                uri = session.resolve(list[i].getUri() + "#visited");
-                session.put(uri, new EntityValue(uri, 1));
-            }
-
-            list = ${basic/provisions<-(parent)};
-            for (int i = 0; i < list.length; i++) {
-                URI uri = session.resolve(list[i].getUri() + "#own-knowledge");
-                session.put(uri, new EntityValue(uri, 1d));
-                uri = session.resolve(list[i].getUri() + "#visited");
-                session.put(uri, new EntityValue(uri, 1));
-            }
         }
     `
-
-    title `Hogwarts School`
-    #layout-resources =`new String[]{"css/school.css", "css/root-concept.css"}`
 }
 
 // The hall of fame only unlocks once the prerequisite knowledge at school has been met
@@ -192,6 +101,8 @@ hall-of-fame {->(extends)_concept
     ->(prereq)school
 
     title `Hall of Fame`
-    event +
     #layout-resources =`new String[]{"css/hall-of-fame.css", "css/root-concept.css"}`
+    #unsuitable-resource =`"[[=sorting-popup.xhtml]]"`
+
+    event +
 }

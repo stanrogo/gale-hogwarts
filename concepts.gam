@@ -1,8 +1,18 @@
+//
+// @file ./concepts.gam
+// @description This is the root concepts.gam file of the entire application
+//
+// @author Stanley Clark <s.clark@student.tue.nl>
+// @version 1.0.0
+//
+
+// Define one module linked from this file with no other options
+
 $options {
     module "hogwarts"
 }
 
-// This is the root concept of the entire application
+// Define the root concept of the entire application
 
 _concept {
 
@@ -10,47 +20,38 @@ _concept {
 
     #[visited]:Integer `0`              // Integer determining how many times a concept has been visited
     #[own-knowledge]:Double `0.0`       // Own knowledge by default will get set to 1 since you have now viewed the page
-    #[course-knowledge]:Integer `-1`
-    #[user-available]:Boolean `false`   // Override for when user marks a concept as suitable
+    #[course-knowledge]:Integer `-1`    // The knowledge that you have if you are taking a particular course
+    #[affiliation]:String `""`          // A concept can be affiliated to a particular house
+
+    // Define a helper function for each concept, which allows the construction of the base URL of the server on
+    // which the concepts are hosted
+
     #base-url =`~
         return ${.}.getUriString().substring(0, ${.}.getUriString().indexOf("/", ${.}.getUriString().indexOf("/") + 2));
     `
+    #layout-resources:String[] =`new String[0]`
 
-    event +`
-        if(${#suitability} || ${#user-available} && !"".equals(${_concept->(personal)#role})){
-
-            ${#own-knowledge} = 1.0;
-            ${#visited}++;
-        }
-
-        if(!${.}.getUriString().equals(${_concept->(personal)#current-concept})){
-
-            ${_concept->(personal)#last-unique-concept} = ${_concept->(personal)#current-concept};
-        }
-
-        ${_concept->(personal)#last-concept} = ${_concept->(personal)#current-concept};
-        ${_concept->(personal)#current-concept} = ${.}.getUriString();
-    `
-
-    // If a role has not been determined yet, retrieve the letter screen.
-    // Otherwise return the normal layout
+    // If a role has not been determined yet, retrieve the welcome letter screen, otherwise return the normal layout
 
     #resource =`"".equals(${_concept->(personal)#role}) ? "[[=welcome-screen.xhtml]]" : "[[=layout.xhtml]]"`
+    #unsuitable-resource =`"[[=hogwarts/unsuitable.xhtml]]"`
 
-    // The knowledge value is the average of the parent knowledge and itself
+    // Define the variables that will be computed with every entry to the concept, based on other variables
 
     #knowledge:Double =`avg(new Object[] {${<=(parent)#knowledge}, ${#own-knowledge}})`
-    #known-all:Boolean =`${#knowledge} > 0.8`
+    #known-most:Boolean =`${#knowledge} > 0.8`
+    #known-all:Boolean =`${#knowledge} == 1.0`
     #known:Boolean =`${#own-knowledge} == 1.0`
-    #unknown:Boolean =`false`
+    #unknown:Boolean =`${#own-knowledge} == 0.0`
+    #unvisited:Boolean =`${#visited} == 0`
+
+    // Define suitability as:
+    //      - Overview Learning Style:  If the user has an overview learning style and this is a concept
+    //                                  that has at least three parents, then it will be unsuitable unless
+    //                                  all siblings of the parent have been studied.
+    //      - Normal case:              If all prerequisites are known-most, and if the parent is known
+
     #suitability:Boolean =`~
-
-        // If the user has an overview learning style
-        // and this is a concept that has at least three parents,
-        // then it will be unsuitable unless all siblings of the parent have been studied
-        // or if it is a user available concept.
-
-        if (${#user-available}) return true;
 
         if(!${_concept->(personal)#learning-style-deep}){
             if(${->(parent)}.length > 0){
@@ -63,22 +64,14 @@ _concept {
             }
         }
 
-        return and(new Object[] {${=>(prereq)#known-all}}) && ${->(parent)#known};
+        return and(new Object[] {${=>(prereq)#known-most}}) && ${->(parent)#known};
     `
-
-    // A concept can be affiliated with a house, which will then become recommended
-
-    #affiliation =`""`
-    #course-blocked =`false`
 
     // Always start the title of the web page with "Hogwarts -"
 
     #layout.title `"Hogwarts - "+${.}.getTitle()`
 
-    #layout-resources:String[] =`new String[0]`
-
-    // Include all the needed css files in the head
-    // The files that should be included last should go first here.
+    // Include all the needed css files in the head, in reverse order
 
     #layout.css =`~
         StringBuilder sb = new StringBuilder("");
@@ -89,16 +82,21 @@ _concept {
         if("slytherin".equals(${_concept->(personal)#user-house})){
 
             sb.append(";css/slytherin.css");
-        } else if("gryffindor".equals(${_concept->(personal)#user-house})){
+        }
+        else if("gryffindor".equals(${_concept->(personal)#user-house})){
 
             sb.append(";css/gryffindor.css");
-        } else if("hufflepuff".equals(${_concept->(personal)#user-house})){
+        }
+        else if("hufflepuff".equals(${_concept->(personal)#user-house})){
 
             sb.append(";css/hufflepuff.css");
-        } else if("ravenclaw".equals(${_concept->(personal)#user-house})){
+        }
+        else if("ravenclaw".equals(${_concept->(personal)#user-house})){
 
             sb.append(";css/ravenclaw.css");
-        } else{
+        }
+        else{
+
             // Do nothing
         }
 
@@ -114,52 +112,100 @@ _concept {
     `
 
     // Classes to use when displaying adaptive links
-    // The amount of statements used is currently the MAX that is available!
 
     #link.classexpr `~
         StringBuilder sb = new StringBuilder("");
         sb.append("house-knowledge--" + ${#affiliation} + " ");
-        if (${#course-knowledge} == 20) sb.append("knowledge--level1 ");
-        if (${#course-knowledge} == 40) sb.append("knowledge--level2 ");
-        if (${#course-knowledge} == 60) sb.append("knowledge--level3 ");
-        if (${#course-knowledge} == 80) sb.append("knowledge--level4 ");
-        if (${#course-knowledge} >= 100) sb.append("knowledge--level5 ");
+        if (${#course-knowledge} >= 20) sb.append("knowledge--level" + Math.min((${#course-knowledge} / 20), 5) + " ");
         if (${#known}) sb.append("knowledge--known ");
-        if (${#knowledge} == 1.0) sb.append("knowledge--known-all ");
-        if (${#course-blocked}) sb.append("course-blocked ");
+        if (${#known-all}) sb.append("knowledge--known-all ");
         if (!${#suitability}) sb.append("knowledge--unsuitable ");
         if (${#suitability}) sb.append("knowledge--suitable ");
-        if (${#suitability} && ${#visited} == 0) sb.append("knowledge--first-time ");
-        if(!${#known} && ${#suitability} && ${#course-knowledge} == 0) sb.append("knowledge--unknown");
+        if (${#suitability} && ${#unvisited}) sb.append("knowledge--first-time ");
+        if (${#unknown}) sb.append("knowledge--unknown");
         return sb.toString();
     `
+
+    // Do not display any icons by the links
+
     #link.iconlist `null`
 
     // Tags are shown based on whether you view the concept for the first time or not
+
     #tags =`~
         if (${#visited} > 2) return "default;short";
         if (${#visited} > 1) return "default;long";
         return "intro;default;long";
+    `
+
+    // Marks all chained prerequisites, as well as the children of each prerequisite
+
+    #[mark-prereq-all]:Integer {
+        event `
+            ${#own-knowledge} = 1d;
+            ${#visited}++;
+            Concept[] list = ${->(prereq)};
+            for (int i = 0; i < list.length; i++) {
+
+                URI uri = session.resolve(list[i].getUri() + "#mark-prereq-all");
+                EntityValue ev = (EntityValue)session.get(uri);
+                session.put(uri, new EntityValue(uri, ((Integer)ev.getValue())+1));
+
+                uri = session.resolve(list[i].getUri() + "#mark-all");
+                ev = (EntityValue)session.get(uri);
+                session.put(uri, new EntityValue(uri, ((Integer)ev.getValue())+1));
+            }
+        `
+    }
+
+    // Marks all the children of a concept as known
+
+    #[mark-all]:Integer {
+        event `
+            ${#own-knowledge} = 1d;
+            Concept[] list = ${<-(parent)};
+            for (int i = 0; i < list.length; i++) {
+
+                URI uri = session.resolve(list[i].getUri()+ "#mark-all");
+                EntityValue ev = (EntityValue)session.get(uri);
+                session.put(uri, new EntityValue(uri, ((Integer)ev.getValue())+1));
+            }
+        `
+    }
+
+    // Define the main event for all concepts that we have. Here we:
+    //      - Define when to update the knowledge value and visited (if suitable and the user has been assigned a role)
+    //      - Store the last accessed concept URIs, along with the last unique concept.
+
+    event +`
+        if(${#suitability} && !"".equals(${_concept->(personal)#role})){
+
+            ${#own-knowledge} = 1.0;
+            ${#visited}++;
+        }
+
+        if(!${.}.getUriString().equals(${_concept->(personal)#current-concept})){
+
+            ${_concept->(personal)#last-unique-concept} = ${_concept->(personal)#current-concept};
+        }
+
+        ${_concept->(personal)#last-concept} = ${_concept->(personal)#current-concept};
+        ${_concept->(personal)#current-concept} = ${.}.getUriString();
     `
 }
 
 // User stored settings for the entire application
 
 _personal {
-    #[first-time]:Boolean `true`    // First time to visit the application
-    #[last-concept]:String ``       // The last concept that was accessed by the user (especially useful for course learning)
-    #[current-concept]:String ``    // The concept that is currently accessed
-    #[last-unique-concept]:String ``    // The last accessed concept not the same as the current one
-
-    #[user-name]:String ``          // Username of learner
-    #[user-house]:String ``         // House of the learner
-
-    // One of: beginner, intermediate or expert (default blank)
-    #[role]:String ``
-
-    #[cookies-accepted]:Boolean `false` // Changes when the user has accepted cookies
-
-    #[learning-style-deep]:Boolean 'false' // Assume the user prefers a high level overview
+    #[first-time]:Boolean `true`            // First time to visit the application
+    #[last-concept]:String ``               // The last concept that was accessed by the user (especially useful for course learning)
+    #[current-concept]:String ``            // The concept that is currently accessed
+    #[last-unique-concept]:String ``        // The last accessed concept not the same as the current one
+    #[user-name]:String ``                  // Username of learner
+    #[user-house]:String ``                 // House of the learner
+    #[role]:String ``                       // One of: beginner, intermediate or expert (default blank)
+    #[cookies-accepted]:Boolean `false`     // Changes when the user has accepted cookies
+    #[learning-style-deep]:Boolean 'false'  // Assume the user prefers a high level overview
     #[done1]:Boolean `false`
     #[done2]:Boolean `false`
     #[done3]:Boolean `false`
@@ -168,12 +214,14 @@ _personal {
     #[knowledge2]:Double ``
     #[knowledge3]:Double ``
     #[knowledge4]:Double ``
-
 }
 
 hogwarts {->(extends)_concept
     title `Hogwarts`
     no-title `true`
+
+    // Because this concept is not available for visitation, but a tree hierarchy should be made,
+    // we mark the root hogwarts concept as known so that sub concepts become suitable
 
     #own-knowledge =`1.0`
 }

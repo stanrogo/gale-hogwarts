@@ -17,3 +17,12 @@ ghosts {->(extends)_concept
     title `The ghosts of hogwarts`
     event +
 }
+
+sorting-ceremony {->(extends)_concept
+    ->(parent)../great-hall
+    ->(prereq)ghosts
+    ->(prereq)houses
+
+    title `Sorting Ceremony`
+    event +
+}

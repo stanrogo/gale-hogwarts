@@ -1,35 +1,52 @@
+//
+// @file ./hogwarts/school/concepts.gam
+// @description This is the concepts.gam file for the school module.
+//
+// This module contains some course specific logic in order to be able to gain knowledge levels
+// in a slightly different way.
+//
+// @author Stanley Clark <s.clark@student.tue.nl>
+// @version 1.0.0
+//
+
 $options {
-default.order "auto"
+    default.order "auto"
 }
+
+// Extend from the main concept. Layout resources are the same for all courses
 
 _concept {->(extends)../_concept
     ->(personal)../../_personal
-    event +
     #layout-resources =`new String[]{"css/school.css", "css/root-concept.css"}`
+    #unsuitable-resource =`"[[=../sorting-popup.xhtml]]"`
+    event +
 }
 
+// Define the course concept where all our subjects will extend from.
+
 _course {->(extends)_concept
+
     // The "later" screen is shown if the previously accessed concept is also the current concept
-    // and only if you have not yet finished the course
-    // and only when the siblings knowledge is not full (to avoid blocking finishing in this situation)
-    #sub-resource =`~
-        if (
-            ${.}.getUriString().equals(${_concept->(personal)#last-concept})
-            && ${#course-knowledge} < 100
-            && sum(${->(parent)<=(parent)#course-knowledge}) < ((${->(parent)<-(parent)}.length - 1) * 100)
-        )
-            return "[[=later.xhtml]]";
-        return "[[=layout.xhtml]]";
-    `
+    // and only if you have not yet finished the course and only when the knowledge of the siblings is not complete
+
     #[course-knowledge]:Integer `0`
+    #[course-duplicate-access]:Boolean `false`
+    #[course-siblings-unknown]:Boolean `true`
+
+    #course-unfinished =`${#course-knowledge} < 100`
+    #course-blocked =`${#course-duplicate-access} && ${#course-unfinished} && ${#course-siblings-unknown}`
+    #sub-resource =`${#course-blocked} ? "[[=later.xhtml]]" : "[[=layout.xhtml]]"`
 
     event +`
-        ${#course-blocked} = true;
 
-        if(
-            !${.}.getUriString().equals(${_concept->(personal)#last-concept})
-            || sum(${->(parent)<=(parent)#course-knowledge}) >= ((${->(parent)<-(parent)}.length - 1) * 100)
-        ){
+        Boolean duplicateAccess = ${.}.getUriString().equals(${_concept->(personal)#last-concept});
+        ${#course-duplicate-access} = duplicateAccess;
+
+        Boolean siblingsKnown = sum(${->(parent)<=(parent)#course-knowledge}) >= ((${->(parent)<-(parent)}.length - 2) * 100);
+        ${#course-siblings-unknown} = !siblingsKnown;
+
+        if((!duplicateAccess || siblingsKnown) && ${#suitability}){
+
             Integer courseKnowledge = ${#course-knowledge} < 120 ? ${#course-knowledge} + 20 : 120;
             ${#course-knowledge} = courseKnowledge;
             ${#own-knowledge} = Math.min((courseKnowledge / 100.0), 1.0);
@@ -44,10 +61,14 @@ _course {->(extends)_concept
 
                 if(!siblingUriString.equals(${.}.getUriString())){
 
-                    URI uri = session.resolve(childrenList[i].getUri() + "#course-blocked");
+                    URI uri = session.resolve(childrenList[i].getUri() + "#course-duplicate-access");
                     session.put(uri, new EntityValue(uri, false));
                 }
             }
+        }
+        else{
+
+            ${#own-knowledge} = Math.min((${#course-knowledge} / 100.0), 1.0);
         }
     `
 }

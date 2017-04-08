@@ -1,0 +1,43 @@
+<section id="unsuitable" xmlns="http://www.w3.org/1999/xhtml" xmlns:gale="http://gale.tue.nl/adaptation">
+
+    <div class="overlay"></div>
+    <div class="unsuitable-info--wrapper">
+        <div class="unsuitable-info">
+            <div class="overlay--aragog"></div>
+            <div class="unsuitable--text">
+
+                <p>
+                    Oops! You want to continue down to investigate the rest of the school only there's one problem:
+                    You're not in a house yet! You'll have a hard time getting to classes and learning if you don't
+                    have a strong family behind you.
+                </p>
+
+                <p>
+                    Let us go to the great hall where you can learn all about the houses and then take part in the sorting
+                    ceremony.
+                </p>
+
+                <form id="continue-unsuitable" method="post">
+                    <gale:attr-variable name="action" expr="GaleUtil.getContextURL(gale.req()) + &quot;/concept/&quot;
+                        +  ${.}.getUriString() + &quot;?plugin=form&quot;" />
+                    <a href="#" class="button button-ok"
+                       onclick="document.forms['continue-unsuitable'].submit(); return false">To the Great Hall!</a>
+
+                    <gale:if expr="&quot;Hogwarts&quot;.equals(${->(parent)?title})">
+                        <gale:then>
+                            <input name="exec" type="hidden" value="${great-hall#mark-prereq-all}++;" />
+                        </gale:then>
+                        <gale:else>
+                            <input name="exec" type="hidden" value="${../great-hall#mark-prereq-all}++;" />
+                        </gale:else>
+                    </gale:if>
+
+                    <input name="redirect" type="hidden" value="true">
+                        <gale:attr-variable name="value" expr="${#base-url} + &quot;/hogwarts/great-hall&quot;"/>
+                    </input>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
