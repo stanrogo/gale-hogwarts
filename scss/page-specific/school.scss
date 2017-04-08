@@ -6,7 +6,7 @@
 
 #main .tree-view--wrapper, #school{
 
-	a.knowledge--known:not(.knowledge--level5):not(.course-blocked){
+	a.knowledge--known:not(.knowledge--level5):not(.course-blocked)[style="padding-left: 30px;"]{
 
 		&.knowledge--suitable{
 			color:  #2566bb;
