@@ -1,3 +1,12 @@
+//
+// @file ./hogwarts/diagon-alley/concepts.gam
+// @description This is concepts.gam file that describes all the shops in diagon-alley
+//
+// @author Stanley Clark <s.clark@student.tue.nl>
+// @version 1.0.0
+//
+
+
 $options {
     default.order "auto"
 }

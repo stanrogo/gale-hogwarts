@@ -1,3 +1,12 @@
+//
+// @file ./hogwarts/hall-of-fame/concepts.gam
+// @description This is the concepts.gam file which describes concepts related to famous people of hogwarts school
+//
+// @author Stanley Clark <s.clark@student.tue.nl>
+// @version 1.0.0
+//
+
+
 $options {
     default.order "auto"
 }

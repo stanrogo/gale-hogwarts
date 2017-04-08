@@ -1,3 +1,16 @@
+//
+// @file ./hogwarts/basic/provisions/concepts.gam
+// @description This concepts.gam file describes only one concept, the dormitories
+//
+// This concept is mainly here to show what we can achieve by using a nested page structure
+// This includes being able to differentiate between deep and overview learning styles.
+// (Out of which only the overview learning style is implemented).
+//
+// @author Stanley Clark <s.clark@student.tue.nl>
+// @version 1.0.0
+//
+
+
 _concept {->(extends)../_concept
     ->(personal)../../../_personal
     event +

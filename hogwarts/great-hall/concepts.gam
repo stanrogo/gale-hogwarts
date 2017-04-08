@@ -1,3 +1,12 @@
+//
+// @file ./hogwarts/great-hall/concepts.gam
+// @description This is the concepts.gam file describing the great hall and sorting ceremony
+//
+// @author Stanley Clark <s.clark@student.tue.nl>
+// @version 1.0.0
+//
+
+
 _concept {->(extends)../_concept
     ->(personal)../../_personal
     event +
