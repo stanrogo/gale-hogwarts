@@ -332,3 +332,10 @@ hogwarts {->(extends)_concept
     #own-knowledge =`1.0`
     #top-level =`true`;
 }
+
+end-screen {->(extends)_concept
+    title `Congratulations!`
+
+    #own-knowledge =`1.0`
+    #resource =`"[[=end-screen.xhtml]]"`
+}

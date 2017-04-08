@@ -1,0 +1,25 @@
+@import "../_general.scss";
+
+.end-screen--wrapper {
+	background-image: url("../images/cheer.jpg");
+	background-repeat: no-repeat;
+	background-size:cover;
+	height: 100%;
+
+	@include breakpoint(md){
+
+	}
+
+	.end-screen--text{
+		padding: 1rem;
+		font-size: 2.2rem;
+		margin-top: 5rem;
+		width: 22rem;
+		color: chocolate;
+
+		@include breakpoint(sm) {
+			margin-left: 54%;
+
+		}
+	}
+}
