@@ -24,6 +24,7 @@ sorting-ceremony {->(extends)_concept
     ->(prereq)houses
 
     title `Sorting Ceremony`
+    #sorting-test-active =`true`
     event +`
         if ("".equals(${_concept->(personal)#user-house})){
             ${#own-knowledge} = 0d;

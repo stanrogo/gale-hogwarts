@@ -2,7 +2,7 @@
 
     <p>Welcome to the sorting ceremony of Hogwarts School of WitchCraft And Wizardry!</p>
 
-    <gale:if expr="&quot;&quot;.equals(${_concept->(personal)#user-house})">
+    <gale:if expr="${#sorting-test-active} == true">
         <gale:then>
 
             <p>
@@ -14,11 +14,7 @@
 
             <form id="sorting-test" method="post">
 
-                <gale:attr-variable name="action" expr="
-								GaleUtil.getContextURL(gale.req()) + &quot;/concept/&quot; + ${.}.getUriString()
-								+ &quot;?plugin=form&quot;
-							"/>
-
+                <gale:attr-variable name="action" expr="gale.req().getRequestURL()+&quot;?plugin=form&quot;"/>
 
                 <p> What is your favorite color</p>
 
@@ -134,9 +130,11 @@
             else {
                 ${_concept->(personal)#user-house} = &quot;hufflepuff&quot;;
             }
+
+            ${#sorting-test-active} = false;
 							"/>
                 <input name="redirect" type="hidden">
-                    <gale:attr-variable name="value" expr="${#base-url} + &quot;/hogwarts/great-hall/sorting-ceremony&quot;"/>
+                    <gale:attr-variable name="value" expr="${.}.getUriString()"/>
                 </input>
             </form>
 
@@ -148,6 +146,25 @@
                 You're a fully fledged member now and can proceed directly to learn everything to do with magic spells,
                 potions and more at [[../school|school]] with your amazing new family!
             </gale:text>
+
+            <div>
+                If you aren't happy with your results or would like to try to be sorted again, then you can do so by
+                clicking
+
+                <form id="try-again" method="post">
+                    <gale:attr-variable name="action" expr="gale.req().getRequestURL()+&quot;?plugin=form&quot;"/>
+                    <a href="#" onclick="document.forms['try-again'].submit(); return false">here</a>.
+                    <input name="exec" type="hidden" value="${#sorting-test-active} = true;"/>
+                    <input name="redirect" type="hidden" value="true">
+                        <gale:attr-variable name="value" expr="${.}.getUriString()" />
+                    </input>
+                </form>
+
+                Note that your current house won't be changed until after you have done the test.
+
+            </div>
+
+
 
         </gale:else>
     </gale:if>
