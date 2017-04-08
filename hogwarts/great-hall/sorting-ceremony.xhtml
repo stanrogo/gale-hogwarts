@@ -1,13 +1,155 @@
 <section xmlns="http://www.w3.org/1999/xhtml" xmlns:gale="http://gale.tue.nl/adaptation">
 
-    <h1>Welcome!</h1>
-
     <p>Welcome to the sorting ceremony of Hogwarts School of WitchCraft And Wizardry!</p>
 
-    <p>
-        As we are sure that most of you know, the sorting hat determines what house you belong to. Once you are assigned
-        a house, your house will be like your family. You will sleep with your house, points will be assigned to each house
-        and at the end, each house has the opportunity of winning the house cup!
-    </p>
+    <gale:if expr="&quot;&quot;.equals(${_concept->(personal)#user-house})">
+        <gale:then>
+
+            <p>
+                As we are sure that most of you know, the sorting hat determines what house you belong to. Once you are assigned
+                a house, your house will be like your family. You will sleep with your house, points will be assigned to each
+                house
+                and at the end, each house has the opportunity of winning the house cup!
+            </p>
+
+            <form id="sorting-test" method="post">
+
+                <gale:attr-variable name="action" expr="
+								GaleUtil.getContextURL(gale.req()) + &quot;/concept/&quot; + ${.}.getUriString()
+								+ &quot;?plugin=form&quot;
+							"/>
+
+
+                <p> What is your favorite color</p>
+
+                <input type="radio" name="favourite-color" value="1"/><label>Red</label>
+                <input type="radio" name="favourite-color" value="2"/><label>Blue</label>
+                <input type="radio" name="favourite-color" value="3"/><label>Green</label>
+                <input type="radio" name="favourite-color" value="4"/><label>Yellow</label>
+
+                <p> What do you do if you don't know something?</p>
+
+                <input type="radio" name="do-not-know" value="1"/><label>Keep trying until it works</label>
+                <input type="radio" name="do-not-know" value="2"/><label>Research it until you know</label>
+                <input type="radio" name="do-not-know" value="3"/><label>Reason about it with logic</label>
+                <input type="radio" name="do-not-know" value="4"/><label>Ask someone else to explain</label>
+
+                <p> What is your favorite course</p>
+
+                <input type="radio" name="favourite-course" value="1"/><label>Defense Against the Dark Arts</label>
+                <input type="radio" name="favourite-course" value="2"/><label>Spells and Charms</label>
+                <input type="radio" name="favourite-course" value="3"/><label>Potions</label>
+                <input type="radio" name="favourite-course" value="4"/><label>Herbiology</label>
+
+                <p> What is your favorite creature</p>
+
+                <input type="radio" name="favourite-creature" value="1"/><label>Hippogriff</label>
+                <input type="radio" name="favourite-creature" value="2"/><label>Flubber-Bookworm</label>
+                <input type="radio" name="favourite-creature" value="3"/><label>Two-headed Sea Snake</label>
+                <input type="radio" name="favourite-creature" value="4"/><label>Tree troll</label>
+
+                <p> What is your favorite book</p>
+
+                <input type="radio" name="favourite-book" value="1"/><label>The amazing adventures of the great mystic knight</label>
+                <input type="radio" name="favourite-book" value="2"/><label>A profound theory of magic through the ages</label>
+                <input type="radio" name="favourite-book" value="3"/><label>How to proceed with power</label>
+                <input type="radio" name="favourite-book" value="4"/><label>Something with a lot of pictures</label>
+
+                <p> What is your favorite pet</p>
+
+                <input type="radio" name="favourite-pet" value="1"/><label>Owl</label>
+                <input type="radio" name="favourite-pet" value="2"/><label>Cat</label>
+                <input type="radio" name="favourite-pet" value="3"/><label>Rat</label>
+                <input type="radio" name="favourite-pet" value="4"/><label>Frog</label>
+
+                <p> What is your favorite relaxing activity</p>
+
+                <input type="radio" name="favourite-relaxing" value="1"/><label>Quidditch</label>
+                <input type="radio" name="favourite-relaxing" value="2"/><label>Reading</label>
+                <input type="radio" name="favourite-relaxing" value="3"/><label>Duelling</label>
+                <input type="radio" name="favourite-relaxing" value="4"/><label>Games</label>
+
+                <p> What is your favorite place on Hogwarts</p>
+
+                <input type="radio" name="favourite-place" value="1"/><label>Dormitory</label>
+                <input type="radio" name="favourite-place" value="2"/><label>Library</label>
+                <input type="radio" name="favourite-place" value="3"/><label>Basement</label>
+                <input type="radio" name="favourite-place" value="4"/><label>3houses</label>
+
+                <p> What is your favorite pick-up line?</p>
+
+                <input type="radio" name="favourite-pickup" value="1"/><label>I solemnly swear I am up to no good</label>
+                <input type="radio" name="favourite-pickup" value="2"/><label>Smart is the new sexy</label>
+                <input type="radio" name="favourite-pickup" value="3"/><label>Let me slither in your bed</label>
+                <input type="radio" name="favourite-pickup" value="4"/><label>You're pretty...</label>
+
+                <p> What is your favorite country for holidays</p>
+
+                <input type="radio" name="favourite-country" value="1"/><label>Romania</label>
+                <input type="radio" name="favourite-country" value="2"/><label>Bulgaria</label>
+                <input type="radio" name="favourite-country" value="3"/><label>Greece</label>
+                <input type="radio" name="favourite-country" value="4"/><label>England</label>
+
+
+                <a href="#" class="button cookie-button"
+                   onclick="document.forms['sorting-test'].submit(); return false">
+                    I'm sure of my selection
+                </a>
+
+                <input name="exec" type="hidden" value="
+            int[] results = new int[] {
+                Integer.parseInt(gale.req().getParameter(&quot;favourite-color&quot;)),
+                Integer.parseInt(gale.req().getParameter(&quot;do-not-know&quot;)),
+                Integer.parseInt(gale.req().getParameter(&quot;favourite-course&quot;)),
+                Integer.parseInt(gale.req().getParameter(&quot;favourite-creature&quot;)),
+                Integer.parseInt(gale.req().getParameter(&quot;favourite-book&quot;)),
+                Integer.parseInt(gale.req().getParameter(&quot;favourite-pet&quot;)),
+                Integer.parseInt(gale.req().getParameter(&quot;favourite-relaxing&quot;)),
+                Integer.parseInt(gale.req().getParameter(&quot;favourite-place&quot;)),
+                Integer.parseInt(gale.req().getParameter(&quot;favourite-pickup&quot;)),
+                Integer.parseInt(gale.req().getParameter(&quot;favourite-country&quot;))
+            };
+
+            int gryffindorCount = 0;
+            int ravenclawCount = 0;
+            int slytherinCount = 0;
+            int hufflepuffCount = 0;
+
+            for (int i = 0; i &lt; results.length; i++) {
+                if(results[i] == 1) gryffindorCount++;
+                if(results[i] == 2) ravenclawCount++;
+                if(results[i] == 3) slytherinCount++;
+                if(results[i] == 4) hufflepuffCount++;
+            }
+
+            if(gryffindorCount >= ravenclawCount &amp;&amp; gryffindorCount >= slytherinCount &amp;&amp; gryffindorCount >= hufflepuffCount){
+                ${_concept->(personal)#user-house} = &quot;gryffindor&quot;;
+            }
+            else if(ravenclawCount >= gryffindorCount &amp;&amp; ravenclawCount >= slytherinCount &amp;&amp; ravenclawCount >= hufflepuffCount){
+                ${_concept->(personal)#user-house} = &quot;ravenclaw&quot;;
+            }
+            else if(slytherinCount >= gryffindorCount &amp;&amp; slytherinCount >= ravenclawCount &amp;&amp; slytherinCount >= hufflepuffCount){
+                ${_concept->(personal)#user-house} = &quot;slytherin&quot;;
+            }
+            else {
+                ${_concept->(personal)#user-house} = &quot;hufflepuff&quot;;
+            }
+							"/>
+                <input name="redirect" type="hidden">
+                    <gale:attr-variable name="value" expr="${#base-url} + &quot;/hogwarts/great-hall/sorting-ceremony&quot;"/>
+                </input>
+            </form>
+
+        </gale:then>
+        <gale:else>
+
+            <gale:text type="creole" tag="default">
+                Congratulations for being sorted into <gale:variable expr="${_concept->(personal)#user-house}"/> house!
+                You're a fully fledged member now and can proceed directly to learn everything to do with magic spells,
+                potions and more at [[../school|school]] with your amazing new family!
+            </gale:text>
+
+        </gale:else>
+    </gale:if>
 
 </section>
