@@ -144,6 +144,7 @@ _concept {
         event `
             ${#own-knowledge} = 1d;
             ${#visited}++;
+
             Concept[] list = ${->(prereq)};
             for (int i = 0; i < list.length; i++) {
 
@@ -154,6 +155,12 @@ _concept {
                 uri = session.resolve(list[i].getUri() + "#mark-all");
                 ev = (EntityValue)session.get(uri);
                 session.put(uri, new EntityValue(uri, ((Integer)ev.getValue())+1));
+            }
+
+            // We assume that we only have one parent for a child concept
+
+            if(${->(parent)}.length > 0 && !"Hogwarts".equals(${->(parent)?title})){
+                ${->(parent)#mark-prereq-all}++;
             }
         `
     }

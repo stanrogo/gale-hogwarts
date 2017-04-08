@@ -6,8 +6,10 @@
         <gale:then>
 
             <p>
-                As we are sure that most of you know, the sorting hat determines what house you belong to. Once you are assigned
-                a house, your house will be like your family. You will sleep with your house, points will be assigned to each
+                As we are sure that most of you know, the sorting hat determines what house you belong to. Once you are
+                assigned
+                a house, your house will be like your family. You will sleep with your house, points will be assigned to
+                each
                 house
                 and at the end, each house has the opportunity of winning the house cup!
             </p>
@@ -46,8 +48,10 @@
 
                 <p> What is your favorite book</p>
 
-                <input type="radio" name="favourite-book" value="1"/><label>The amazing adventures of the great mystic knight</label>
-                <input type="radio" name="favourite-book" value="2"/><label>A profound theory of magic through the ages</label>
+                <input type="radio" name="favourite-book" value="1"/><label>The amazing adventures of the great mystic
+                knight</label>
+                <input type="radio" name="favourite-book" value="2"/><label>A profound theory of magic through the
+                ages</label>
                 <input type="radio" name="favourite-book" value="3"/><label>How to proceed with power</label>
                 <input type="radio" name="favourite-book" value="4"/><label>Something with a lot of pictures</label>
 
@@ -74,7 +78,8 @@
 
                 <p> What is your favorite pick-up line?</p>
 
-                <input type="radio" name="favourite-pickup" value="1"/><label>I solemnly swear I am up to no good</label>
+                <input type="radio" name="favourite-pickup" value="1"/><label>I solemnly swear I am up to no
+                good</label>
                 <input type="radio" name="favourite-pickup" value="2"/><label>Smart is the new sexy</label>
                 <input type="radio" name="favourite-pickup" value="3"/><label>Let me slither in your bed</label>
                 <input type="radio" name="favourite-pickup" value="4"/><label>You're pretty...</label>
@@ -142,10 +147,37 @@
         <gale:else>
 
             <gale:text type="creole" tag="default">
-                Congratulations for being sorted into <gale:variable expr="${_concept->(personal)#user-house}"/> house!
+                Congratulations for being sorted into
+                <gale:variable expr="${_concept->(personal)#user-house}"/>
+                house!
                 You're a fully fledged member now and can proceed directly to learn everything to do with magic spells,
                 potions and more at [[../school|school]] with your amazing new family!
             </gale:text>
+
+            <gale:if expr="${#sorted-adaptively}">
+                <gale:then>
+                    <gale:if expr="&quot;ravenclaw&quot;.equals(${_concept->(personal)#user-house})">
+                        <p>
+                            We sorted you into this house because you have read a staggering
+                            <gale:variable
+                                    expr="CountModule.getVisitedUriCache(${../../hogwarts}.getUri(), gale).length"/>
+                            different pages since you got here. That's a lot of thirst for knowledge and as such you
+                            really
+                            are a true Ravenclaw!
+                        </p>
+                    </gale:if>
+                    <gale:if expr="&quot;hufflepuff&quot;.equals(${_concept->(personal)#user-house})">
+                        <p>
+                            It's ok, we get it, we really do, you don't like to read to much and instead focus on
+                            caring for those around you. That's definitely something to not be ashamed of!
+                            We must however say that we sorted you into Hufflepuff House because you have only read
+                            <gale:variable
+                                    expr="CountModule.getVisitedUriCache(${../../hogwarts}.getUri(), gale).length"/>
+                            different pages since you got here.
+                        </p>
+                    </gale:if>
+                </gale:then>
+            </gale:if>
 
             <div>
                 If you aren't happy with your results or would like to try to be sorted again, then you can do so by
@@ -156,15 +188,13 @@
                     <a href="#" onclick="document.forms['try-again'].submit(); return false">here</a>.
                     <input name="exec" type="hidden" value="${#sorting-test-active} = true;"/>
                     <input name="redirect" type="hidden" value="true">
-                        <gale:attr-variable name="value" expr="${.}.getUriString()" />
+                        <gale:attr-variable name="value" expr="${.}.getUriString()"/>
                     </input>
                 </form>
 
                 Note that your current house won't be changed until after you have done the test.
 
             </div>
-
-
 
         </gale:else>
     </gale:if>

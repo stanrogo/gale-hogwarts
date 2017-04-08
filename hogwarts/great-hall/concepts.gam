@@ -24,10 +24,37 @@ sorting-ceremony {->(extends)_concept
     ->(prereq)houses
 
     title `Sorting Ceremony`
-    #sorting-test-active =`true`
+    #[sorting-test-active]:Boolean `true`
+    #[sorted-adaptively]:Boolean `false`
     event +`
-        if ("".equals(${_concept->(personal)#user-house})){
+        if ("".equals(${_concept->(personal)#user-house}) && ${#suitability}){
             ${#own-knowledge} = 0d;
+
+            double visited = CountModule.getVisitedUriCache(${../../hogwarts}.getUri(), gale).length;
+            double total = CountModule.getUriCache(${../../hogwarts}.getUri(), gale).length;
+            double percentage = visited / total;
+
+            // Determine based on how much has been read, the user's house.
+            // If they fall in between then they will have to take a test
+
+            if(visited >= 16 ){
+
+                ${_concept->(personal)#user-house} = "ravenclaw";
+                ${#sorting-test-active} = false;
+                ${#sorted-adaptively} = true;
+                ${#own-knowledge} = 1d;
+            }
+            else if(visited <= 6){
+
+                ${_concept->(personal)#user-house} = "hufflepuff";
+                ${#sorting-test-active} = false;
+                ${#sorted-adaptively} = true;
+                ${#own-knowledge} = 1d;
+            }
+            else {
+
+                // Do nothing, let the test begin!
+            }
         }
     `
 }

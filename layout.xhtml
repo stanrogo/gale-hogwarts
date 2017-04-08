@@ -7,6 +7,9 @@
 
     <body>
 
+    <gale:variable expr="CountModule.getUriCache(${../../hogwarts}.getUri(), gale).length"/>
+    <gale:variable expr="CountModule.getVisitedUriCache(${../../hogwarts}.getUri(), gale).length"/>
+
         <div id="wrapper">
 
             <!-- Check the suitability and if not suitable display the relevant popup -->
