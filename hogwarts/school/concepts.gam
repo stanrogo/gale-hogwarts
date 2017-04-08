@@ -18,7 +18,7 @@ $options {
 _concept {->(extends)../_concept
     ->(personal)../../_personal
     #layout-resources =`new String[]{"css/school.css", "css/root-concept.css"}`
-    #unsuitable-resource =`"[[=../sorting-popup.xhtml]]"`
+    #unsuitable-resource =`"".equals(${_concept->(personal)#user-house}) ? "[[=../sorting-popup.xhtml]]" : "[[=../unsuitable.xhtml]]"`
     event +
 }
 

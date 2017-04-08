@@ -1,13 +1,12 @@
 $options {
-default.order "auto"
+    default.order "auto"
 }
-
 
 _concept {->(extends)../_concept
     ->(personal)../../_personal
     event +
     #layout-resources =`new String[]{"css/hall-of-fame.css", "css/root-concept.css"}`
-    #unsuitable-resource =`"[[=hogwarts/sorting-popup.xhtml]]"`
+    #unsuitable-resource =`"".equals(${_concept->(personal)#user-house}) ? "[[=../sorting-popup.xhtml]]" : "[[=../unsuitable.xhtml]]"`
 }
 
 

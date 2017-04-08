@@ -79,7 +79,7 @@ school {->(extends)_concept
 
     title `School`
     #layout-resources =`new String[]{"css/school.css", "css/root-concept.css"}`
-    #unsuitable-resource =`"[[=sorting-popup.xhtml]]"`
+    #unsuitable-resource =`"".equals(${_concept->(personal)#user-house}) ? "[[=sorting-popup.xhtml]]" : "[[=unsuitable.xhtml]]"`
 
     // Mark all prerequisite knowledge as known if user has the expert knowledge level
     // for basic, diagon alley and great hall concepts
@@ -102,7 +102,7 @@ hall-of-fame {->(extends)_concept
 
     title `Hall of Fame`
     #layout-resources =`new String[]{"css/hall-of-fame.css", "css/root-concept.css"}`
-    #unsuitable-resource =`"[[=sorting-popup.xhtml]]"`
+    #unsuitable-resource =`"".equals(${_concept->(personal)#user-house}) ? "[[=sorting-popup.xhtml]]" : "[[=unsuitable.xhtml]]"`
 
     event +
 }
