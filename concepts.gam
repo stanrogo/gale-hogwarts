@@ -22,6 +22,7 @@ _concept {
     #[own-knowledge]:Double `0.0`       // Own knowledge by default will get set to 1 since you have now viewed the page
     #[course-knowledge]:Integer `-1`    // The knowledge that you have if you are taking a particular course
     #[affiliation]:String `""`          // A concept can be affiliated to a particular house
+    #[completed]:Boolean `false`        // Know whether a course was completed or not
 
     // Define a helper function for each concept, which allows the construction of the base URL of the server on
     // which the concepts are hosted
@@ -33,7 +34,20 @@ _concept {
 
     // If a role has not been determined yet, retrieve the welcome letter screen, otherwise return the normal layout
 
-    #resource =`"".equals(${_concept->(personal)#role}) ? "[[=welcome-screen.xhtml]]" : "[[=layout.xhtml]]"`
+    #resource =`~
+        if("".equals(${_concept->(personal)#role})) return "[[=welcome-screen.xhtml]]";
+
+        Double OwlKnowledge = (
+            ${_concept->(personal)#knowledge1} +
+            ${_concept->(personal)#knowledge2} +
+            ${_concept->(personal)#knowledge3} +
+            ${_concept->(personal)#knowledge4}
+        ) / 400.0;
+
+        if (OwlKnowledge == 1.0) return "[[=end-screen.xhtml]]";
+
+        return "[[=layout.xhtml]]";
+    `
     #unsuitable-resource =`"[[=hogwarts/unsuitable.xhtml]]"`
 
     // Define the variables that will be computed with every entry to the concept, based on other variables
@@ -63,6 +77,11 @@ _concept {
                     }
                 }
             }
+        }
+
+        if("Owl Exam".equals(${?title})){
+
+            return and(new Object[] {${->(parent)<=(parent)#completed}});
         }
 
         return and(new Object[] {${=>(prereq)#known-most}}) && ${->(parent)#known};
@@ -331,11 +350,4 @@ hogwarts {->(extends)_concept
 
     #own-knowledge =`1.0`
     #top-level =`true`;
-}
-
-end-screen {->(extends)_concept
-    title `Congratulations!`
-
-    #own-knowledge =`1.0`
-    #resource =`"[[=end-screen.xhtml]]"`
 }

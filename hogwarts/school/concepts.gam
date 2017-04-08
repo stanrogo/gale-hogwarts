@@ -53,6 +53,8 @@ _course {->(extends)_concept
             ${#course-knowledge} = courseKnowledge;
             ${#own-knowledge} = Math.min((courseKnowledge / 100.0), 1.0);
 
+            if (courseKnowledge >= 100) ${#completed} = true;
+
             // Whenever we access a course that is not blocked, the others should become unblocked
 
             Concept[] childrenList = ${->(parent)<-(parent)};
@@ -71,6 +73,7 @@ _course {->(extends)_concept
         else{
 
             ${#own-knowledge} = Math.min((${#course-knowledge} / 100.0), 1.0);
+            if (${#course-knowledge} >= 100) ${#completed} = true;
         }
 
         Concept[] courses = new Concept[]{${dada}, ${transfiguration}, ${herbology}, ${potions}};
@@ -262,10 +265,39 @@ transfiguration/level5 {
 
 OWL {->(extends)_concept
     ->(parent)../school
-    ->(prereq)dada
-    ->(prereq)herbology
-    ->(prereq)transfiguration
-    ->(prereq)potions
     title `Owl Exam`
-    event +
+
+    #completed =`true`          // This is just a little hack to make sure this concept is not counted as a course
+
+    // The following is a marker, which when the value is changed, will update the knowledge of particular courses
+
+    #[reset-knowledge]:Double {
+        event `
+            if(${_concept->(personal)#done1} && ${_concept->(personal)#knowledge1} == 0){
+                ${transfiguration#course-knowledge} = 0;
+                ${transfiguration#own-knowledge} = 0.0;
+                ${_concept->(personal)#done1} = false;
+            }
+            if(${_concept->(personal)#done1} && ${_concept->(personal)#knowledge1} == 50){
+                ${transfiguration#course-knowledge} = 60;
+                ${transfiguration#own-knowledge} = 0.6;
+                ${_concept->(personal)#done1} = false;
+            }
+            if(${_concept->(personal)#done1} && ${_concept->(personal)#knowledge1} == 100){
+                ${transfiguration#course-knowledge} = 120;
+                ${transfiguration#own-knowledge} = 1;
+            }
+        `
+    }
+
+    event +`
+        // The following will make sure that the own knowledge is between 0 to 1 based on tests passed
+
+        ${#own-knowledge} = (
+            ${_concept->(personal)#knowledge1} +
+            ${_concept->(personal)#knowledge2} +
+            ${_concept->(personal)#knowledge3} +
+            ${_concept->(personal)#knowledge4}
+        ) / 400.0;
+    `
 }
