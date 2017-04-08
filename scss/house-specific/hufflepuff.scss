@@ -23,9 +23,11 @@
 
 .button{
 	background-color: $hufflepuff-color;
+	color: $black;
 
 	&:hover{
 		background-color: $hufflepuff-color-dark;
+		color: $black;
 	}
 }
 

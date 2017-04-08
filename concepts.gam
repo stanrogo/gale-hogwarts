@@ -143,7 +143,6 @@ _concept {
     #[mark-prereq-all]:Integer {
         event `
             ${#own-knowledge} = 1d;
-            ${#visited}++;
 
             Concept[] list = ${->(prereq)};
             for (int i = 0; i < list.length; i++) {
@@ -165,6 +164,31 @@ _concept {
         `
     }
 
+    #[mark-prereq-all-visited]:Integer {
+        event `
+            ${#own-knowledge} = 1d;
+            ${#visited}++;
+
+            Concept[] list = ${->(prereq)};
+            for (int i = 0; i < list.length; i++) {
+
+                URI uri = session.resolve(list[i].getUri() + "#mark-prereq-all-visited");
+                EntityValue ev = (EntityValue)session.get(uri);
+                session.put(uri, new EntityValue(uri, ((Integer)ev.getValue())+1));
+
+                uri = session.resolve(list[i].getUri() + "#mark-all-visited");
+                ev = (EntityValue)session.get(uri);
+                session.put(uri, new EntityValue(uri, ((Integer)ev.getValue())+1));
+            }
+
+            // We assume that we only have one parent for a child concept
+
+            if(${->(parent)}.length > 0 && !"Hogwarts".equals(${->(parent)?title})){
+                ${->(parent)#mark-prereq-all-visited}++;
+            }
+        `
+    }
+
     // Marks all the children of a concept as known
 
     #[mark-all]:Integer {
@@ -174,6 +198,20 @@ _concept {
             for (int i = 0; i < list.length; i++) {
 
                 URI uri = session.resolve(list[i].getUri()+ "#mark-all");
+                EntityValue ev = (EntityValue)session.get(uri);
+                session.put(uri, new EntityValue(uri, ((Integer)ev.getValue())+1));
+            }
+        `
+    }
+
+    #[mark-all-visited]:Integer {
+        event `
+            ${#own-knowledge} = 1d;
+            ${#visited}++;
+            Concept[] list = ${<-(parent)};
+            for (int i = 0; i < list.length; i++) {
+
+                URI uri = session.resolve(list[i].getUri()+ "#mark-all-visited");
                 EntityValue ev = (EntityValue)session.get(uri);
                 session.put(uri, new EntityValue(uri, ((Integer)ev.getValue())+1));
             }

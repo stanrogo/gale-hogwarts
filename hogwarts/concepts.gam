@@ -62,11 +62,9 @@ great-hall {->(extends)_concept
     #layout-resources =`new String[]{"css/great-hall.css", "css/root-concept.css"}`
 
     event +`
-        if("intermediate".equals(${_concept->(personal)#role})){
+        if("intermediate".equals(${_concept->(personal)#role}) && ${#visited} == 0){
 
-            ${#mark-prereq-all}++;
-            ${#own-knowledge} = 1.0;
-            ${#visited}++;
+            ${#mark-prereq-all-visited}++;
         }
     `
 }
@@ -85,11 +83,9 @@ school {->(extends)_concept
     // for basic, diagon alley and great hall concepts
 
     event +`
-        if("expert".equals(${_concept->(personal)#role})){
+        if("expert".equals(${_concept->(personal)#role}) && ${#visited} == 0){
 
-            ${#mark-prereq-all}++;
-            ${#own-knowledge} = 1.0;
-            ${#visited}++;
+            ${#mark-prereq-all-visited}++;
         }
     `
 }

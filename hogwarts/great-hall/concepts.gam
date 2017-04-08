@@ -54,7 +54,12 @@ sorting-ceremony {->(extends)_concept
             else {
 
                 // Do nothing, let the test begin!
+                ${#sorting-test-active} = true;
             }
+        }
+        else{
+
+            ${#sorting-test-active} = false;
         }
     `
 }
