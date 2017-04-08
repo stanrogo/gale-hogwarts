@@ -13,7 +13,7 @@
 	color: $white;
 }
 
-.house-knowledge--gryffindor{
+.tree-view--wrapper .house-knowledge--gryffindor{
 	@include include-icon('star_rate', $gryffindor-color);
 }
 

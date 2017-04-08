@@ -13,7 +13,7 @@
 	color: $white;
 }
 
-.house-knowledge--ravenclaw{
+.tree-view--wrapper .house-knowledge--ravenclaw{
 	@include include-icon('star_rate', $ravenclaw-color);
 }
 

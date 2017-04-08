@@ -13,7 +13,7 @@
 	color: $white;
 }
 
-.house-knowledge--slytherin{
+.tree-view--wrapper .house-knowledge--slytherin{
 	@include include-icon('star_rate', $slytherin-color);
 }
 
