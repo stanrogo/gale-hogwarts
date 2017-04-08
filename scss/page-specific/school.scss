@@ -4,7 +4,7 @@
 	@include nav-highlight();
 }
 
-#main .tree-view--wrapper{
+#main .tree-view--wrapper, #school{
 
 	a.knowledge--known:not(.knowledge--level5):not(.course-blocked){
 

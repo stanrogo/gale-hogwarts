@@ -94,7 +94,7 @@ school {->(extends)_concept
 
 hall-of-fame {->(extends)_concept
     ->(parent)../hogwarts
-    ->(prereq)school
+    ->(prereq)great-hall
 
     title `Hall of Fame`
     #layout-resources =`new String[]{"css/hall-of-fame.css", "css/root-concept.css"}`

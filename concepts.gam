@@ -121,7 +121,7 @@ _concept {
         if (${#known-all}) sb.append("knowledge--known-all ");
         if (!${#suitability}) sb.append("knowledge--unsuitable ");
         if (${#suitability}) sb.append("knowledge--suitable ");
-        if (${#suitability} && ${#unvisited}) sb.append("knowledge--first-time ");
+        if (${#suitability} && ${#unvisited} && !${#known}) sb.append("knowledge--first-time ");
         if (${#unknown}) sb.append("knowledge--unknown");
         return sb.toString();
     `

@@ -4,7 +4,9 @@
 	@include nav-highlight();
 }
 
-#try-again{
-	display: inline;
+#sorting-test .sorting-button{
+	display: block;
+	width: 15rem;
+	margin-top: 1rem;
 }
 
