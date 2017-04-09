@@ -19,12 +19,10 @@ _concept {->(extends)../_concept
     ->(personal)../../_personal
     #layout-resources =`new String[]{"css/school.css", "css/root-concept.css"}`
     #unsuitable-resource =`"".equals(${_concept->(personal)#user-house}) ? "[[=../sorting-popup.xhtml]]" : "[[=../unsuitable.xhtml]]"`
-    #[me]:String `"Hello"`
 
     #[mark-courses-as-known]:Integer {
         event `
             ${#own-knowledge} = 0.5;
-            ${#me} = "not hello";
             if(${#is-course}){
 
                 ${#course-knowledge} = 120;
