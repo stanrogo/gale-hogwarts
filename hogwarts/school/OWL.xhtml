@@ -3,7 +3,7 @@
   <gale:if expr="!${_concept-&gt;(personal)#done1} &amp;&amp; ${transfiguration#course-knowledge} >= 100">
     <gale:then>
       <gale:test title="O.W.L. Examination, part 1" total="2"
-      action="#{_concept-&gt;(personal)#knowledge1, value.intValue()}; #{#reset-knowledge, Math.random()};"
+      action="#{_concept-&gt;(personal)#knowledge1, value.intValue()}; #{#reset-knowledge1, Math.random()};"
       expr="true" ask="2" alt="[You are not allowed to redo this test.]" verbose="false">
         <gale:question answers="4" right="1"> Which subject was tought by Albus Dumbledore?
           <gale:answer correct="false"> Herbology <gale:explain> Unfortunately, Herbology is not given by Albus Dumbledore.</gale:explain>       </gale:answer>
@@ -39,7 +39,7 @@
   <gale:if expr="!${_concept-&gt;(personal)#done2} &amp;&amp; ${herbology#course-knowledge} >= 100">
     <gale:then>
       <gale:test title="O.W.L. Examination, part 2" total="2"
-      action="#{_concept-&gt;(personal)#knowledge2, value.intValue()}; #{#reset-knowledge, Math.random()};"
+      action="#{_concept-&gt;(personal)#knowledge2, value.intValue()}; #{#reset-knowledge2, Math.random()};"
       expr="true" ask="2" alt="[You are not allowed to redo this test.]" verbose="false">
         <gale:question answers="4" right="1"> Which (part of a) plant can be used to breathe underwater?
           <gale:answer correct="false"> Snorkelroot <gale:explain> Did you even attend Herbology classes?</gale:explain>                       </gale:answer>
@@ -75,7 +75,7 @@
   <gale:if expr="!${_concept-&gt;(personal)#done3} &amp;&amp; ${potions#course-knowledge} >= 100">
     <gale:then>
       <gale:test title="O.W.L. Examination, part 3" total="2"
-      action="#{_concept-&gt;(personal)#knowledge3, value.intValue()}; #{#reset-knowledge, Math.random()};"
+      action="#{_concept-&gt;(personal)#knowledge3, value.intValue()}; #{#reset-knowledge3, Math.random()};"
       expr="true" ask="2" alt="[You are not allowed to redo this test.]" verbose="false">
         <gale:question answers="4" right="1"> What is the correct order for ingredients for Wideye Potion?
           <gale:answer correct="false"> Snake fangs - Billywig stings - Standard ingredient - Wolfsbane <gale:explain> No, not the right order</gale:explain> </gale:answer>
@@ -111,7 +111,7 @@
   <gale:if expr="!${_concept-&gt;(personal)#done4} &amp;&amp; ${dada#course-knowledge} >= 100">
     <gale:then>
       <gale:test title="O.W.L. Examination, part 4" total="2"
-      action="#{_concept-&gt;(personal)#knowledge4, value.intValue()}; #{#reset-knowledge, Math.random()};"
+      action="#{_concept-&gt;(personal)#knowledge4, value.intValue()}; #{#reset-knowledge4, Math.random()};"
       expr="true" ask="2" alt="[You are not allowed to redo this test.]" verbose="false">
         <gale:question answers="3" right="1"> Which incantation <b>cannot</b> be used to make another person laugh?
           <gale:answer correct="false"> Riddikulus <gale:explain> No, this spells makes people laugh through the transformation of the Boggart</gale:explain> </gale:answer>
