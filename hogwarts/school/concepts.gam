@@ -273,19 +273,20 @@ OWL {->(extends)_concept
 
     #[reset-knowledge]:Double {
         event `
-            if(${_concept->(personal)#done1} && ${_concept->(personal)#knowledge1} == 0){
+            if(${_concept->(personal)#knowledge1} == 0){
                 ${transfiguration#course-knowledge} = 0;
                 ${transfiguration#own-knowledge} = 0.0;
                 ${_concept->(personal)#done1} = false;
             }
-            if(${_concept->(personal)#done1} && ${_concept->(personal)#knowledge1} == 50){
+            if(${_concept->(personal)#knowledge1} == 50){
                 ${transfiguration#course-knowledge} = 60;
                 ${transfiguration#own-knowledge} = 0.6;
                 ${_concept->(personal)#done1} = false;
             }
-            if(${_concept->(personal)#done1} && ${_concept->(personal)#knowledge1} == 100){
+            if(${_concept->(personal)#knowledge1} == 100){
                 ${transfiguration#course-knowledge} = 120;
                 ${transfiguration#own-knowledge} = 1.0;
+                ${_concept->(personal)#done1} = true;
             }
         `
     }

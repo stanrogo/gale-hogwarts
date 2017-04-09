@@ -15,11 +15,12 @@
         . <br/><br/>
     </gale:if>
 
+    <gale:variable expr="${_concept-&gt;(personal)#done1}"/>
+
     <gale:if expr="!${_concept-&gt;(personal)#done1} &amp;&amp; ${transfiguration#course-knowledge} >= 100">
         <gale:then>
             <gale:test title="O.W.L. Examination, part 1" total="2"
-                       action="#{_concept-&gt;(personal)#knowledge1, value.intValue()};
-                       #{_concept-&gt;(personal)#done1, true};#{#reset-knowledge, Math.random()};"
+                       action="#{_concept-&gt;(personal)#knowledge1, value.intValue()}; #{#reset-knowledge, Math.random()};"
                        expr="true" ask="2" alt="[You are not allowed to redo this test.]" verbose="false">
                 <gale:question answers="4" right="1"> Which subject was tought by Albus Dumbledore?
                     <gale:answer correct="false"> Herbology
