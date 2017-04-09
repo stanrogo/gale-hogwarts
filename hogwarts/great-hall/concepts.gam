@@ -66,9 +66,5 @@ sorting-ceremony {->(extends)_concept
                 ${#sorting-test-active} = true;
             }
         }
-        else{
-
-            ${#sorting-test-active} = false;
-        }
     `
 }
