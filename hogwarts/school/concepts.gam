@@ -312,6 +312,51 @@ OWL {->(extends)_concept
                 ${transfiguration#own-knowledge} = 1.0;
                 ${_concept->(personal)#done1} = true;
             }
+            if(${_concept->(personal)#knowledge2} == 0){
+                ${herbology#course-knowledge} = 0;
+                ${herbology#own-knowledge} = 0.0;
+                ${_concept->(personal)#done2} = false;
+            }
+            if(${_concept->(personal)#knowledge2} == 50){
+                ${herbology#course-knowledge} = 60;
+                ${herbology#own-knowledge} = 0.6;
+                ${_concept->(personal)#done2} = false;
+            }
+            if(${_concept->(personal)#knowledge2} == 100){
+                ${herbology#course-knowledge} = 120;
+                ${herbology#own-knowledge} = 1.0;
+                ${_concept->(personal)#done2} = true;
+            }
+            if(${_concept->(personal)#knowledge3} == 0){
+                ${potions#course-knowledge} = 0;
+                ${potions#own-knowledge} = 0.0;
+                ${_concept->(personal)#done3} = false;
+            }
+            if(${_concept->(personal)#knowledge3} == 50){
+                ${potions#course-knowledge} = 60;
+                ${potions#own-knowledge} = 0.6;
+                ${_concept->(personal)#done3} = false;
+            }
+            if(${_concept->(personal)#knowledge3} == 100){
+                ${potions#course-knowledge} = 120;
+                ${potions#own-knowledge} = 1.0;
+                ${_concept->(personal)#done3} = true;
+            }
+            if(${_concept->(personal)#knowledge4} == 0){
+                ${dada#course-knowledge} = 0;
+                ${dada#own-knowledge} = 0.0;
+                ${_concept->(personal)#done4} = false;
+            }
+            if(${_concept->(personal)#knowledge4} == 50){
+                ${dada#course-knowledge} = 60;
+                ${dada#own-knowledge} = 0.6;
+                ${_concept->(personal)#done4} = false;
+            }
+            if(${_concept->(personal)#knowledge4} == 100){
+                ${dada#course-knowledge} = 120;
+                ${dada#own-knowledge} = 1.0;
+                ${_concept->(personal)#done4} = true;
+            }
         `
     }
 
