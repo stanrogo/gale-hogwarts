@@ -44,7 +44,7 @@ _concept {
             ${_concept->(personal)#knowledge4}
         ) / 400.0;
 
-        if (OwlKnowledge == 1.0) return "[[=end-screen.xhtml]]";
+        if (OwlKnowledge == 1.0 && ${_concept->(personal)#show-end-screen}) return "[[=end-screen.xhtml]]";
 
         return "[[=layout.xhtml]]";
     `
@@ -339,6 +339,7 @@ _personal {
     #[knowledge2]:Double ``
     #[knowledge3]:Double ``
     #[knowledge4]:Double ``
+    #[show-end-screen]:Boolean `true`
 }
 
 hogwarts {->(extends)_concept
