@@ -1,121 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:gale="http://gale.tue.nl/adaptation">
 
-    <head>
-        <!-- The needed files are imported into the head via gale -->
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    </head>
+<head>
+    <!-- The needed files are imported into the head via gale -->
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+</head>
 
-    <body>
+<body>
 
-        <div id="wrapper">
+<div id="wrapper">
 
-            <!-- Check the suitability and if not suitable display the relevant popup -->
+    <!-- Check the suitability and if not suitable display the relevant popup -->
 
-            <gale:if expr="!${#suitability}">
+    <gale:if expr="!${#suitability}">
 
-                <gale:object>
-                    <gale:attr-variable name="data" expr="${#unsuitable-resource}"/>
-                </gale:object>
-            </gale:if>
+        <gale:object>
+            <gale:attr-variable name="data" expr="${#unsuitable-resource}"/>
+        </gale:object>
+    </gale:if>
 
-            <!-- This is the toggle button used to show/hide the mobile tree view -->
+    <!-- This is the toggle button used to show/hide the mobile tree view -->
 
-            <input id="nav-toggle" class="is-hidden" type="checkbox"/>
-            <label for="nav-toggle" class="nav-toggle--label">
-                <i class="material-icons nav-toggle--icon-menu">menu</i>
-                <i class="material-icons nav-toggle--icon-close">close</i>
-            </label>
+    <input id="nav-toggle" class="is-hidden" type="checkbox"/>
+    <label for="nav-toggle" class="nav-toggle--label">
+        <i class="material-icons nav-toggle--icon-menu">menu</i>
+        <i class="material-icons nav-toggle--icon-close">close</i>
+    </label>
 
-            <!-- The header contains the top level navigation and logo and name of the application -->
+    <!-- The header contains the top level navigation and logo and name of the application -->
 
-            <header id="header">
+    <header id="header">
 
-                <div class="hero--wrapper">
-                    <img class="hero--logo" src="./images/hogwarts_crest.png"/>
-                    <div class="hero--text">
-                        <h1 class="hero--headline">Hogwarts School Of Witchcraft &amp; Wizardry</h1>
-                        <h2 class="hero--motto">Draco Dormiens Nunquam Titillandus</h2>
-                    </div>
-                </div>
-
-                <nav class="tree-view--wrapper">
-                    <gale:view name="static-tree-view" maxdepth="4"/>
-
-                    <div class="user-message">
-                        Good Day <gale:variable expr="${_concept->(personal)#user-name}"/>
-                    </div>
-                </nav>
-
-            </header>
-
-            <!-- The main section contains the sub level tree view and the content of the concepts -->
-
-            <main id="main">
-
-                <nav class="tree-view--wrapper">
-
-                    <div class="user-message">
-                        Good Day <gale:variable expr="${_concept->(personal)#user-name}"/>
-                    </div>
-
-                    <gale:view name="static-tree-view" maxdepth="3"/>
-                </nav>
-
-                <div class="resource--wrapper">
-
-                    <section class="row">
-                        <div class="small-12 columns material-card hogwarts-section">
-
-                            <h1>
-                                <gale:variable expr="${?title}"/>
-                            </h1>
-
-                            <gale:if expr="${.}.getAttribute(&quot;sub-resource&quot;) != null">
-                                <gale:then>
-                                    <gale:object>
-                                        <gale:attr-variable name="data" expr="${#sub-resource}" />
-                                    </gale:object>
-                                </gale:then>
-                                <gale:else>
-                                    <gale:object>
-                                        <gale:attr-variable name="data" expr="${.}.getUri() + &quot;.xhtml&quot;" />
-                                    </gale:object>
-                                </gale:else>
-                            </gale:if>
-                        </div>
-                    </section>
-                </div>
-
-                <!-- This button should be perhaps gale enabled to take you to the next recommended topic -->
-
-                <a class="button button--next">
-                    <gale:attr-variable name="href" expr="
-                        GaleUtil.getContextURL(gale.req()) + &quot;/concept/&quot; + ${_concept->(personal)#next-recommended}"/>
-                    Next
-                </a>
-            </main>
-
-            <!-- Add an empty footer with a scroll to top button -->
-
-            <footer id="footer">
-                <a class="footer--to-top">
-                    <gale:attr-variable name="href"
-                            expr="GaleUtil.getContextURL(gale.req()) + &quot;/concept/&quot; +
-                             ${.}.getUriString() + &quot;#wrapper&quot;"/>
-                    To Top
-                </a>
-            </footer>
-
-            <!-- Show the cookie bar if the user has not clicked it away yet -->
-
-            <gale:if expr="!${_concept->(personal)#cookies-accepted}">
-                <gale:object>
-                    <gale:attr-variable name="data" expr="${#base-url} + &quot;/hogwarts/cookie-bar.xhtml&quot;"/>
-                </gale:object>
-            </gale:if>
-
+        <div class="hero--wrapper">
+            <img class="hero--logo" src="./images/hogwarts_crest.png"/>
+            <div class="hero--text">
+                <h1 class="hero--headline">Hogwarts School Of Witchcraft &amp; Wizardry</h1>
+                <h2 class="hero--motto">Draco Dormiens Nunquam Titillandus</h2>
+            </div>
         </div>
 
-    </body>
+        <nav class="tree-view--wrapper">
+            <gale:view name="static-tree-view" maxdepth="4"/>
+
+            <div class="user-message">
+                Good Day
+                <gale:variable expr="${_concept->(personal)#user-name}"/>
+            </div>
+        </nav>
+
+    </header>
+
+    <!-- The main section contains the sub level tree view and the content of the concepts -->
+
+    <main id="main">
+
+        <nav class="tree-view--wrapper">
+
+            <div class="user-message">
+                Good Day
+                <gale:variable expr="${_concept->(personal)#user-name}"/>
+            </div>
+
+            <gale:view name="static-tree-view" maxdepth="3"/>
+        </nav>
+
+        <div class="resource--wrapper">
+
+            <section class="row">
+                <div class="small-12 columns material-card hogwarts-section">
+
+                    <h1>
+                        <gale:variable expr="${?title}"/>
+                    </h1>
+
+                    <gale:if expr="${.}.getAttribute(&quot;sub-resource&quot;) != null">
+                        <gale:then>
+                            <gale:object>
+                                <gale:attr-variable name="data" expr="${#sub-resource}"/>
+                            </gale:object>
+                        </gale:then>
+                        <gale:else>
+                            <gale:object>
+                                <gale:attr-variable name="data" expr="${.}.getUri() + &quot;.xhtml&quot;"/>
+                            </gale:object>
+                        </gale:else>
+                    </gale:if>
+                </div>
+            </section>
+        </div>
+
+        <!-- This button should be perhaps gale enabled to take you to the next recommended topic -->
+
+        <a class="button button--next">
+            <gale:attr-variable name="href" expr="
+                        GaleUtil.getContextURL(gale.req()) + &quot;/concept/&quot; + ${_concept->(personal)#next-recommended}"/>
+            Next
+        </a>
+    </main>
+
+    <!-- Add an empty footer with a scroll to top button -->
+
+    <footer id="footer">
+        <a class="footer--to-top">
+            <gale:attr-variable name="href"
+                                expr="GaleUtil.getContextURL(gale.req()) + &quot;/concept/&quot; +
+                             ${.}.getUriString() + &quot;#wrapper&quot;"/>
+            To Top
+        </a>
+    </footer>
+
+    <!-- Show the cookie bar if the user has not clicked it away yet -->
+
+    <gale:if expr="!${_concept->(personal)#cookies-accepted}">
+        <gale:object>
+            <gale:attr-variable name="data" expr="${#base-url} + &quot;/hogwarts/cookie-bar.xhtml&quot;"/>
+        </gale:object>
+    </gale:if>
+
+</div>
+
+</body>
 </html>

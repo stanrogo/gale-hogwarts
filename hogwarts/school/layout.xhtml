@@ -7,7 +7,7 @@
             <div class="level-container clearfix">
                 <input class="course-level-toggle" type="checkbox"/>
                 <h1 class="course-level-heading">
-                    <gale:variable expr="${%concept?title}" />
+                    <gale:variable expr="${%concept?title}"/>
                 </h1>
                 <div class="expand">
                     <gale:object>
@@ -20,6 +20,8 @@
     </gale:for>
 
     <gale:if expr="${#course-knowledge} > 100">
-        <div class="level-container clearfix"><gale:object name="completed"/></div>
+        <div class="level-container clearfix">
+            <gale:object name="completed"/>
+        </div>
     </gale:if>
 </div>

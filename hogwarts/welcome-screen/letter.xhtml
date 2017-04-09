@@ -1,10 +1,11 @@
-<section xmlns="http://www.w3.org/1999/xhtml" xmlns:gale="http://gale.tue.nl/adaptation"
-         class="letter--wrapper">
+<section xmlns="http://www.w3.org/1999/xhtml" xmlns:gale="http://gale.tue.nl/adaptation" class="letter--wrapper">
 
     <div class="letter--container">
 
         <p>
-            Dear <gale:variable expr="${_concept-&gt;(personal)#user-name}"/>,
+            Dear
+            <gale:variable expr="${_concept-&gt;(personal)#user-name}"/>
+            ,
         </p>
         <p>
             We are pleased to inform you that you have been accepted at Hogwarts School of Witchcraft and Wizardry.
@@ -152,7 +153,9 @@
         <img class="letter--signature" src="../../images/signature.png" alt="Signature McGonagall"/>
 
         <p>
-            Minerva McGonagall,<br/>
+            Minerva McGonagall,
+        </p>
+        <p>
             Headmistress
         </p>
     </div>

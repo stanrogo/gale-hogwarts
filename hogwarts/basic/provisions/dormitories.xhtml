@@ -1,5 +1,4 @@
-<section id="dormitories" xmlns="http://www.w3.org/1999/xhtml" xmlns:gale="http://gale.tue.nl/adaptation">
-
+<article id="dormitories" xmlns="http://www.w3.org/1999/xhtml" xmlns:gale="http://gale.tue.nl/adaptation">
     <p>
         The dormitories at hogwarts are where you will spend a lot of your free time while at Hogwarts School.
         The dormitories provide four poster beds, a communal living room with an open fire, as well as places to either
@@ -8,101 +7,130 @@
 
     <!-- You can only get a detailed explanation about the house dormitories after you have learned about the houses -->
 
-    <gale:text expr="${../../great-hall/houses#knowledge} > 0.8">
+    <gale:if expr="${../../great-hall/houses#knowledge} > 0.8">
 
-        <h2>Slytherin Dormitories</h2>
+        <div class="clearfix dormitory--info">
 
-        <gale:text type="creole" tag="default">
-            The [[../../great-hall/houses|Slytherin]] dormitories are located down in the atmospheric dungeon inside Hogwarts School.
-            In general, it sports several shades of green and the mantle is adorned with a portrait of a serpent
-            (all associated with the house).
-        </gale:text>
+            <h2>Slytherin Dormitories</h2>
 
-        <figure class="floating-figure">
-            <img src="./images/slytherin_dungeon.jpg"/>
-            <figcaption>The slytherin common room</figcaption>
-        </figure>
-        <p>
-            The password to the common room changes every fortnight, and it is posted on the noticeboard. You will have
-            to remember this and stay up to date if you fancy sleeping in your bed!
-            Slytherin students are warned never to bring students from other houses into the common room,
-            or to reveal the password. At Slytherin house we pride ourselves that no outsider has entered the common room
-            for more than seven centuries.
-        </p>
-      <br></br>
+            <gale:text type="creole" tag="default">
+                The [[../../great-hall/houses|Slytherin]] dormitories are located down in the atmospheric dungeon inside
+                Hogwarts School.
+                In general, it sports several shades of green and the mantle is adorned with a portrait of a serpent
+                (all associated with the house).
+            </gale:text>
 
-        <h2>Hufflepuff Dormitories</h2>
+            <figure class="floating-figure">
+                <img src="./images/slytherin_dungeon.jpg"/>
+                <figcaption>The slytherin common room</figcaption>
+            </figure>
 
-        <p>
-            The Hufflepuff Dormitory is located in the basement of Hogwarts. The entrance to the common room
-            is located "in a nook on the right side of the kitchen corridor"
-            In general, it sports several motifs, such as circles, nature, copper and the colours yellow and
-            black (all associated with the house).
-            It is said that the Hufflepuff Basement is the cosiest common room of all four.
-            The actual basement itself is round, earthy, low-ceilinged, welcoming, warm and sunny.
-            There is also a large, honey-coloured, wooden mantelpiece with carvings of badgers on it.
-            This is located underneath a portrait of the house's founder, Helga Hufflepuff.
-        </p>
+            <p>
+                The password to the common room changes every fortnight, and it is posted on the noticeboard. You will
+                have
+                to remember this and stay up to date if you fancy sleeping in your bed!
+                Slytherin students are warned never to bring students from other houses into the common room,
+                or to reveal the password. At Slytherin house we pride ourselves that no outsider has entered the common
+                room
+                for more than seven centuries.
+            </p>
 
-        <figure class="floating-figure">
-            <img src="./images/hufflepuff_basement.jpg" style="width:425px;height:280px;"> </img>
-            <figcaption>The hufflepuff common room</figcaption>
-        </figure> <br/>
-        <gale:text type="creole" tag="default">
-            The password to the common room does not change. In order to reveal the entrance, one must tap the barrel
-            two from the bottom, middel of the second row,
-            in the rhythm of "Helga Hufflepuff", which will make the lid swing open.
-            If the wrong lid is tapped or the wrong rhythm is used, the intruder will be doused in vinegar and barred access.
-            Hufflepuff is the only house which has a replling device against intruders.
-            It is also the only house that is decorated with vegetation, which is brought to them by the head of the
-            house Pomona Sprout, who teaches [[../../school/herbology|Herbology]].
+        </div>
 
-        </gale:text>
-      <br/>
+        <div class="clearfix dormitory--info">
 
-      <h2>Ravenclaw Dormitories</h2>
+            <h2>Hufflepuff Dormitories</h2>
 
-      <p>
-          The Ravenclaw Dormitory is located in one of the towers of Hogwarts. The entrance to the common room is located behind the door with the enchanted knocker at the top of Ravenclaw Tower.
-          The arched windows set intot the walls of the circular common room look down at the school grounds: the lake, the Forbidden Forest, the Quiddich pitch and the Herbology gardens. No other
-          tower has such stunning views: it is the airiest of all four common rooms.
-          Next to the tables, chairs and bookcases, a tall statue of Rowena Ravenclaw is positioned in the common room.
-      </p>
+            <p>
+                The Hufflepuff Dormitory is located in the basement of Hogwarts. The entrance to the common room
+                is located "in a nook on the right side of the kitchen corridor"
+                In general, it sports several motifs, such as circles, nature, copper and the colours yellow and
+                black (all associated with the house).
+                It is said that the Hufflepuff Basement is the cosiest common room of all four.
+                The actual basement itself is round, earthy, low-ceilinged, welcoming, warm and sunny.
+                There is also a large, honey-coloured, wooden mantelpiece with carvings of badgers on it.
+                This is located underneath a portrait of the house's founder, Helga Hufflepuff.
+            </p>
 
-      <figure class="floating-figure">
-          <img src="./images/ravenclaw_tower.png" style="width:350px;height:350px;"> </img>
-          <figcaption>The ravenclaw common room</figcaption>
-      </figure> <br></br>
-      <p>
-        To enter Ravenclaw's Tower a student must solve a riddle rather than remembering a password. <br></br>
-        The knocker of the entrance door has the shape of an eagle. In order to enter the room, a person must answer a riddle asked by the eagle knocker. If it is answered incorrectly, they must
-        wait for someone else who gets it right in order to enter.
-      </p>
-    <br></br>
+            <figure class="floating-figure">
+                <img src="./images/hufflepuff_basement.jpg" style="width:425px;height:280px;"> </img>
+                <figcaption>The hufflepuff common room</figcaption>
+            </figure>
 
-        <h2>Gryffindor Dormitories</h2>
+            <gale:text type="creole" tag="default">
+                The password to the common room does not change. In order to reveal the entrance, one must tap the
+                barrel
+                two from the bottom, middel of the second row,
+                in the rhythm of "Helga Hufflepuff", which will make the lid swing open.
+                If the wrong lid is tapped or the wrong rhythm is used, the intruder will be doused in vinegar and
+                barred
+                access.
+                Hufflepuff is the only house which has a replling device against intruders.
+                It is also the only house that is decorated with vegetation, which is brought to them by the head of the
+                house Pomona Sprout, who teaches [[../../school/herbology|Herbology]].
 
-        <p>
-            The Gryffindor Dormitory is located inside the Gryffindor Tower and is where the Gryffindor
-            students go to sleep at night. Every dorm room is equipped with a centrally-located stove and each student
-            gets their own four poster bed, flanked by a set of windows and space for storing personal belongings.
-            On the window sill, a water jug is placed, in case any of the students should
-            feel the need for a drink in the middle of the night.
-        </p>
+            </gale:text>
+        </div>
 
-        <figure class="floating-figure">
-            <img src="./images/gryffindor_dormitory.jpg"/>
-            <figcaption>The gryffindor common room</figcaption>
-        </figure>
-        <gale:text type="creole" tag="default">
-            <strong>Fun fact</strong>: In [[../headmasters|Albus Dumbledore]]'s fourth year at Hogwarts,
-            he set fire to the curtains in this dormitory: whether this was accidental or intentional is uncertain.
-            He claimed it was accidental, though he also stated that he hated them, so this statement is questionable.
-        </gale:text>
-        <p>
-            <strong>Fun fact</strong>: Although boys cannot enter the girls' dormitory,
-            the opposite doesn't hold true: girls have access to the boys' dormitories. WE won't reveal why this is done.
-        </p>
-    </gale:text>
+        <div class="clearfix dormitory--info">
 
-</section>
+            <h2>Ravenclaw Dormitories</h2>
+
+            <p>
+                The Ravenclaw Dormitory is located in one of the towers of Hogwarts. The entrance to the common room is
+                located behind the door with the enchanted knocker at the top of Ravenclaw Tower.
+                The arched windows set intot the walls of the circular common room look down at the school grounds: the
+                lake, the Forbidden Forest, the Quiddich pitch and the Herbology gardens. No other
+                tower has such stunning views: it is the airiest of all four common rooms.
+                Next to the tables, chairs and bookcases, a tall statue of Rowena Ravenclaw is positioned in the common
+                room.
+            </p>
+
+            <figure class="floating-figure">
+                <img src="./images/ravenclaw_tower.png" style="width:350px;height:350px;"/>
+                <figcaption>The ravenclaw common room</figcaption>
+            </figure>
+
+            <p>
+                To enter Ravenclaw's Tower a student must solve a riddle rather than remembering a password.
+                The knocker of the entrance door has the shape of an eagle. In order to enter the room, a person must
+                answer
+                a riddle asked by the eagle knocker. If it is answered incorrectly, they must
+                wait for someone else who gets it right in order to enter.
+            </p>
+
+        </div>
+
+        <div class="clearfix dormitory--info">
+
+            <h2>Gryffindor Dormitories</h2>
+
+            <p>
+                The Gryffindor Dormitory is located inside the Gryffindor Tower and is where the Gryffindor
+                students go to sleep at night. Every dorm room is equipped with a centrally-located stove and each
+                student
+                gets their own four poster bed, flanked by a set of windows and space for storing personal belongings.
+                On the window sill, a water jug is placed, in case any of the students should
+                feel the need for a drink in the middle of the night.
+            </p>
+
+            <figure class="floating-figure">
+                <img src="./images/gryffindor_dormitory.jpg"/>
+                <figcaption>The gryffindor common room</figcaption>
+            </figure>
+
+            <gale:text type="creole" tag="default">
+                <strong>Fun fact</strong>: In [[../headmasters|Albus Dumbledore]]'s fourth year at Hogwarts,
+                he set fire to the curtains in this dormitory: whether this was accidental or intentional is uncertain.
+                He claimed it was accidental, though he also stated that he hated them, so this statement is
+                questionable.
+            </gale:text>
+
+            <p>
+                <strong>Fun fact</strong>: Although boys cannot enter the girls' dormitory,
+                the opposite doesn't hold true: girls have access to the boys' dormitories. WE won't reveal why this is
+                done.
+            </p>
+        </div>
+    </gale:if>
+</article>
