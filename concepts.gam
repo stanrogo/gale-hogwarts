@@ -59,6 +59,7 @@ _concept {
     #unknown:Boolean =`${#own-knowledge} == 0.0`
     #unvisited:Boolean =`${#visited} == 0`
     #top-level =`false`
+    #is-course =`false`
 
     // Define suitability as:
     //      - Overview Learning Style:  If the user has an overview learning style and this is a concept

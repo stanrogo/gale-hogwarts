@@ -5,6 +5,10 @@
         <div class="unsuitable-info">
             <div class="overlay--aragog"></div>
             <div class="unsuitable--text">
+
+                <gale:variable expr="${->(parent)&lt;-(parent)[1]#course-knowledge}"/>
+                <gale:variable expr="${#me}"/>
+                <gale:variable expr="${#mark-courses-as-known}"/>
                 <p>
                     Woops. Who goes there? Aragog is going to feast tonight. You have come to a place with which you are
                     unfamiliar. Only the confident may pass through the forest without the feast that Aragog's children
@@ -34,7 +38,15 @@
                     <a href="#" class="button button-unsuitable"
                        onclick="document.forms['continue-unsuitable'].submit(); return false">Continue Regardless</a>
 
-                    <input name="exec" type="hidden" value="${#mark-prereq-all}++;" />
+                    <gale:if expr="&quot;Owl Exam&quot;.equals(${?title})">
+                        <gale:then>
+                            <input name="exec" type="hidden" value="${#mark-courses-as-known}++;" />
+                        </gale:then>
+                        <gale:else>
+                            <input name="exec" type="hidden" value="${#mark-prereq-all}++;" />
+                        </gale:else>
+                    </gale:if>
+
                     <input name="redirect" type="hidden" value="true">
                         <gale:attr-variable name="value" expr="${.}.getUriString()" />
                     </input>

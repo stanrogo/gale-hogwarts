@@ -19,6 +19,29 @@ _concept {->(extends)../_concept
     ->(personal)../../_personal
     #layout-resources =`new String[]{"css/school.css", "css/root-concept.css"}`
     #unsuitable-resource =`"".equals(${_concept->(personal)#user-house}) ? "[[=../sorting-popup.xhtml]]" : "[[=../unsuitable.xhtml]]"`
+    #[me]:String `"Hello"`
+
+    #[mark-courses-as-known]:Integer {
+        event `
+            ${#own-knowledge} = 0.5;
+            ${#me} = "not hello";
+            if(${#is-course}){
+
+                ${#course-knowledge} = 120;
+                ${#completed} = true;
+                ${#own-knowledge} = 1d;
+            }
+
+            Concept[] list = ${->(parent)<-(parent)};
+            for (int i = 0; i < list.length; i++) {
+
+                URI uri = session.resolve(list[i].getUri()+ "#mark-courses-as-known");
+                EntityValue ev = (EntityValue)session.get(uri);
+                session.put(uri, new EntityValue(uri, ((Integer)ev.getValue())+1));
+            }
+        `
+    }
+
     event +
 }
 
@@ -36,6 +59,7 @@ _course {->(extends)_concept
     #course-unfinished =`${#course-knowledge} < 100`
     #course-blocked =`${#course-duplicate-access} && ${#course-unfinished} && ${#course-siblings-unknown}`
     #sub-resource =`${#course-blocked} ? "[[=later.xhtml]]" : "[[=layout.xhtml]]"`
+    #is-course =`true`
 
     event +`
 
