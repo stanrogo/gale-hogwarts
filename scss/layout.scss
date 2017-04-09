@@ -49,14 +49,6 @@
 	// Unsuitable modal box styling
 
 	#unsuitable{
-
-		.overlay{
-			@include stretch-absolute();
-			position: fixed;
-			background-color: rgba($black, 0.6);
-			z-index: $fourth-floor;
-		}
-
 		.unsuitable-info--wrapper{
 			@include stretch-absolute();
 			position: fixed;
@@ -85,6 +77,38 @@
 			.unsuitable--text{
 				position: relative;
 				z-index: $first-floor;
+			}
+		}
+	}
+
+	#not-sorted{
+
+
+		.unsuitable-info--wrapper{
+			@include stretch-absolute();
+			position: fixed;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: $pent-house;
+		}
+
+		.unsuitable-info{
+			position: relative;
+			width: 40rem;
+			max-width: 90%;
+			padding: 1rem;
+			background: $white;
+			@include material-shadow();
+
+			@include breakpoint(md){
+				background: url("../images/sorting-hat.png") center right / 300px no-repeat $white;
+			}
+
+			.unsuitable--text{
+				@include breakpoint(md){
+					width: 50%;
+				}
 			}
 		}
 	}

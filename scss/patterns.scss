@@ -71,3 +71,10 @@
 .hidden{
 	display: none;
 }
+
+.overlay{
+	@include stretch-absolute();
+	position: fixed;
+	background-color: rgba($black, 0.6);
+	z-index: $fourth-floor;
+}
